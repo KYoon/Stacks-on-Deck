@@ -1,0 +1,23 @@
+{
+  "name": "Stacks-on-Deck",
+  "version": "1.0.0",
+  "description": "This isn't a card game. This is all card games.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KYoon105/Stacks-on-Deck.git"
+  },
+  "author": "Team Stacks on Deck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KYoon105/Stacks-on-Deck/issues"
+  },
+  "homepage": "https://github.com/KYoon105/Stacks-on-Deck",
+  "dependencies": {
+    "express": "^4.12.2",
+    "socket.io": "^1.3.5"
+  }
+}
