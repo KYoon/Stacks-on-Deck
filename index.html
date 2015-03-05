@@ -1,1 +1,43 @@
-<h1>Hello World! :D</h1>
+<h1>Stacks on Deck! :D</h1>
+
+<div class = "container">
+  <form id="create" method="POST" action="/games">
+    <label>Username</label><input type = "text" id="username" name="username">
+    <br>
+    <input type = "submit" value = "Create Room">
+    <br>
+  </form>
+
+
+  <form id="join" method="POST" action="/games">
+    <label>Username</label><input type = "text" id="username">
+    <br>
+    <label>Room Key</label><input type = "text" id="roomkey">
+    <br>
+    <input type = "submit" value = "Join Room">
+    <br>
+  </form>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script>
+
+
+
+  $("form#join").submit(function(e){
+    e.preventDefault();
+    var joinData = {
+      username: $("#username").val(),
+      roomkey: $("#roomkey").val()
+    }
+    socket.emit("join", joinData);
+  })
+
+  var socket = io.connect("http://localhost")
+
+  socket.on("message", function(message){
+    console.log(message);
+  })
+
+
+</script>
