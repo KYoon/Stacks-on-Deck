@@ -14,7 +14,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 
 // sessions
-app.use(session({secret: 'so_secret'}));
+app.use(session({secret: 'so_secret', saveUninitialized: true, resave: true}));
 
 // params
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -45,7 +45,7 @@ app.post('/games', function(req, res) {
 });
 
 app.post('/join', function(req, res) {
-  var roomkey = req.body.roomkey;
+  var roomkey = req.body.roomkey.toUpperCase();
   var username = req.body.username;
   req.session["username"] = username;
   req.session["roomkey"] = roomkey;
@@ -80,11 +80,8 @@ function getAllUsers(roomkey){
 // sockets!
 io.on('connection', function(socket){
   socket.on("joinRoom", function(data){
-    socket.emit('message', "joined room " + data.roomkey);
     socket.join(data.roomkey, function(error){
-      console.log("User joined a room");
-      io.to(data.roomkey).emit("message", data.username + " joined the room!");
-      io.to(data.roomkey).emit("peerUpdate", getAllUsers(data.roomkey));
+      io.to(data.roomkey).emit("message", {username: data.username, roomkey: data.roomkey});
       if(error){console.log("error:" + error);}
     });
   });

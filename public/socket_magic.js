@@ -12,6 +12,11 @@ $(document).ready(function(){
 
   $("#deal").click(dealCards)
 
+  function messageReception(message) {
+    $(".player-list").append("<li>" + message.username + "</li>")
+    $("#roomkey").html(message.roomkey)
+  }
+
   function dealCards(){
     socket.emit("dealCards");
   }
@@ -19,10 +24,9 @@ $(document).ready(function(){
   function updateHand(newHand){
     hand = newHand;
     console.log(hand);
-  }
-
-  function messageReception(message){
-    console.log(message);
+    for (i=0; i<hand.length; i++){
+      $(".player-hand").append("<p>" + hand[i].value + " of " + hand[i].suit + "</p>")  
+    }
   }
 
   function updateUserList(clients){
