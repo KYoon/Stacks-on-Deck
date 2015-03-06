@@ -45,10 +45,11 @@ app.post('/games', function(req, res) {
   return;
 });
 
+
 app.get('/games/:key', function(req, res) {
   // validate key is legit
   console.log(req.session)
-  res.render('game.ejs', {username: req.session["creatorName"]})
+  res.render('game.ejs', {username: req.session["creatorName"], roomkey: req.session["roomKey"]})
   return;
 })
 
@@ -64,23 +65,13 @@ function keyGenerator(){
 // sockets!
 io.on('connection', function(socket){
 
-  socket.on("createRoom", function(data){
-    socket.emit('message', "created room " + data.roomkey);
-    socket.join(data.roomkey, function(error){
-      console.log("User created a room");
-      console.log(socket.rooms);
-      io.to(data.roomkey).emit("message", data.username + " joined the room!")
-      console.log(error);
-    });
-  });
-
   socket.on("joinRoom", function(data){
     socket.emit('message', "joined room " + data.roomkey);
     socket.join(data.roomkey, function(error){
       console.log("User joined a room");
       console.log(socket.rooms);
       io.to(data.roomkey).emit("message", data.username + " joined the room!")
-      console.log(error);
+      if(error){console.log("error:" + error);}
     });
   });
 

@@ -1,19 +1,25 @@
-var socket = io.connect();
+$(document).ready(function(){
+  var socket = io.connect();
+  socket.emit("joinRoom", userData);
 
-socket.on("message", messageReception);
+  socket.on("message", messageReception);
 
-socket.on("cardsDeal", cardsReception);
+  socket.on("cardsDeal", cardsReception);
 
-socket.on("cardReceive", cardReception);
+  socket.on("cardReceive", cardReception);
 
-function messageReception(message){
-  console.log(message);
-}
+  function messageReception(message){
+    console.log(message);
+  }
 
-function cardsReception(cards) {
+  function cardsReception(cards) {
 
-}
+  }
 
-function cardReception(card) {
-  
-}
+  function cardReception(card) {
+
+  }
+
+
+})
+
