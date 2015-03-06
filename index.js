@@ -1,5 +1,6 @@
 // core frameworks
 var express = require('express');
+var layouts = require('express-ejs-layouts');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -8,6 +9,7 @@ var _ = require('underscore');
 // templates
 app.set('views', './views')
 app.set('view engine', 'ejs')
+app.use(layouts);
 
 // middleware
 var bodyParser = require('body-parser');
