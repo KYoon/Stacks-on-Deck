@@ -1,0 +1,15 @@
+<h1> THE GAME </h1>
+  <p>welcome <span id="username"><%= username %></span></p>
+  <p>where the magic happens</p>
+  <ul>
+    
+
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/public/socket_magic.js"></script>
+<script>
+  var userData = {
+    username: "<%= username %>",
+    roomkey: "<%= roomkey %>"
+  }
+</script>
