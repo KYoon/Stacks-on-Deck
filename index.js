@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var _ = require('underscore');
 
 // templates
 app.set('views', './views')
@@ -78,17 +79,33 @@ function getAllUsers(roomkey){
 
 // sockets!
 io.on('connection', function(socket){
-
   socket.on("joinRoom", function(data){
     socket.emit('message', "joined room " + data.roomkey);
     socket.join(data.roomkey, function(error){
       console.log("User joined a room");
-      // console.log(socket.rooms);
       io.to(data.roomkey).emit("message", data.username + " joined the room!");
       io.to(data.roomkey).emit("peerUpdate", getAllUsers(data.roomkey));
       if(error){console.log("error:" + error);}
     });
   });
 
+  socket.on("dealCards", function(data){
+    // stubbed to only work on one person
+    socket.emit("updateHand", randomHand(5));
+  });
 
 });
+
+function randomHand(quantity){
+  var newHand = []
+  for(var i=0; i < quantity; i++ ){
+    newHand.push(randomCard())
+  }
+  return newHand;
+}
+
+function randomCard(){
+  var suits = ["hearts", "clubs", "spades", "diamonds"];
+  var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
+  return {suit:_.sample(suits), value: _.sample(values)};
+}
