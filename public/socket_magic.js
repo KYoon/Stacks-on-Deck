@@ -8,8 +8,14 @@ $(document).ready(function(){
 
   socket.on("cardReceive", cardReception);
 
+  socket.on("peerUpdate", updateUserList);
+
   function messageReception(message){
     console.log(message);
+  }
+
+  function updateUserList(clients){
+    console.log(clients);
   }
 
   function cardsReception(cards) {
