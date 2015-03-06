@@ -1,5 +1,4 @@
 var redis = require("redis");
-var waterfall = require('async-waterfall');
 client = redis.createClient();
 multi = client.multi();
 
@@ -66,8 +65,14 @@ function createDeck(gameId) {
     return gameId+":"+user+":hand";
   }
 
-  function createUser(username, gameId) {
+  function createUser(gameId, username, userKey) {
     client.hset(gameId+":users", gameId+":"+username, username)
+    client.hset(gameId+":users:keys", gameId+":"+username+":key", userKey)
+  }
+
+  var destroyUser = function(gameId, username, callback) {
+    client.hdel(gameId+":users", gameId+":"username)
+    client.hdel(gameId+":users:keys", gameId+":"+username+":key")
   }
 
   function oneRandCard(gameId, callback){
@@ -76,6 +81,11 @@ function createDeck(gameId) {
 
   function getUsers(gameId, callback) {
     client.hvals(gameId+":users", callback);
+  }
+
+
+  var getUserKeys = function(gameId, username, callback) {
+    client.hvals(gameId+":users:keys", gameId+":"+username+"key")
   }
 
   var dealUserCard = function(gameId, user) {
@@ -92,7 +102,6 @@ function createDeck(gameId) {
       var count = 0;
       while( count < handSize ) {
         users.forEach(function(user) {
-          console.log("user: " + user + " count: " + count)
           dealUserCard(gameId, user);
         });
         count++;
@@ -108,13 +117,12 @@ function createDeck(gameId) {
     client.smove(userHand(gameId, from), userHand(gameId, to), card)
   }
 
-  var getTable = function() {
-
+  var getTable = function(gameId, to) {
+    getHand(gameId, userHand(gameId, "Table"), to), function(cards){
+      cards.forEach(function(card){
+        passCard(gameId, "Table", userHand(gameId, to), card);
+      });
+    };
   }
 
 
-
-// deck:GAME_ID = Set of cards
-// game:GAME_ID_players = [player1_id, player2_id, player3_id]
-
-// game:GAME_ID:hand:PLAYER_ID = Set of cards for the player
