@@ -107,5 +107,5 @@ function randomHand(quantity){
 function randomCard(){
   var suits = ["hearts", "clubs", "spades", "diamonds"];
   var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
-  return [{suit:_.sample(suits), value: _.sample(values)}]
+  return {suit:_.sample(suits), value: _.sample(values)};
 }

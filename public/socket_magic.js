@@ -10,8 +10,15 @@ $(document).ready(function(){
 
   socket.on("updateClients", updateUserList);
 
+  $("#deal").click(dealCards)
+
+  function dealCards(){
+    socket.emit("dealCards");
+  }
+
   function updateHand(newHand){
-    hand = newHand
+    hand = newHand;
+    console.log(hand);
   }
 
   function messageReception(message){
