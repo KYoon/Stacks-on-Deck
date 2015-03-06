@@ -1,9 +1,26 @@
-var redis = require("redis"),
-    client = redis.createClient();
+var redis = require("redis");
+var waterfall = require('async-waterfall');
+client = redis.createClient();
 
 client.on("error", function (err) {
-  console.log("Error " + err);
+  console.log("REDIS Error " + err);
 });
+
+client.on("connect", function(){
+  console.log("REDIS connecting: ", arguments);
+});
+
+client.on("ready", function(){
+  createDeck(gameId);
+
+  createUser("Aaron", gameId);
+  createUser("Brian", gameId);
+  // passCard("Aaron", "Brian", "hearts8", gameId)
+  // passCard(user:1234, )
+  // waterfall(gameId)
+  dealCards(gameId);
+});
+
 
 var gameId = "1234"
 var gameId2 = 5
@@ -25,34 +42,21 @@ function createUser(username, gameId) {
   client.hset(gameId+":users", gameId+":"+username, username)
 }
 
-function getRandCard(gameId){
-  client.srandmember(gameId+":deck", function(err, reply){
-    console.log(reply)
-    console.log(err)
-    return reply
-  })
-}
+  function randCard(gameId){
+    client.srandmember(gameId+":deck", function(err, reply) {
+      console.log("randCard reply: ", reply)
+      console.log("error randCard: ", err)
+    })
+  }
 
-function dealCards(gameId) {
-  client.hvals(gameId+":users", function(err, object){
-    for(i=0; i < object.length; i++){
-      client.smove(gameId+":deck", gameId+":"+object[i]+":hand", getRandCard(gameId) )
-    }
-  });
-}
-
-// function passCard(user1, user2, card, gameId) {
-//   client.smove(gameId+":"+user1, gameId+":"+user2, card)
-// }
-
-createDeck(gameId);
-
-createUser("Aaron", gameId);
-createUser("Brian", gameId);
-// passCard("Aaron", "Brian", "hearts8", gameId)
-// passCard(user:1234, )
-dealCards(gameId);
-client.quit();
+  function dealCards(gameId) {
+    console.log("fun2")
+    client.hvals(gameId+":users", function(err, object){
+      for(i=0; i < object.length; i++){
+        client.smove(gameId+":deck", gameId+":"+object[i]+":hand", function(err, reply){ randCard(gameId) });
+       }
+    })
+  }
 
 
 // deck:GAME_ID = Set of cards
