@@ -15,48 +15,114 @@ client.on("ready", function(){
 
   createUser("Aaron", gameId);
   createUser("Brian", gameId);
-  // passCard("Aaron", "Brian", "hearts8", gameId)
-  // passCard(user:1234, )
-  // waterfall(gameId)
-  dealCards(gameId);
+  createUser("BobLobLaw", gameId)
+  createUser("John", gameId)
+
+  getHand(gameId, "Brian")
+  // randCard(gameId, function(err, card){console.log(card)})
+
+  dealUsersCard(gameId, 5)
+  // dealUsersHands(gameId, 5);
 });
 
 
 var gameId = "1234"
-var gameId2 = 5
 
 function createDeck(gameId) {
-  var suite = ["hearts", "clubs", "spades", "diamonds"];
+  var suit = ["hearts", "clubs", "spades", "diamonds"];
   var value = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
 
 
-  for (i = 0; i < suite.length; i++) {
+  for (i = 0; i < suit.length; i++) {
     for (x = 0; x < value.length; x++) {
-      client.hset(suite[i] + value[x], suite[i], value[x], redis.print)
-      client.sadd(gameId+":deck", (suite[i] + value[x]))
+      client.hset(suit[i] + value[x], suit[i], value[x], redis.print)
+      client.sadd(gameId+":deck", (suit[i] + value[x]))
     };
   };
 };
+
+  var deckName = function(gameId) {
+    return gameId+":deck"
+  }
+
+  var userHand = function(gameId, user) {
+    return gameId+":"+user+":hand";
+  }
 
 function createUser(username, gameId) {
   client.hset(gameId+":users", gameId+":"+username, username)
 }
 
-  function randCard(gameId){
-    client.srandmember(gameId+":deck", function(err, reply) {
-      console.log("randCard reply: ", reply)
-      console.log("error randCard: ", err)
+  function oneRandCard(gameId, callback){
+    client.srandmember(deckName(gameId), callback);
+  }
+
+  var getUsers = function(gameId, callback) {
+    client.hvals(gameId+":users", callback);
+  }
+
+  var dealUserCard = function(gameId, user) {
+    randCard(gameId, function(err, card) {
+      console.log("dealing "+card+" for "+user)
+      client.smove(deckName(gameId), userHand(gameId, user), card);
+    });
+  }
+
+  var dealUsersCard = function(gameId, handSize) {
+    getUsers(gameId, function(err, users){
+      var count = 0;
+      while( count <= handSize ) {
+        console.log(count + " up to " + handSize);
+        users.forEach(function(user) {
+          dealUserCard(gameId, user);
+        });
+        count++;
+      }
+    console.log("first")
     })
   }
 
-  function dealCards(gameId) {
-    console.log("fun2")
-    client.hvals(gameId+":users", function(err, object){
-      for(i=0; i < object.length; i++){
-        client.smove(gameId+":deck", gameId+":"+object[i]+":hand", function(err, reply){ randCard(gameId) });
-       }
-    })
+  var getHand = function(gameId, user) {
+    client.smembers(userHand(gameId, user))
   }
+
+  var passCard = function(gameId, from, to, card) {
+    client.smove(userHand(gameId, from), userHand(gameId, to), card)
+  }
+
+  var getTable = function() {
+
+  }
+
+
+  // var dealUsersCard = function(gameId) {
+
+  //   getUsers(gameId, function(err, users){
+  //   console.log(users)
+  //     for (i=0; i < users.length; i++) {
+  //       console.log(i)
+  //       console.log(users[i])
+  //       dealUserCard(gameId, users[i])
+  //     };
+  //       // users.forEach(function(user) {
+  //       //   dealUserCard(gameId, user);
+  //       // });
+  //   });
+  //   // })
+  //   console.log("first")
+  // }
+
+  // var dealUsersHands = function(gameId, handSize) {
+  //   var count = 0;
+  //   do {
+  //     dealUsersCard(gameId);
+  //     count++;
+  //   } while (count <= handSize);
+  // }
+
+
+
+
 
 
 // deck:GAME_ID = Set of cards
