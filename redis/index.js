@@ -69,7 +69,7 @@ function createDeck(gameId) {
 
   var destroyUser = function(gameId, username, callback) {
     client.hdel(gameId+":users", gameId+":"username)
-    client.hdel(gameId+":users:keys", gameId+":"+username+":key")
+    client.hdel(gameId+":users:keys", gameId+":"+username+":key" )
   }
 
   function oneRandCard(gameId, callback){
