@@ -1,7 +1,16 @@
 <h1> THE GAME </h1>
-  <p>welcome <span id="username"><%= username %></span></p>
-  <p>where the magic happens</p>
-  <button id="deal"> deal them cards </button>
+<p>Welcome <span id="username"><%= username %></span></p>
+<p>You are in the room: <span id="roomkey"></span></p>
+<p>Players in the game:</p>
+<ul>
+  <div class="player-list">
+  </div>
+</ul>
+<button id="deal">Deal them cards </button>
+
+<p>Your cards are:</p>
+<div class="player-hand">
+</div>
     
 
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
