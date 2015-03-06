@@ -5,7 +5,7 @@ client.on("error", function (err) {
   console.log("Error " + err);
 });
 
-var gameId = 1234
+var gameId = "1234"
 var gameId2 = 5
 
 function createDeck(gameId) {
@@ -22,15 +22,23 @@ function createDeck(gameId) {
 };
 
 function createUser(username, gameId) {
-  client.sadd(gameId+":users", gameId+":"+username)
+  client.hset(gameId+":users", gameId+":"+username, username)
 }
 
-function dealCards() {
-  // numUsers = scard gameId+":users"
-  // for (i = 0; i < numUsers; i++)
-  //   client.smove(gameId+":deck")
-  a = client.smembers("1234:users")
-  console.log(a)
+function getRandCard(gameId){
+  client.srandmember(gameId+":deck", function(err, reply){
+    console.log(reply)
+    console.log(err)
+    return reply
+  })
+}
+
+function dealCards(gameId) {
+  client.hvals(gameId+":users", function(err, object){
+    for(i=0; i < object.length; i++){
+      client.smove(gameId+":deck", gameId+":"+object[i]+":hand", getRandCard(gameId) )
+    }
+  });
 }
 
 // function passCard(user1, user2, card, gameId) {
@@ -38,13 +46,12 @@ function dealCards() {
 // }
 
 createDeck(gameId);
-createDeck(gameId2);
 
 createUser("Aaron", gameId);
 createUser("Brian", gameId);
 // passCard("Aaron", "Brian", "hearts8", gameId)
 // passCard(user:1234, )
-dealCards();
+dealCards(gameId);
 client.quit();
 
 
