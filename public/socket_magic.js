@@ -1,14 +1,18 @@
 $(document).ready(function(){
-  var socket = io.connect();
+  var hand = []
+
+  socket = io.connect();
   socket.emit("joinRoom", userData);
+
+  socket.on("updateHand", updateHand)
 
   socket.on("message", messageReception);
 
-  socket.on("cardsDeal", cardsReception);
+  socket.on("updateClients", updateUserList);
 
-  socket.on("cardReceive", cardReception);
-
-  socket.on("peerUpdate", updateUserList);
+  function updateHand(newHand){
+    hand = newHand
+  }
 
   function messageReception(message){
     console.log(message);
@@ -17,15 +21,6 @@ $(document).ready(function(){
   function updateUserList(clients){
     console.log(clients);
   }
-
-  function cardsReception(cards) {
-
-  }
-
-  function cardReception(card) {
-
-  }
-
 
 })
 
