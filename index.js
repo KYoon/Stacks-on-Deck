@@ -34,22 +34,33 @@ app.get('/', function(req, res){
 });
 
 app.post('/games', function(req, res) {
-  var roomKey = keyGenerator();
-  var creatorName = req.body.username
-  req.session["creatorName"] = creatorName
-  req.session["roomKey"] = roomKey
-  console.log(req.session)
+  var roomkey = keyGenerator();
+  var username = req.body.username;
+  req.session["username"] = username;
+  req.session["roomkey"] = roomkey;
+  console.log(req.session);
   // check if gameKey currently exists in redis
   // create new game
-  res.redirect('/games/' + roomKey);
+  res.redirect('/games/' + roomkey);
   return;
 });
+
+app.post('/join', function(req, res) {
+  var roomkey = req.body.roomkey;
+  var username = req.body.username;
+  req.session["username"] = username;
+  req.session["roomkey"] = roomkey;
+  console.log(req.session);
+
+  res.redirect('/games/'+ roomkey);
+  return;
+})
 
 
 app.get('/games/:key', function(req, res) {
   // validate key is legit
   console.log(req.session)
-  res.render('game.ejs', {username: req.session["creatorName"], roomkey: req.session["roomKey"]})
+  res.render('game.ejs', {username: req.session["username"], roomkey: req.session["roomkey"]})
   return;
 })
 
