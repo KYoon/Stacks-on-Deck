@@ -3,6 +3,7 @@
 
 ## Commands
 ### must be run
+* If grunt is not installed on the local machine, run $ grunt install grunt-cli -g
 * $ grunt concat (or just $ grunt) -- combine all clientside js files into socket_magic.js
 * run grunt for development, check .gitignore before final deployment for public/socket_magic.js
 * $ redis-server -- runs redis server
