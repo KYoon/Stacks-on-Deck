@@ -24,6 +24,7 @@
     "express-ejs-layouts": "^1.1.0",
     "express-session": "^1.10.3",
     "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.1",
     "grunt-contrib-jst": "^0.6.0",
     "jade": "^1.9.2",
     "redis": "^0.12.1",
