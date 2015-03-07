@@ -3,6 +3,10 @@ var waterfall = require('async-waterfall');
 client = redis.createClient();
 multi = client.multi();
 
+// modules in order to get functions/methods in other files
+module.exports.createUser = createUser;
+module.exports.getUsers = getUsers;
+
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
 });
@@ -12,34 +16,34 @@ client.on("connect", function(){
 });
 
 client.on("ready", function(){
-  client.flushdb(function() {
-    createDeck(gameId);
+  // client.flushdb(function() {
+  //   createDeck(gameId);
 
-    createUser("Aaron", gameId);
-    createUser("Brian", gameId);
-    createUser("BobLobLaw", gameId)
-    createUser("John", gameId)
-
-
-    dealUsersCard(gameId, 6)
+    // createUser("Aaron", gameId);
+    // createUser("Brian", gameId);
+    // createUser("BobLobLaw", gameId)
+    // createUser("John", gameId)
 
 
-    setInterval(function() {
-      getUsers(gameId, function(err, reply){
-        reply.forEach(function(userKey) {
-          getHand(gameId, userKey, function(err, hand) {
-            console.log(userKey);
-            console.log(hand);
-            console.log("\n\n\n")
-          });
-        });
-      })
-    }, 200);
-  })
+  //   dealUsersCard(gameId, 6)
+
+
+  //   setTimeout(function() {
+  //     getUsers(gameId, function(err, reply){
+  //       reply.forEach(function(userKey) {
+  //         getHand(gameId, userKey, function(err, hand) {
+  //           console.log(userKey);
+  //           console.log(hand);
+  //           console.log("\n\n\n")
+  //         });
+  //       });
+  //     })
+  //   }, 200);
+  // })
 });
 
 
-var gameId = "1234"
+// var gameId = "1234"
 
 function createDeck(gameId) {
   var suit = ["hearts", "clubs", "spades", "diamonds"];
@@ -70,7 +74,7 @@ function createDeck(gameId) {
     client.spop(deckName(gameId), callback);
   }
 
-  var getUsers = function(gameId, callback) {
+  function getUsers(gameId, callback) {
     client.hvals(gameId+":users", callback);
   }
 
