@@ -19,11 +19,9 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     console.log(roomKey);
     repo.createDeck(roomKey);
-    // .done(function(){ 
-      repo.dealUsersCard(roomKey, 5, function(err, data){
-        console.log(data)
-      })
-    // })
+    repo.dealUsersCards(roomKey, 5, function(err, data){
+      console.log(data)
+    })
   });
 
 });

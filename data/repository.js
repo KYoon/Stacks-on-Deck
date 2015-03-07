@@ -16,7 +16,7 @@ module.exports.getHand = getHand;
 module.exports.passCard = passCard;
 module.exports.getTable = getTable;
 module.exports.createDeck = createDeck;
-module.exports.dealUsersCard = dealUsersCard;
+module.exports.dealUsersCards = dealUsersCards;
 
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
@@ -95,7 +95,7 @@ function dealUserCard(gameId, user) {
   });
 }
 
-function dealUsersCard(gameId, handSize, callback) {
+function dealUsersCards(gameId, handSize, callback) {
   getUsers(gameId, function(err, users){
     var count = 0;
     while( count < handSize ) {
@@ -124,27 +124,6 @@ function getUsers(gameId, callback) {
 
 function getUserKeys(gameId, username, callback) {
   client.hvals(gameId+":users:keys", gameId+":"+username+"key")
-}
-
-function dealUserCard(gameId, user) {
-  oneRandCard(gameId, function(err, card) {
-    console.log("user: " + user + " card: " + card);
-    client.sadd(userHand(gameId, user), card, function(err) {
-      console.log(err)
-    });
-  });
-}
-
-function dealUsersCards(gameId, handSize, callback) {
-  getUsers(gameId, function(err, users){
-    var count = 0;
-    while( count < handSize ) {
-      users.forEach(function(user) {
-        dealUserCard(gameId, user);
-      });
-      count++;
-    }
-  })
 }
 
 function getHand(gameId, user, callback) {
