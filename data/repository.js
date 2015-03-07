@@ -1,11 +1,20 @@
 var redis = require("redis");
-var waterfall = require('async-waterfall');
 client = redis.createClient();
 multi = client.multi();
 
 // modules in order to get functions/methods in other files
 module.exports.createUser = createUser;
 module.exports.getUsers = getUsers;
+module.exports.deckName = deckName;
+module.exports.userHand = userHand;
+module.exports.destroyUser = destroyUser;
+module.exports.oneRandCard = oneRandCard;
+module.exports.getUserKeys = getUserKeys;
+module.exports.dealUserCard = dealUserCard;
+module.exports.dealUsersCards = dealUsersCards;
+module.exports.getHand = getHand;
+module.exports.passCard = passCard;
+module.exports.getTable = getTable;
 
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
@@ -16,16 +25,18 @@ client.on("connect", function(){
 });
 
 client.on("ready", function(){
+  setTimeout(function(){
+    client.quit();
+  }, 200);
   // client.flushdb(function() {
   //   createDeck(gameId);
 
-    // createUser("Aaron", gameId);
-    // createUser("Brian", gameId);
-    // createUser("BobLobLaw", gameId)
-    // createUser("John", gameId)
+  //   createUser(gameId, "Aaron", 111);
+  //   createUser(gameId, "Brian", 222);
+  //   createUser(gameId, "BobLobLaw", 333);
+  //   createUser(gameId, "John", 444);
 
-
-  //   dealUsersCard(gameId, 6)
+  //   dealUsersCards(gameId, 6)
 
 
   //   setTimeout(function() {
@@ -50,71 +61,80 @@ function createDeck(gameId) {
   var value = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
 
 
-  for (i = 0; i < suit.length; i++) {
-    for (x = 0; x < value.length; x++) {
-      client.hset(suit[i] + value[x], suit[i], value[x], redis.print)
-      client.sadd(gameId+":deck", (suit[i] + value[x]))
-    };
+for (i = 0; i < suit.length; i++) {
+  for (x = 0; x < value.length; x++) {
+    client.hset(suit[i] + value[x], suit[i], value[x], redis.print)
+    client.sadd(gameId+":deck", (suit[i] + value[x]))
   };
 };
+};
 
-  var deckName = function(gameId) {
-    return gameId+":deck"
-  }
+function deckName(gameId) {
+  return gameId+":deck"
+}
 
-  var userHand = function(gameId, user) {
-    return gameId+":"+user+":hand";
-  }
+function userHand(gameId, user) {
+  return gameId+":"+user+":hand";
+}
 
-  function createUser(username, gameId) {
-    client.hset(gameId+":users", gameId+":"+username, username)
-  }
+function createUser(gameId, username, userKey) {
+  client.hset(gameId+":users", gameId+":"+username, username)
+  client.hset(gameId+":users:keys", gameId+":"+username+":key", userKey)
+}
 
-  function oneRandCard(gameId, callback){
-    client.spop(deckName(gameId), callback);
-  }
+var destroyUser = function(gameId, username, callback) {
+  client.hdel(gameId+":users", gameId+":"+username)
+  client.hdel(gameId+":users:keys", gameId+":"+username+":key" )
+}
 
-  function getUsers(gameId, callback) {
-    client.hvals(gameId+":users", callback);
-  }
+function oneRandCard(gameId, callback){
+  client.spop(deckName(gameId), callback);
+}
 
-  var dealUserCard = function(gameId, user) {
-    oneRandCard(gameId, function(err, card) {
-      console.log("user: " + user + " card: " + card);
-      client.sadd(userHand(gameId, user), card, function(err) {
-        console.log(err)
-      });
+function getUsers(gameId, callback) {
+  client.hvals(gameId+":users", callback);
+}
+
+
+function getUserKeys(gameId, username, callback) {
+  client.hvals(gameId+":users:keys", gameId+":"+username+"key")
+}
+
+function dealUserCard(gameId, user) {
+  oneRandCard(gameId, function(err, card) {
+    console.log("user: " + user + " card: " + card);
+    client.sadd(userHand(gameId, user), card, function(err) {
+      console.log(err)
     });
-  }
+  });
+}
 
-  var dealUsersCard = function(gameId, handSize, callback) {
-    getUsers(gameId, function(err, users){
-      var count = 0;
-      while( count < handSize ) {
-        users.forEach(function(user) {
-          console.log("user: " + user + " count: " + count)
-          dealUserCard(gameId, user);
-        });
-        count++;
-      }
-    })
-  }
+function dealUsersCards(gameId, handSize, callback) {
+  getUsers(gameId, function(err, users){
+    var count = 0;
+    while( count < handSize ) {
+      users.forEach(function(user) {
+        dealUserCard(gameId, user);
+      });
+      count++;
+    }
+  })
+}
 
-  var getHand = function(gameId, user, callback) {
-    client.smembers(userHand(gameId, user), callback);
-  }
+function getHand(gameId, user, callback) {
+  client.smembers(userHand(gameId, user), callback);
+}
 
-  var passCard = function(gameId, from, to, card) {
-    client.smove(userHand(gameId, from), userHand(gameId, to), card)
-  }
+function passCard(gameId, from, to, card) {
+  client.smove(userHand(gameId, from), userHand(gameId, to), card)
+}
 
-  var getTable = function() {
+function getTable(gameId, to) {
+  getHand(gameId, userHand(gameId, "Table"), to), function(cards){
+    cards.forEach(function(card){
+      passCard(gameId, "Table", userHand(gameId, to), card);
+    });
+  };
+}
 
-  }
 
-
-
-// deck:GAME_ID = Set of cards
-// game:GAME_ID_players = [player1_id, player2_id, player3_id]
-
-// game:GAME_ID:hand:PLAYER_ID = Set of cards for the player
