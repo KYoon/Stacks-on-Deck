@@ -1,4 +1,4 @@
-var MainPage = Backbone.View.extend({
+var Hand = Backbone.View.extend({
   handTemplate: window['JST']['templates/hand.tpl'],
   // handTemplate: _.template($("#handTemplate").html()),
   render: function(){

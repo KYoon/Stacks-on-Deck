@@ -1,5 +1,5 @@
 this["JST"] = this["JST"] || {};
-console.log(this);
+
 this["JST"]["templates/hand.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;

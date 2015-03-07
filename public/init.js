@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var mainpage = new MainPage();
-  mainpage.render();
-  $("body").append(mainpage.el)
+  var hand = new Hand();
+  hand.render();
+  $("body").append(hand.el)
 })
