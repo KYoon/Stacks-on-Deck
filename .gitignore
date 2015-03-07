@@ -1,4 +1,5 @@
 /node_modules
+/public/socket_magic.js
 dump.rdb
 npm-debug.log
 .DS_Store
