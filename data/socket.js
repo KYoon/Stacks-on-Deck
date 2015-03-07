@@ -21,13 +21,10 @@ io.on('connection', function(socket){
     repo.createDeck(roomKey);
     repo.dealUsersCards(roomKey, 5);
 
-   
     repo.getUserKeys(roomKey, function(err, keys){
       var socketKeys = keys
       socketKeys.forEach(function(key){
-        console.log(key);
         repo.getUser(roomKey, key, function(err, username){
-          console.log(username);
           repo.getHand(roomKey, username, function(err, data){
             io.to(key).emit("updateHand", data);
           })

@@ -84,7 +84,7 @@ function userHand(gameId, user) {
 function createUser(gameId, username, userKey) {
   client.hset(gameId+":users", gameId+":"+username, username)
   // client.hset(gameId+":users:keys", gameId+":"+username, userKey)
-   client.hset(gameId+":users:keys", userKey, username)
+  client.hset(gameId+":users:keys", userKey, username)
 }
 
 function getUser(gameId, userKey, callback) {
