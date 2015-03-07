@@ -9,8 +9,7 @@ $(document).ready(function(){
 
   socket.on("updateHand", updateHand);
   socket.on("updateClients", updateUserList);
-  socket.on("passCard")
-  socket.on("drawCard")
+  socket.on("updateTable", updateTable)
 
   // JQuery Calls
   $("#deal").click(function(){
@@ -22,12 +21,14 @@ $(document).ready(function(){
     $("#pass-card").show();
     $("#pass-table").show();
     passingCard = $(this).attr('id');
-    console.log("CARD CLICKED");
   });
 
   $("#pass-card").click(function(){
     $(".passing-player-list").show();
-    console.log("PASS CARD BUTTON CLICKED")
+  })
+
+  $("#pass-table").click(function(){
+    socket.emit("passTable", passingCard)
   })
 
   $(".passing-player-list").on("click", ".user", function(e){
@@ -48,10 +49,21 @@ $(document).ready(function(){
   function updateHand(newHand){
     $("#deal").hide();
     $('#draw-card').show();
+    console.log('UPDATING THE HAND')
     hand = newHand;
     $(".player-hand").empty();
     for (var i=0; i<hand.length; i++){
       $(".player-hand").append("<p class='card' id=" + hand[i] + "><a href=#>" + hand[i] + "</a></p>")  
+    }
+  }
+
+  function updateTable(tableCards){
+    console.log(tableCards);
+    console.log('GETTING HERE')
+    hand = tableCards;
+    $(".table").empty();
+    for (var i=0; i<hand.length; i++){
+      $(".table").append("<p class='card' id=" + hand[i] + "><a href=#>" + hand[i] + "</a></p>")  
     }
   }
 
