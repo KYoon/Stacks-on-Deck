@@ -14,11 +14,13 @@ $(document).ready(function(){
   // JQuery Calls
   $("#deal").click(function(){
     socket.emit("dealCards");
+    $('#draw-card').show();
   });
 
   $(".player-hand").on("click", ".card", function(e){
     e.preventDefault();
     $("#pass-card").show();
+    $("#pass-table").show();
     passingCard = $(this).attr('id');
     console.log("CARD CLICKED");
   });
