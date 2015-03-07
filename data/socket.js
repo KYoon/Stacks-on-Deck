@@ -1,6 +1,7 @@
 // core frameworks
 var io = require('socket.io')(server);
 var _ = require('underscore');
+var repo = require('./repository');
 
 function getAllUsers(roomkey){
   // console.log("printing people in da room")
@@ -14,7 +15,10 @@ function getAllUsers(roomkey){
 io.on('connection', function(socket){
   socket.on("joinRoom", function(data){
     socket.join(data.roomkey, function(error){
+      repo.createUser(data.username, data.roomkey);
       io.to(data.roomkey).emit("message", {username: data.username, roomkey: data.roomkey});
+      var payload = repo.getUsers(data.roomkey);
+      console.log(payload);
       if(error){console.log("error:" + error);}
     });
   });
