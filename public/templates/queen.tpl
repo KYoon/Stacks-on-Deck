@@ -1,0 +1,7 @@
+<div class="card <%= color %>">
+  <div class="rank-color">Q <%= suit %></div>
+  <div class="inner fg-container">
+    <div class="ajqk">Q</div>
+  </div>
+  <div class="rank-color rotated-rank-color rtt">Q <%= suit %></div>
+</div>
