@@ -17,8 +17,6 @@ io.on('connection', function(socket){
     socket.join(data.roomkey, function(error){
       repo.createUser(data.username, data.roomkey);
       io.to(data.roomkey).emit("message", {username: data.username, roomkey: data.roomkey});
-      var payload = repo.getUsers(data.roomkey);
-      console.log(payload);
       if(error){console.log("error:" + error);}
     });
   });
