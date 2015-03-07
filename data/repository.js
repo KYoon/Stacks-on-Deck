@@ -6,6 +6,15 @@ multi = client.multi();
 module.exports.createUser = createUser;
 module.exports.getUsers = getUsers;
 module.exports.deckName = deckName;
+module.exports.userHand = userHand;
+module.exports.destroyUser = destroyUser;
+module.exports.oneRandCard = oneRandCard;
+module.exports.getUserKeys = getUserKeys;
+module.exports.dealUserCard = dealUserCard;
+module.exports.dealUsersCards = dealUsersCards;
+module.exports.getHand = getHand;
+module.exports.passCard = passCard;
+module.exports.getTable = getTable;
 
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
@@ -27,7 +36,7 @@ client.on("ready", function(){
   //   createUser(gameId, "BobLobLaw", 333);
   //   createUser(gameId, "John", 444);
 
-  //   dealUsersCard(gameId, 6)
+  //   dealUsersCards(gameId, 6)
 
 
   //   setTimeout(function() {
@@ -64,7 +73,7 @@ function deckName(gameId) {
   return gameId+":deck"
 }
 
-var userHand = function(gameId, user) {
+function userHand(gameId, user) {
   return gameId+":"+user+":hand";
 }
 
@@ -87,11 +96,11 @@ function getUsers(gameId, callback) {
 }
 
 
-var getUserKeys = function(gameId, username, callback) {
+function getUserKeys(gameId, username, callback) {
   client.hvals(gameId+":users:keys", gameId+":"+username+"key")
 }
 
-var dealUserCard = function(gameId, user) {
+function dealUserCard(gameId, user) {
   oneRandCard(gameId, function(err, card) {
     console.log("user: " + user + " card: " + card);
     client.sadd(userHand(gameId, user), card, function(err) {
@@ -100,7 +109,7 @@ var dealUserCard = function(gameId, user) {
   });
 }
 
-var dealUsersCard = function(gameId, handSize, callback) {
+function dealUsersCards(gameId, handSize, callback) {
   getUsers(gameId, function(err, users){
     var count = 0;
     while( count < handSize ) {
@@ -112,15 +121,15 @@ var dealUsersCard = function(gameId, handSize, callback) {
   })
 }
 
-var getHand = function(gameId, user, callback) {
+function getHand(gameId, user, callback) {
   client.smembers(userHand(gameId, user), callback);
 }
 
-var passCard = function(gameId, from, to, card) {
+function passCard(gameId, from, to, card) {
   client.smove(userHand(gameId, from), userHand(gameId, to), card)
 }
 
-var getTable = function(gameId, to) {
+function getTable(gameId, to) {
   getHand(gameId, userHand(gameId, "Table"), to), function(cards){
     cards.forEach(function(card){
       passCard(gameId, "Table", userHand(gameId, to), card);
