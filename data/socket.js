@@ -7,8 +7,8 @@ var repo = require('./repository');
 io.on('connection', function(socket){
   socket.on("joinRoom", function(data){
     socket.join(data.roomkey, function(error){
-      repo.createUser(data.roomkey, data.username, socket.rooms[0]);
-      console.log(data);
+      socket.username = data.username;
+      repo.createUser(data.roomkey, data.username, socket.id);
       repo.getUsers(data.roomkey, function(err, users){
         io.to(data.roomkey).emit("updateClients", users);
       });
@@ -18,10 +18,23 @@ io.on('connection', function(socket){
 
   socket.on("dealCards", function(){
     var roomKey = socket.rooms[1];
-    console.log(roomKey);
     repo.createDeck(roomKey);
     repo.dealUsersCards(roomKey, 5, function(err, data){
-      console.log(data)
+      // console.log(data)
+    })
+
+    // repo.getHand(roomKey, socket.username, function(err, data){
+
+    // })
+   
+    repo.getUserKeys(roomKey, function(err, keys){
+      var socketKeys = keys
+      socketKeys.forEach(function(key){
+        console.log(key);
+        repo.getHand(roomKey, 'kevin', function(err, data){
+          io.to(key).emit("updateHand", data);
+        })
+      })
     })
   });
 

@@ -18,7 +18,7 @@ $(document).ready(function(){
     hand = newHand;
     console.log(hand);
     for (var i=0; i<hand.length; i++){
-      $(".player-hand").append("<p>" + hand[i].value + " of " + hand[i].suit + "</p>")  
+      $(".player-hand").append("<p>" + hand[i] + "</p>")  
     }
   }
 
