@@ -1,5 +1,4 @@
 var redis = require("redis");
-var waterfall = require('async-waterfall');
 client = redis.createClient();
 multi = client.multi();
 
@@ -68,7 +67,7 @@ function createDeck(gameId) {
   }
 
   var destroyUser = function(gameId, username, callback) {
-    client.hdel(gameId+":users", gameId+":"username)
+    client.hdel(gameId+":users", gameId+":"+username)
     client.hdel(gameId+":users:keys", gameId+":"+username+":key" )
   }
 
