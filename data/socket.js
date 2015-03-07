@@ -48,6 +48,14 @@ io.on('connection', function(socket){
     })
   })
 
+  socket.on("drawCard", function(){
+    var roomKey = socket.rooms[1];
+    repo.dealUserCard(roomKey, socket.username);
+    repo.getHand(roomKey, socket.username, function(err, data){
+      io.to(socket.id).emit("updateHand", data);
+    })
+  })
+
 });
 
 // function randomHand(quantity){
