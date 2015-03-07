@@ -1,6 +1,6 @@
 var MainPage = Backbone.View.extend({
-  handTemplate: _.template($("#handTemplate").html()),
-
+  handTemplate: window['JST']['templates/hand.tpl'],
+  // handTemplate: _.template($("#handTemplate").html()),
   render: function(){
     this.$el.html(this.handTemplate())
   }
