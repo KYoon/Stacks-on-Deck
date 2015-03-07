@@ -41,6 +41,10 @@ $(document).ready(function(){
     socket.emit("drawCard")
   })
 
+  $("#collect-table-cards").click(function(){
+    socket.emit("userCollectsTable")
+  })
+
   // Socket functions (???right name)
   function dealCards(){
     socket.emit("dealCards");
@@ -62,8 +66,14 @@ $(document).ready(function(){
     console.log('GETTING HERE')
     hand = tableCards;
     $(".table").empty();
-    for (var i=0; i<hand.length; i++){
-      $(".table").append("<p class='card' id=" + hand[i] + "><a href=#>" + hand[i] + "</a></p>")  
+    if (hand.length > 0){
+      $("#collect-table-cards").show();
+      for (var i=0; i<hand.length; i++){
+        $(".table").append("<p class='card' id=" + hand[i] + "><a href=#>" + hand[i] + "</a></p>")  
+      }
+    }
+    else {
+      $("#collect-table-cards").hide();
     }
   }
 

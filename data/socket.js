@@ -72,6 +72,22 @@ io.on('connection', function(socket){
     })
   })
 
+  socket.on("userCollectsTable", function(){
+    var roomKey = socket.rooms[1];
+    repo.getTable(roomKey, socket.username)
+    repo.getHand(roomKey, socket.username, function(err, data){
+      io.to(socket.id).emit("updateHand", data);
+      repo.getUserKeys(roomKey, function(err, keys){
+        var socketKeys = keys
+        socketKeys.forEach(function(key){
+          repo.getHand(roomKey, "Table", function(err, data){
+            io.to(key).emit("updateTable", data);
+          })
+        })
+      })
+    })
+  })
+
 });
 
 // function randomHand(quantity){
