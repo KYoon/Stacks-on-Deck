@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 // static files
 app.use("/public", express.static(__dirname + '/public'));
 app.use("/socket.io", express.static(__dirname + '/node_modules/socket.io'));
+app.use("/underscore", express.static(__dirname + '/node_modules/underscore'));
 
 // server
 server.listen(3000);
