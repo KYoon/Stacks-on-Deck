@@ -15,6 +15,8 @@ module.exports.dealUsersCards = dealUsersCards;
 module.exports.getHand = getHand;
 module.exports.passCard = passCard;
 module.exports.getTable = getTable;
+module.exports.createDeck = createDeck;
+module.exports.dealUsersCard = dealUsersCard;
 
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
@@ -61,10 +63,11 @@ function createDeck(gameId) {
   var value = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
 
 
-for (i = 0; i < suit.length; i++) {
-  for (x = 0; x < value.length; x++) {
-    client.hset(suit[i] + value[x], suit[i], value[x], redis.print)
-    client.sadd(gameId+":deck", (suit[i] + value[x]))
+  for (i = 0; i < suit.length; i++) {
+    for (x = 0; x < value.length; x++) {
+      client.hset(suit[i] + value[x], suit[i], value[x])
+      client.sadd(gameId+":deck", (suit[i] + value[x]))
+    };
   };
 };
 };
@@ -73,6 +76,7 @@ function deckName(gameId) {
   return gameId+":deck"
 }
 
+
 function userHand(gameId, user) {
   return gameId+":"+user+":hand";
 }
@@ -80,6 +84,28 @@ function userHand(gameId, user) {
 function createUser(gameId, username, userKey) {
   client.hset(gameId+":users", gameId+":"+username, username)
   client.hset(gameId+":users:keys", gameId+":"+username+":key", userKey)
+}
+
+function dealUserCard(gameId, user) {
+  oneRandCard(gameId, function(err, card) {
+    console.log("user: " + user + " card: " + card);
+    client.sadd(userHand(gameId, user), card, function(err) {
+      // console.log(err)
+    });
+  });
+}
+
+function dealUsersCard(gameId, handSize, callback) {
+  getUsers(gameId, function(err, users){
+    var count = 0;
+    while( count < handSize ) {
+      users.forEach(function(user) {
+        console.log("user: " + user + " count: " + count)
+        dealUserCard(gameId, user);
+      });
+      count++;
+    }
+  })
 }
 
 var destroyUser = function(gameId, username, callback) {
