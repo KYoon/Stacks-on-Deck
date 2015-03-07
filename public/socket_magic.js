@@ -1,27 +1,53 @@
 $(document).ready(function(){
-  var hand = []
+  var hand = [];
+  var toUser = "";
+  var passingCard = "";
 
   socket = io.connect();
+
   socket.emit("joinRoom", userData);
 
-  socket.on("updateHand", updateHand)
-
+  socket.on("updateHand", updateHand);
   socket.on("updateClients", updateUserList);
+  socket.on("passCard", passCardToUser)
 
+  // JQuery Calls
   $("#deal").click(function(){
-    $("#deal").hide();
-    dealCards;
+    socket.emit("dealCards");
   });
 
+  $(".player-hand").on("click", ".card", function(e){
+    e.preventDefault();
+    $("#pass-card").show();
+    passingCard = $(this).attr('id');
+    console.log("CARD CLICKED");
+  });
+
+  $("#pass-card").click(function(){
+    $(".passing-player-list").show();
+    console.log("PASS CARD BUTTON CLICKED")
+  })
+
+  $(".passing-player-list").on("click", ".user", function(e){
+    e.preventDefault();
+    toUser = $(this).attr('id')
+    console.log(toUser)
+    console.log(passingCard)
+    socket.emit("passCard", {toUser: toUser, passingCard: passingCard})
+  })
+
+  // Socket functions (???right name)
   function dealCards(){
     socket.emit("dealCards");
   }
 
   function updateHand(newHand){
+    $("#deal").hide();
     hand = newHand;
     console.log(hand);
+    $(".player-hand").empty();
     for (var i=0; i<hand.length; i++){
-      $(".player-hand").append("<p><a href=#>" + hand[i] + "</a></p>")  
+      $(".player-hand").append("<p class='card' id=" + hand[i] + "><a href=#>" + hand[i] + "</a></p>")  
     }
   }
 
@@ -30,9 +56,13 @@ $(document).ready(function(){
     $(".player-list").empty();
     for (var i=0; i<clients.length; i++){
       $(".player-list").append("<li>" + clients[i] + "</li>");
+      $(".passing-player-list").append("<li class='user' id=" + clients[i] +"><a href=#>" + clients[i] + "</a></li>");
     }
   }
 
+  function passCardToUser(){
+
+  }
 
 
 })

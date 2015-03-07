@@ -33,6 +33,21 @@ io.on('connection', function(socket){
     })
   });
 
+  socket.on("passCard", function(data){
+    var roomKey = socket.rooms[1];
+    repo.passCard(roomKey, socket.username, data.toUser, data.passingCard)
+    repo.getUserKeys(roomKey, function(err, keys){
+      var socketKeys = keys
+      socketKeys.forEach(function(key){
+        repo.getUser(roomKey, key, function(err, username){
+          repo.getHand(roomKey, username, function(err, data){
+            io.to(key).emit("updateHand", data);
+          })
+        })
+      })
+    })
+  })
+
 });
 
 // function randomHand(quantity){
