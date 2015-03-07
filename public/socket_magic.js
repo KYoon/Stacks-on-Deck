@@ -9,12 +9,12 @@ $(document).ready(function(){
 
   socket.on("updateHand", updateHand);
   socket.on("updateClients", updateUserList);
-  socket.on("passCard", passCardToUser)
+  socket.on("passCard")
+  socket.on("drawCard")
 
   // JQuery Calls
   $("#deal").click(function(){
     socket.emit("dealCards");
-    $('#draw-card').show();
   });
 
   $(".player-hand").on("click", ".card", function(e){
@@ -33,9 +33,11 @@ $(document).ready(function(){
   $(".passing-player-list").on("click", ".user", function(e){
     e.preventDefault();
     toUser = $(this).attr('id')
-    console.log(toUser)
-    console.log(passingCard)
     socket.emit("passCard", {toUser: toUser, passingCard: passingCard})
+  })
+
+  $("#draw-card").click(function(){
+    socket.emit("drawCard")
   })
 
   // Socket functions (???right name)
@@ -45,8 +47,8 @@ $(document).ready(function(){
 
   function updateHand(newHand){
     $("#deal").hide();
+    $('#draw-card').show();
     hand = newHand;
-    console.log(hand);
     $(".player-hand").empty();
     for (var i=0; i<hand.length; i++){
       $(".player-hand").append("<p class='card' id=" + hand[i] + "><a href=#>" + hand[i] + "</a></p>")  
@@ -56,16 +58,12 @@ $(document).ready(function(){
   function updateUserList(clients){
     console.log(clients);
     $(".player-list").empty();
+    $(".passing-player-list").empty();
     for (var i=0; i<clients.length; i++){
       $(".player-list").append("<li>" + clients[i] + "</li>");
       $(".passing-player-list").append("<li class='user' id=" + clients[i] +"><a href=#>" + clients[i] + "</a></li>");
     }
   }
-
-  function passCardToUser(){
-
-  }
-
 
 })
 
