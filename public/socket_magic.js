@@ -1,39 +1,91 @@
 $(document).ready(function(){
-  var hand = []
+  var hand = [];
+  var toUser = "";
+  var passingCard = "";
 
   socket = io.connect();
+
   socket.emit("joinRoom", userData);
 
-  socket.on("updateHand", updateHand)
-
+  socket.on("updateHand", updateHand);
   socket.on("updateClients", updateUserList);
+  socket.on("updateTable", updateTable)
 
+  // JQuery Calls
   $("#deal").click(function(){
-    $("#deal").hide();
-    dealCards;
+    socket.emit("dealCards");
   });
 
+  $(".player-hand").on("click", ".card", function(e){
+    e.preventDefault();
+    $("#pass-card").show();
+    $("#pass-table").show();
+    passingCard = $(this).attr('id');
+  });
+
+  $("#pass-card").click(function(){
+    $(".passing-player-list").show();
+  })
+
+  $("#pass-table").click(function(){
+    socket.emit("passTable", passingCard)
+  })
+
+  $(".passing-player-list").on("click", ".user", function(e){
+    e.preventDefault();
+    toUser = $(this).attr('id')
+    socket.emit("passCard", {toUser: toUser, passingCard: passingCard})
+  })
+
+  $("#draw-card").click(function(){
+    socket.emit("drawCard")
+  })
+
+  $("#collect-table-cards").click(function(){
+    socket.emit("userCollectsTable")
+  })
+
+  // Socket functions (???right name)
   function dealCards(){
     socket.emit("dealCards");
   }
 
   function updateHand(newHand){
+    $("#deal").hide();
+    $('#draw-card').show();
+    console.log('UPDATING THE HAND')
     hand = newHand;
-    console.log(hand);
+    $(".player-hand").empty();
     for (var i=0; i<hand.length; i++){
-      $(".player-hand").append("<p><a href=#>" + hand[i] + "</a></p>")  
+      $(".player-hand").append("<p class='card' id=" + hand[i] + "><a href=#>" + hand[i] + "</a></p>")  
+    }
+  }
+
+  function updateTable(tableCards){
+    console.log(tableCards);
+    console.log('GETTING HERE to updateTable')
+    hand = tableCards;
+    $(".table").empty();
+    if (hand.length > 0){
+      $("#collect-table-cards").show();
+      for (var i=0; i<hand.length; i++){
+        $(".table").append("<p class='card' id=" + hand[i] + "><a href=#>" + hand[i] + "</a></p>")  
+      }
+    }
+    else {
+      $("#collect-table-cards").hide();
     }
   }
 
   function updateUserList(clients){
     console.log(clients);
     $(".player-list").empty();
+    $(".passing-player-list").empty();
     for (var i=0; i<clients.length; i++){
       $(".player-list").append("<li>" + clients[i] + "</li>");
+      $(".passing-player-list").append("<li class='user' id=" + clients[i] +"><a href=#>" + clients[i] + "</a></li>");
     }
   }
-
-
 
 })
 

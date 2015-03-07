@@ -154,11 +154,13 @@ function passCard(gameId, from, to, card) {
 }
 
 function getTable(gameId, to) {
-  getHand(gameId, userHand(gameId, "Table"), to), function(cards){
+  getHand(gameId, "Table", function(err, cards){
     cards.forEach(function(card){
-      passCard(gameId, "Table", userHand(gameId, to), card);
+      console.log(card)
+      console.log(to)
+      passCard(gameId, "Table", to, card);
     });
-  };
+  });
 }
 
 
