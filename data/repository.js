@@ -17,6 +17,7 @@ module.exports.passCard = passCard;
 module.exports.getTable = getTable;
 module.exports.createDeck = createDeck;
 module.exports.dealUsersCards = dealUsersCards;
+module.exports.getUser = getUser;
 
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
@@ -82,7 +83,12 @@ function userHand(gameId, user) {
 
 function createUser(gameId, username, userKey) {
   client.hset(gameId+":users", gameId+":"+username, username)
-  client.hset(gameId+":users:keys", gameId+":"+username, userKey)
+  // client.hset(gameId+":users:keys", gameId+":"+username, userKey)
+   client.hset(gameId+":users:keys", userKey, username)
+}
+
+function getUser(gameId, userKey, callback) {
+  client.hget(gameId+":users:keys", userKey, callback)
 }
 
 function dealUserCard(gameId, user) {
@@ -122,7 +128,7 @@ function getUsers(gameId, callback) {
 
 
 function getUserKeys(gameId, callback) {
-  client.hvals(gameId+":users:keys", callback)
+  client.hkeys(gameId+":users:keys", callback)
 }
 
 function getHand(gameId, user, callback) {

@@ -19,20 +19,18 @@ io.on('connection', function(socket){
   socket.on("dealCards", function(){
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
-    repo.dealUsersCards(roomKey, 5, function(err, data){
-      // console.log(data)
-    })
+    repo.dealUsersCards(roomKey, 5);
 
-    // repo.getHand(roomKey, socket.username, function(err, data){
-
-    // })
    
     repo.getUserKeys(roomKey, function(err, keys){
       var socketKeys = keys
       socketKeys.forEach(function(key){
         console.log(key);
-        repo.getHand(roomKey, 'kevin', function(err, data){
-          io.to(key).emit("updateHand", data);
+        repo.getUser(roomKey, key, function(err, username){
+          console.log(username);
+          repo.getHand(roomKey, username, function(err, data){
+            io.to(key).emit("updateHand", data);
+          })
         })
       })
     })
