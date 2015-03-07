@@ -2,10 +2,6 @@ var redis = require("redis");
 client = redis.createClient();
 multi = client.multi();
 
-// modules in order to get functions/methods in other files
-module.exports.createUser = createUser;
-module.exports.getUsers = getUsers;
-
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
 });
@@ -26,6 +22,7 @@ client.on("ready", function(){
   //   createUser(gameId, "BobLobLaw", 333);
   //   createUser(gameId, "John", 444);
 
+
   //   dealUsersCard(gameId, 6)
 
 
@@ -36,7 +33,7 @@ client.on("ready", function(){
   //           console.log(userKey);
   //           console.log(hand);
   //           console.log("\n\n\n")
-  //         });
+  //     x  });
   //       });
   //     })
   //   }, 200);
@@ -44,7 +41,7 @@ client.on("ready", function(){
 });
 
 
-// var gameId = "1234"
+var gameId = "1234"
 
 function createDeck(gameId) {
   var suit = ["hearts", "clubs", "spades", "diamonds"];
@@ -81,7 +78,7 @@ function createDeck(gameId) {
     client.spop(deckName(gameId), callback);
   }
 
-  function getUsers(gameId, callback) {
+  var getUsers = function(gameId, callback) {
     client.hvals(gameId+":users", callback);
   }
 
