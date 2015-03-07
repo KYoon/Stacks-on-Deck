@@ -7,7 +7,8 @@ var repo = require('./repository');
 io.on('connection', function(socket){
   socket.on("joinRoom", function(data){
     socket.join(data.roomkey, function(error){
-      repo.createUser(data.username, data.roomkey);
+      repo.createUser(data.roomkey, data.username, socket.rooms[0]);
+      console.log(data);
       repo.getUsers(data.roomkey, function(err, users){
         io.to(data.roomkey).emit("updateClients", users);
       });

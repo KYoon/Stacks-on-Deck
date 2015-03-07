@@ -27,9 +27,9 @@ client.on("connect", function(){
 });
 
 client.on("ready", function(){
-  setTimeout(function(){
-    client.quit();
-  }, 200);
+  // setTimeout(function(){
+  //   client.quit();
+  // }, 200);
   // client.flushdb(function() {
   //   createDeck(gameId);
 
@@ -69,7 +69,6 @@ function createDeck(gameId) {
       client.sadd(gameId+":deck", (suit[i] + value[x]))
     };
   };
-};
 };
 
 function deckName(gameId) {
