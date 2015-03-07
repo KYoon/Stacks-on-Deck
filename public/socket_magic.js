@@ -63,7 +63,7 @@ $(document).ready(function(){
 
   function updateTable(tableCards){
     console.log(tableCards);
-    console.log('GETTING HERE')
+    console.log('GETTING HERE to updateTable')
     hand = tableCards;
     $(".table").empty();
     if (hand.length > 0){
