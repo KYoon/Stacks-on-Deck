@@ -17,6 +17,7 @@ module.exports.passCard = passCard;
 module.exports.getTable = getTable;
 module.exports.createDeck = createDeck;
 module.exports.dealUsersCards = dealUsersCards;
+module.exports.getUser = getUser;
 
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
@@ -82,7 +83,12 @@ function userHand(gameId, user) {
 
 function createUser(gameId, username, userKey) {
   client.hset(gameId+":users", gameId+":"+username, username)
-  client.hset(gameId+":users:keys", gameId+":"+username+":key", userKey)
+  // client.hset(gameId+":users:keys", gameId+":"+username, userKey)
+  client.hset(gameId+":users:keys", userKey, username)
+}
+
+function getUser(gameId, userKey, callback) {
+  client.hget(gameId+":users:keys", userKey, callback)
 }
 
 function dealUserCard(gameId, user) {
@@ -99,7 +105,7 @@ function dealUsersCards(gameId, handSize, callback) {
     var count = 0;
     while( count < handSize ) {
       users.forEach(function(user) {
-        console.log("user: " + user + " count: " + count)
+        // console.log("user: " + user + " count: " + count)
         dealUserCard(gameId, user);
       });
       count++;
@@ -121,12 +127,14 @@ function getUsers(gameId, callback) {
 }
 
 
-function getUserKeys(gameId, username, callback) {
-  client.hvals(gameId+":users:keys", gameId+":"+username+"key")
+function getUserKeys(gameId, callback) {
+  client.hkeys(gameId+":users:keys", callback)
 }
 
 function getHand(gameId, user, callback) {
-  client.smembers(userHand(gameId, user), callback);
+  setTimeout(function() {
+    client.smembers(userHand(gameId, user), callback);
+  }, 200)
 }
 
 function passCard(gameId, from, to, card) {
