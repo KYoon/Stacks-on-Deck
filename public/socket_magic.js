@@ -8,7 +8,10 @@ $(document).ready(function(){
 
   socket.on("updateClients", updateUserList);
 
-  $("#deal").click(dealCards);
+  $("#deal").click(function(){
+    $("#deal").hide();
+    dealCards;
+  });
 
   function dealCards(){
     socket.emit("dealCards");
@@ -18,7 +21,7 @@ $(document).ready(function(){
     hand = newHand;
     console.log(hand);
     for (var i=0; i<hand.length; i++){
-      $(".player-hand").append("<p>" + hand[i] + "</p>")  
+      $(".player-hand").append("<p><a href=#>" + hand[i] + "</a></p>")  
     }
   }
 
@@ -29,6 +32,8 @@ $(document).ready(function(){
       $(".player-list").append("<li>" + clients[i] + "</li>");
     }
   }
+
+
 
 })
 
