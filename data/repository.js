@@ -1,6 +1,18 @@
-var redis = require("redis");
-client = redis.createClient();
-multi = client.multi();
+// var redis = require("redis");
+// client = redis.createClient();
+// multi = client.multi();
+
+if(process.env.REDISTOGO_URL) {
+  rtg   = require("url").parse(process.env.REDISTOGO_URL);
+  redis = require("redis")
+  client = redis.createClient(rtg.port, rtg.hostname);
+
+  redis.auth(rtg.auth.split(":")[1]);
+} else {
+  //then we're running locally
+  redis = require("redis")
+  client = redis.createClient();
+}
 
 // modules in order to get functions/methods in other files
 module.exports.createUser = createUser;
