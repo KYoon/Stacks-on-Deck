@@ -3,30 +3,26 @@ var io = require('socket.io')(server);
 var _ = require('underscore');
 var repo = require('./repository');
 
-function getAllUsers(roomkey){
-  // console.log("printing people in da room")
-  // console.log(io.sockets.adapter.rooms[roomkey])
-  // var clients = io.clients(roomkey);
-  // return clients;
-  // THIS WILL BE CALLED FROM THE METHODS FROM REDIS
-}
-
 // sockets!
 io.on('connection', function(socket){
   socket.on("joinRoom", function(data){
     socket.join(data.roomkey, function(error){
-      repo.createUser(data.username, data.roomkey);
+      repo.createUser(data.roomkey, data.username, socket.rooms[0]);
+      console.log(data);
       repo.getUsers(data.roomkey, function(err, users){
-        console.log(users);
+        io.to(data.roomkey).emit("updateClients", users);
       });
-      io.to(data.roomkey).emit("message", {username: data.username, roomkey: data.roomkey});
       if(error){console.log("error:" + error);}
     });
   });
 
-  socket.on("dealCards", function(data){
-    // stubbed to only work on one person
-    socket.emit("updateHand", randomHand(5));
+  socket.on("dealCards", function(){
+    var roomKey = socket.rooms[1];
+    console.log(roomKey);
+    repo.createDeck(roomKey);
+    repo.dealUsersCards(roomKey, 5, function(err, data){
+      console.log(data)
+    })
   });
 
 });

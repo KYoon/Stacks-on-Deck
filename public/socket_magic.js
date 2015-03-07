@@ -6,16 +6,9 @@ $(document).ready(function(){
 
   socket.on("updateHand", updateHand)
 
-  socket.on("message", messageReception);
-
   socket.on("updateClients", updateUserList);
 
-  $("#deal").click(dealCards)
-
-  function messageReception(message) {
-    $(".player-list").append("<li>" + message.username + "</li>")
-    $("#roomkey").html(message.roomkey)
-  }
+  $("#deal").click(dealCards);
 
   function dealCards(){
     socket.emit("dealCards");
@@ -24,13 +17,17 @@ $(document).ready(function(){
   function updateHand(newHand){
     hand = newHand;
     console.log(hand);
-    for (i=0; i<hand.length; i++){
+    for (var i=0; i<hand.length; i++){
       $(".player-hand").append("<p>" + hand[i].value + " of " + hand[i].suit + "</p>")  
     }
   }
 
   function updateUserList(clients){
     console.log(clients);
+    $(".player-list").empty();
+    for (var i=0; i<clients.length; i++){
+      $(".player-list").append("<li>" + clients[i] + "</li>");
+    }
   }
 
 })
