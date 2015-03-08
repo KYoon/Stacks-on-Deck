@@ -1,7 +1,11 @@
 body {
   /*background-color: #222;*/
+  background-color: #27ae60;
   font-family: "Times New Roman", Times, serif;
+}
 
+.active {
+  border: solid 1px red;
 }
 
 .card {
@@ -116,7 +120,6 @@ body {
   right: 0;
 }
 
-
 .bg-pattern {
   width: 80%;
   height: 86%;
@@ -143,4 +146,15 @@ body {
       red 1px, red 25px, transparent 12px, transparent 37px
   ),
   linear-gradient(75deg, rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.0) 60%);
+}
+
+
+.card-overlap{
+  position: fixed;
+  width: 60%;
+  left:20%;
+  bottom: 0;
+}
+.card-overlap .card {
+  margin-right: -113px;
 }

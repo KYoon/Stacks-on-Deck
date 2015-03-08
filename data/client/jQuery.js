@@ -10,16 +10,16 @@ $(document).ready(function(){
     e.preventDefault();
     $("#pass-card").show();
     $("#pass-table").show();
-    passingCard = $(this).attr('id');
+    passingCard = $(this);
   });
 
   $("#pass-card").click(function(){
     $(".passing-player-list").show();
   })
 
-  $("#pass-table").click(function(){
-    socket.emit("passTable", passingCard)
-  })
+  // $("#pass-table").click(function(){
+  //   socket.emit("passTable", passingCard)
+  // })
 
   $(".passing-player-list").on("click", ".user", function(e){
     e.preventDefault();
