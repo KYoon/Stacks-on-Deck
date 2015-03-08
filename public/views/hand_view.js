@@ -23,4 +23,15 @@ var HandView = Backbone.View.extend({
     }, this);
     return this;
   }
+
+  this.listenTo(this.model, "click", );
+
+  fixActive: function(){
+    this.collection.forEach(function(card) {
+      if (card.active) {
+        card.active
+      }
+    })
+  }
+
 })

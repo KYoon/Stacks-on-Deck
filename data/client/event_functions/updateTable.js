@@ -13,7 +13,7 @@ function updateTable(tableCards){
   //   $("#collect-table-cards").hide();
   // }
   tableOfCards = []
-  for(var i=0; i<formattedHand.length; i++) {
+  for(var i=0; i< formattedHand.length; i++) {
     createdCard = new Card(formattedHand[i]);
     cardView = new CardView(createdCard);
     tableOfCards.push(createdCard);

@@ -7,6 +7,14 @@ var CardView = Backbone.View.extend({
     this.cardTemplate = window['JST']['templates/'+ this.value +'.tpl'];
   },
 
+  events: {
+    "click": "updateCardstatus"
+  }
+
+  updateCardstatus: function(){
+    this.model.set({active: true})
+  }
+
   render: function(){
     this.$el.html(this.cardTemplate({color: this.color, suit: "&"+ this.suit +";"}))
   }
