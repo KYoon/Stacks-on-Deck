@@ -1,7 +1,7 @@
 function formatCard(cardname) {
   card = {};
   if(/diamonds/.test(cardname)) {
-    card.suit = cardname.slice(0,8);
+    card.suit = "diams";
     card.value = cardname.slice(8);
   } else if (/hearts/.test(cardname)) {
     card.suit = cardname.slice(0,6);
