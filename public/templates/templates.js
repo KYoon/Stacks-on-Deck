@@ -316,19 +316,8 @@ this["JST"]["templates/player.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<li>' +
-((__t = ( username )) == null ? '' : __t) +
-'</li>';
-
-}
-return __p
-};
-
-this["JST"]["templates/playerList.tpl"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '';
+__p +=
+((__t = ( username )) == null ? '' : __t);
 
 }
 return __p

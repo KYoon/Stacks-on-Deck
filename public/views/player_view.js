@@ -1,4 +1,5 @@
 var PlayerView = Backbone.View.extend({
+  tagName: "li",
 
   initialize: function(player) {
     this.username = player.attributes.username;

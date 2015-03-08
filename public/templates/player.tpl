@@ -1,1 +1,1 @@
-<li><%= username %></li>
+<%= username %>
