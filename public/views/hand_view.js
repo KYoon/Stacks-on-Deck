@@ -1,12 +1,13 @@
 var HandView = Backbone.View.extend({
   initialize: function(cards) {
-    this.cards = cards
+    this.collection = cards;
+    this.$el.className = "card-overlap"
+    this.listenTo(this.collection, "change", this.render);
   },
 
-  handTemplate: window['JST']['templates/hand.tpl'],
-
   render: function(){
-    this.$el.html(this.handTemplate({cards: this.cards}))
+    this.$el.empty();
+    this.addAll();
   },
 
   addOne: function(card){

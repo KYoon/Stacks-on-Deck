@@ -270,21 +270,11 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/card.tpl"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '';
-
-}
-return __p
-};
-
 this["JST"]["templates/hand.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'hand\'>\n  <h1>hello</h1>\n</div>\n';
+__p += '<div class="player-hand">\n</div>\n';
 
 }
 return __p
@@ -322,22 +312,6 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/queen.tpl"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="card ' +
-((__t = ( color )) == null ? '' : __t) +
-'">\n  <div class="rank-color">Q ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="inner fg-container">\n    <div class="ajqk">Q</div>\n  </div>\n  <div class="rank-color rotated-rank-color rtt">Q ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n';
-
-}
-return __p
-};
-
 this["JST"]["templates/player.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -355,6 +329,22 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '';
+
+}
+return __p
+};
+
+this["JST"]["templates/queen.tpl"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="card ' +
+((__t = ( color )) == null ? '' : __t) +
+'">\n  <div class="rank-color">Q ' +
+((__t = ( suit )) == null ? '' : __t) +
+'</div>\n  <div class="inner fg-container">\n    <div class="ajqk">Q</div>\n  </div>\n  <div class="rank-color rotated-rank-color rtt">Q ' +
+((__t = ( suit )) == null ? '' : __t) +
+'</div>\n</div>\n';
 
 }
 return __p
