@@ -1,3 +1,2 @@
-<div class='hand'>
-  <h1>hello</h1>
+<div class="player-hand">
 </div>
