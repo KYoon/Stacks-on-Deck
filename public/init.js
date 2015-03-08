@@ -14,4 +14,8 @@ $(document).ready(function() {
   playerListView = new PlayerListView();
   $(".player-list").append(playerListView.$el);
 
+  // add the pass to player list view
+  playerListForPassing = new PlayerList();
+  playerListViewForPassing = new PlayerListView();
+  $(".passing-player-list").append(playerListViewForPassing.$el);
 })

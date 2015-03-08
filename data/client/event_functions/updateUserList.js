@@ -1,8 +1,8 @@
 function updateUserList(clients){
-  // $(".player-list").empty();
-  // $(".passing-player-list").empty();
+  $(".player-list").empty();
+  $(".passing-player-list").empty();
   
- listOfPlayers = [];
+  listOfPlayers = [];
   listOfPassToPlayers = [];
   for (var i=0; i<clients.length; i++){
     createdPlayer = new Player({username: clients[i], playerTemplateType: "player"});
@@ -13,6 +13,7 @@ function updateUserList(clients){
       listOfPassToPlayers.push(passingPlayer);
     }
   }
+  
   playerListView = new PlayerListView({collection: listOfPlayers})
   playerListView.addAll();
 
