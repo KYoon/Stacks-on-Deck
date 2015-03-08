@@ -1,10 +1,12 @@
 var TableView = Backbone.View.extend({
   initialize: function(cards) {
     this.collection = cards;
-    this.$el.className = "table-cards"
     this.listenTo(this.collection, "change", this.render);
   },
 
+  attributes: {
+    class: "table-cards"
+  },
 
   render: function(){
     this.$el.empty();
