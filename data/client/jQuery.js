@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  var hand = [];
+  // var hand = [];
   var toUser = "";
   var passingCard = "";
 
@@ -10,16 +10,18 @@ $(document).ready(function(){
     e.preventDefault();
     $("#pass-card").show();
     $("#pass-table").show();
-    passingCard = $(this);
+    // passingCard = $(this)
+    console.log(hand.activeCard);
+    passingCard = hand.activeCard.toString();
   });
 
   $("#pass-card").click(function(){
     $(".passing-player-list").show();
   })
 
-  // $("#pass-table").click(function(){
-  //   socket.emit("passTable", passingCard)
-  // })
+  $("#pass-table").click(function(){
+    socket.emit("passTable", passingCard)
+  })
 
   $(".passing-player-list").on("click", ".user", function(e){
     e.preventDefault();
