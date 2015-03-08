@@ -23,4 +23,6 @@ var CardView = Backbone.View.extend({
       this.$el.addClass("active");
     }
   }
+
+
 })
