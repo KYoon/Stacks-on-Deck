@@ -16,10 +16,10 @@ io.on('connection', function(socket){
     });
   });
 
-  socket.on("dealCards", function(){
+  socket.on("dealCards", function(dealingCount){
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
-    repo.dealUsersCards(roomKey, 5);
+    repo.dealUsersCards(roomKey, parseInt(dealingCount));
 
     repo.getUserKeys(roomKey, function(err, keys){
       var socketKeys = keys

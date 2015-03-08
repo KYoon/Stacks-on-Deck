@@ -4,7 +4,12 @@ $(document).ready(function(){
   var passingCard = "";
 
   // JQuery Calls
-  $("#deal").click(dealCards);
+  $("form").on("submit", function(e){
+    e.preventDefault();
+    console.log("clickin")
+    var dealingCount = $(this).find("#initial-deal-count").val();
+    dealCards(dealingCount);
+  });
 
   $(".player-hand").on("click", ".card", function(e){
     e.preventDefault();
