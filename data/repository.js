@@ -30,6 +30,7 @@ module.exports.getTable = getTable;
 module.exports.createDeck = createDeck;
 module.exports.dealUsersCards = dealUsersCards;
 module.exports.getUser = getUser;
+module.exports.checkDeckCount = checkDeckCount;
 
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
@@ -105,7 +106,8 @@ function getUser(gameId, userKey, callback) {
 
 function dealUserCard(gameId, user) {
   oneRandCard(gameId, function(err, card) {
-    console.log("user: " + user + " card: " + card);
+    console.log(card);
+    // console.log("user: " + user + " card: " + card);
     client.sadd(userHand(gameId, user), card, function(err) {
       // console.log(err)
     });
@@ -156,11 +158,13 @@ function passCard(gameId, from, to, card) {
 function getTable(gameId, to) {
   getHand(gameId, "Table", function(err, cards){
     cards.forEach(function(card){
-      console.log(card)
-      console.log(to)
       passCard(gameId, "Table", to, card);
     });
   });
+}
+
+function checkDeckCount(gameId, callback) {
+  client.scard(deckName(gameId), callback)
 }
 
 

@@ -13,6 +13,7 @@ $(document).ready(function(){
     // passingCard = $(this)
     console.log(hand.activeCard);
     passingCard = hand.activeCard.toString();
+    $("#discard-card").show();
   });
 
   $("#pass-card").click(function(){
@@ -38,6 +39,20 @@ $(document).ready(function(){
 
   $("#collect-table-cards").click(function(){
     socket.emit("userCollectsTable")
+  })
+
+  $("#discard-card").click(function(){
+    socket.emit("userDiscardsCard", passingCard);
+  })
+
+  $(".table").on("click", ".card", function(e){
+    e.preventDefault();
+    $(".table-buttons").show();
+    passingCard = $(this).attr('id');
+  })
+
+  $("#table-get-card").click(function(){
+    socket.emit("getTableCard", passingCard);
   })
 
 });
