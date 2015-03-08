@@ -144,6 +144,12 @@ body {
   linear-gradient(75deg, rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.0) 60%);
 }
 
+
+.card-overlap{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
 .card-overlap .card {
   margin-right: -113px;
 }
