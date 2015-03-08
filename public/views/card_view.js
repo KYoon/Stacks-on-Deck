@@ -6,7 +6,7 @@ var CardView = Backbone.View.extend({
     this.value = card.attributes.value.toLowerCase();
     this.color = cardColor(this.suit);
 
-    this.cardTemplate = window['JST']['templates/'+ this.value +'.tpl'];
+    this.cardTemplate = window['JST']['templates/'+ this.value +'.jst'];
   },
 
   events: {
