@@ -1,30 +1,48 @@
-<h1> THE GAME </h1>
-<p>Welcome <span id="username"><%= username %></span></p>
-<p>You are in the room: <span id="roomkey"><%= roomkey %></span></p>
-<p>Players in the game:</p>
-<ul>
-  <div class="player-list">
+ <div class = "container">
+  <div class="row">
+    <h1> THE GAME </h1>
+    <p>Welcome <span id="username"><%= username %></span></p>
+    <p>You are in the room: <span id="roomkey"><%= roomkey %></span></p>
   </div>
-</ul>
 
-<h3>Table</h3>
-<button id="collect-table-cards" style="display: none">Take All Cards</button>
-<div class="table">
-</div>
-
-<button id="deal">Deal them cards</button>
-<h4>Hand options:</h4>
-<button id="draw-card" style="display: none">Draw Card</button>
-<button id="pass-card" style="display: none">Pass Card</button>
-<button id="pass-table" style="display: none">Play Card</button>
-
-<ul>
-  <div class="passing-player-list" style="display: none">
+  <div class="row">
+    <p>Players in the game:</p>
+    <ul>
+      <div class="player-list">
+      </div>
+    </ul>
   </div>
-</ul>
 
-<p>Your cards are:</p>
-<div class="player-hand">
+
+  <div class="row">
+    <h3>Table</h3>
+    <button id="collect-table-cards" style="display: none">Take All Cards</button>
+  </div>
+
+  <div class="row">
+    <div class="table col-md-8 offset-col-md-2">
+      <ul>
+        <div class="passing-player-list" style="display: none">
+        </div>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <button id="deal">Deal them cards</button>
+    <h4>Hand options:</h4>
+    <button id="draw-card" style="display: none">Draw Card</button>
+    <button id="pass-card" style="display: none">Pass Card</button>
+    <button id="pass-table" style="display: none">Play Card</button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10">
+      <p>Your cards are:</p>
+      <div class="player-hand">
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
