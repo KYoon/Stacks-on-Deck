@@ -1,19 +1,30 @@
-<h1>Stacks on Deck! :D</h1>
 
 <div class = "container">
-  <form id="create" method="POST" action="/games">
-    <label>Username</label><input type = "text" id="username" name="username">
-    <br>
-    <input type = "submit" value = "Create Room">
-    <br>
-  </form>
+  <div class="jumbotron text-center">
+    <h1>Stacks on Deck! :D</h1>
+  </div>
+  <div class="row">
+    <div class="col-md-10 text-center">
+      <form id="create" method="POST" action="/games">
+        <label>Username</label><input type = "text" id="username" name="username">
+        <br>
+        <input type = "submit" value = "Create Room">
+        <br>
+      </form>
+    </div>
+  </div>
 
-  <form id="join" method="POST" action="/join">
-    <label>Username</label><input type = "text" id="username" name="username">
-    <br>
-    <label>Room Key</label><input type = "text" id="roomkey" name="roomkey">
-    <br>
-    <input type = "submit" value = "Join Room">
-    <br>
-  </form>
+  <div class="row">
+    <div class="col-md-10 text-center">
+      <form id="join" method="POST" action="/join">
+        <label>Username</label><input type = "text" id="username" name="username">
+        <br>
+        <label>Room Key</label><input type = "text" id="roomkey" name="roomkey">
+        <br>
+        <input type = "submit" value = "Join Room">
+        <br>
+      </form>
+    </div>
+  </div>
+
 </div>
