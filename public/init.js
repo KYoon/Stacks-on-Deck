@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  headerView = new HeaderView();
+  headerView.render();
+  $("body").prepend(headerView.$el);
   // add the hand view
   hand = new Hand();
   handView = new HandView(hand);
