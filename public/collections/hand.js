@@ -5,6 +5,12 @@ var Hand = Backbone.Collection.extend({
     this.activeCard = null;
   },
   
+  //not sure how to use comparator
+  // comparator: function(collection){
+  //     return collection.get('suit')
+  // },
+
+  
   updateCards: function(formattedCards){
     newCards = [];
     for(var i=0; i<formattedCards.length; i++) {
