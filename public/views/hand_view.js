@@ -1,11 +1,12 @@
 var HandView = Backbone.View.extend({
   initialize: function(cards) {
     this.collection = cards;
-    this.$el.className = "card-overlap"
     this.listenTo(this.collection, "change", this.render);
   },
 
-  // events: {"click": "this.collection.updateHandStatus"},
+  attributes: {
+    class: "card-overlap"
+  },
 
   render: function(){
     this.$el.empty();
@@ -25,12 +26,5 @@ var HandView = Backbone.View.extend({
     }, this);
     return this;
   }
-
-  // this.listenTo(this.model, "click", );
-
-  // updateHandStatus: function(){
-  //   this.collection.forEach(function(card) {
-  //     card.attributes.active = false;
-  //   })
-  // }
+  
 })
