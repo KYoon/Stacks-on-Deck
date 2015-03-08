@@ -312,23 +312,24 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/player.tpl"] = function(obj) {
+this["JST"]["templates/passingPlayer.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<li>' +
+__p += '<a class="user" href="#">' +
 ((__t = ( username )) == null ? '' : __t) +
-'</li>';
+'</a>';
 
 }
 return __p
 };
 
-this["JST"]["templates/playerList.tpl"] = function(obj) {
+this["JST"]["templates/player.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '';
+__p +=
+((__t = ( username )) == null ? '' : __t);
 
 }
 return __p

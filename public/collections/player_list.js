@@ -1,3 +1,13 @@
 var PlayerList = Backbone.Collection.extend({
-  model: Player
+  model: Player,
+
+  initialize: function() {
+
+  },
+
+  updatePlayers: function(){
+
+  }
+
+
 })

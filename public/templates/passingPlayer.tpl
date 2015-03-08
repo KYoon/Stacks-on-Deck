@@ -1,0 +1,1 @@
+<a class="user" href="#"><%= username %></a>

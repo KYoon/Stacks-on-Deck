@@ -1,8 +1,11 @@
 var PlayerView = Backbone.View.extend({
+  tagName: "li",
 
   initialize: function(player) {
     this.username = player.attributes.username;
-    this.playerTemplate = window['JST']['templates/player.tpl'];
+    this.class = "user";
+    this.playerTemplateType = player.attributes.playerTemplateType
+    this.playerTemplate = window['JST']['templates/' + this.playerTemplateType + '.tpl'];
   },
 
   render: function(){

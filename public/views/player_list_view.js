@@ -1,5 +1,5 @@
 var PlayerListView = Backbone.View.extend({
-  playerListTemplate: window['JST']['template/playerList.tpl'],
+  tagName: "ul",
 
   initialize: function(players) {
     this.players = players;

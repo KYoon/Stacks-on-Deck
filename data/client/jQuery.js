@@ -23,9 +23,12 @@ $(document).ready(function(){
     socket.emit("passTable", passingCard)
   })
 
-  $(".passing-player-list").on("click", ".user", function(e){
+  $(".passing-player-list").on("click", "li", function(e){
     e.preventDefault();
-    toUser = $(this).attr('id')
+    toUser = $(this).attr('username')
+    console.log(this);
+    console.log(toUser);
+    console.log(passingCard);
     socket.emit("passCard", {toUser: toUser, passingCard: passingCard})
   })
 

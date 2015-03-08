@@ -21,6 +21,6 @@ var Hand = Backbone.Collection.extend({
     }
     card.set({active: true});
     this.activeCard = card;
-  }
+  },
 
 })
