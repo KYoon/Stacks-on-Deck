@@ -126,4 +126,20 @@ io.on('connection', function(socket){
     }, 105)
   })
 
+  socket.on("discardTableCard", function(card){
+    var roomKey = socket.rooms[1];
+    repo.passCard(roomKey, "Table", "Discard", card);
+    repo.getUserKeys(roomKey, function(err, keys){
+      var socketKeys = keys
+      socketKeys.forEach(function(key){
+        repo.getHand(roomKey, "Table", function(err, data){
+          io.to(key).emit("updateTable", data);
+        })
+        repo.getHand(roomKey, "Discard", function(err, data){
+          io.to(key).emit("updateDiscardPile", data);
+        })
+      })
+    })
+  })
+
 });

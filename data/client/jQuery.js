@@ -55,4 +55,8 @@ $(document).ready(function(){
     socket.emit("getTableCard", passingCard);
   })
 
+  $("#table-discard-card").click(function(){
+    socket.emit("discardTableCard", passingCard);
+  })
+
 });
