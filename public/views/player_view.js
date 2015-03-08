@@ -2,7 +2,7 @@ var PlayerView = Backbone.View.extend({
 
   initialize: function(player) {
     this.username = player.attributes.username;
-    this.playerTemplate = window['JST']['templates/player.tpl'];
+    this.playerTemplate = window['JST']['templates/player.jst'];
   },
 
   render: function(){

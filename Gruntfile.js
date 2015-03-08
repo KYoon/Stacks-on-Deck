@@ -31,7 +31,7 @@ module.exports = function(grunt) {
                 }
               },
               files: {
-                "public/templates/templates.js": ["public/templates/**/*.tpl"]
+                "public/templates/templates.js": ["public/templates/**/*.jst"]
               }
             }
           },
