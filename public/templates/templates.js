@@ -280,6 +280,18 @@ __p += '<div class="player-hand">\n</div>\n';
 return __p
 };
 
+this["JST"]["templates/header.tpl"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class = "create-game-header">\n<span id = "room-key">' +
+((__t = (userData.roomkey)) == null ? '' : __t) +
+'</span>\n<span class = "logo">Stacks-on-Deck</span>\n</div>';
+
+}
+return __p
+};
+
 this["JST"]["templates/jack.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
