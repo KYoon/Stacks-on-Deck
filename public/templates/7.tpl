@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card <%= color %>">
   <div class="rank-color">7 <%= suit %></div>
   <div class="inner fg-container">
     <div class="two"><%= suit %>&nbsp;&nbsp;<%= suit %> <%= suit %>&nbsp;&nbsp;<%= suit %></div>
