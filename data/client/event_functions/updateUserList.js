@@ -1,17 +1,24 @@
 function updateUserList(clients){
-  $(".player-list").empty();
-  $(".passing-player-list").empty();
+  // $(".player-list").empty();
+  // $(".passing-player-list").empty();
   
-  listOfPlayers = [];
+ listOfPlayers = [];
+  listOfPassToPlayers = [];
   for (var i=0; i<clients.length; i++){
-    createdPlayer = new Player({username: clients[i]});
-    playerView = new PlayerView(createdPlayer)
+    createdPlayer = new Player({username: clients[i], playerTemplateType: "player"});
     listOfPlayers.push(createdPlayer);
+
+    if (clients[i] !== userData.username) {
+      passingPlayer = new Player({username: clients[i], playerTemplateType: "passingPlayer"});
+      listOfPassToPlayers.push(passingPlayer);
+    }
   }
-  createdPlayerList = new PlayerList(listOfPlayers)
   playerListView = new PlayerListView({collection: listOfPlayers})
   playerListView.addAll();
 
-  $(".player-list").append(playerListView.$el);
+  playerListViewForPassing = new PlayerListView({collection: listOfPassToPlayers})
+  playerListViewForPassing.addAll();
 
+  $(".player-list").append(playerListView.$el);
+  $(".passing-player-list").append(playerListViewForPassing.$el);
 }
