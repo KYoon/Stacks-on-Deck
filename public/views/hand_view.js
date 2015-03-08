@@ -5,6 +5,8 @@ var HandView = Backbone.View.extend({
     this.listenTo(this.collection, "change", this.render);
   },
 
+  // events: {"click": "this.collection.updateHandStatus"},
+
   render: function(){
     this.$el.empty();
     this.addAll();
@@ -24,14 +26,11 @@ var HandView = Backbone.View.extend({
     return this;
   }
 
-  this.listenTo(this.model, "click", );
+  // this.listenTo(this.model, "click", );
 
-  fixActive: function(){
-    this.collection.forEach(function(card) {
-      if (card.active) {
-        card.active
-      }
-    })
-  }
-
+  // updateHandStatus: function(){
+  //   this.collection.forEach(function(card) {
+  //     card.attributes.active = false;
+  //   })
+  // }
 })

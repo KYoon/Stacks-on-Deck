@@ -6,10 +6,14 @@ var Card = Backbone.Model.extend({
 
   initialize: function() {
     this.on("click", this.updateActive)
-       // this.listenTo(this, "click", this.deActive);
+    // this.listenTo(this, "click", this.deActive);
   },
 
-  updateActive: function(clickedCard){
-    this.active = true;
+  setActive: function(){
+    console.log(this)
+    card = this
+    console.log(this.collection)
+    this.collection.setActive(this);
   }
+
 })

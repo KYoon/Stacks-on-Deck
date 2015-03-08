@@ -11,7 +11,6 @@ $(document).ready(function(){
     $("#pass-card").show();
     $("#pass-table").show();
     passingCard = $(this);
-    console.log(passingCard)
   });
 
   $("#pass-card").click(function(){

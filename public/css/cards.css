@@ -4,6 +4,10 @@ body {
   font-family: "Times New Roman", Times, serif;
 }
 
+.active {
+  border: solid 1px red;
+}
+
 .card {
   width: 127px;
   height: 196px;

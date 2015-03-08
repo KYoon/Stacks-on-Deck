@@ -3,5 +3,3 @@ function formatCardForRedis(cardObj) {
   cardString = cardObj.suit + cardObj.value.toUpperCase();
   return cardSting;
 }
-
-socket.emit("cardPlace", formatCardForRedis(activeCard))
