@@ -7,10 +7,11 @@ $(document).ready(function(){
   $("#deal").click(dealCards);
 
   $(".player-hand").on("click", ".card", function(e){
+    console.log(passingCard);
     e.preventDefault();
     $("#pass-card").show();
     $("#pass-table").show();
-    passingCard = $(this).attr('id');
+    passingCard = $(this) ;
   });
 
   $("#pass-card").click(function(){
