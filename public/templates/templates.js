@@ -252,7 +252,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/Ace.tpl"] = function(obj) {
+this["JST"]["templates/ace.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -263,54 +263,6 @@ __p += '<div class="card ' +
 '</div>\n  <div class="inner fg-container">\n    <div class="ajqk">' +
 ((__t = ( suit )) == null ? '' : __t) +
 '</div>\n  </div>\n  <div class="rank-color rotated-rank-color rtt">A ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n';
-
-}
-return __p
-};
-
-this["JST"]["templates/Jack.tpl"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="card ' +
-((__t = ( color )) == null ? '' : __t) +
-'">\n  <div class="rank-color">J ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="inner fg-container">\n    <div class="ajqk">J</div>\n  </div>\n  <div class="rank-color rotated-rank-color rtt">J ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n';
-
-}
-return __p
-};
-
-this["JST"]["templates/King.tpl"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="card ' +
-((__t = ( color )) == null ? '' : __t) +
-'">\n  <div class="rank-color">K ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="inner fg-container">\n    <div class="ajqk">K</div>\n  </div>\n  <div class="rank-color rotated-rank-color rtt">K ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n';
-
-}
-return __p
-};
-
-this["JST"]["templates/Queen.tpl"] = function(obj) {
-obj || (obj = {});
-var __t, __p = '', __e = _.escape;
-with (obj) {
-__p += '<div class="card ' +
-((__t = ( color )) == null ? '' : __t) +
-'">\n  <div class="rank-color">Q ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="inner fg-container">\n    <div class="ajqk">Q</div>\n  </div>\n  <div class="rank-color rotated-rank-color rtt">Q ' +
 ((__t = ( suit )) == null ? '' : __t) +
 '</div>\n</div>\n';
 
@@ -333,6 +285,54 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class=\'hand\'>\n  <h1>hello</h1>\n</div>\n';
+
+}
+return __p
+};
+
+this["JST"]["templates/jack.tpl"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="card ' +
+((__t = ( color )) == null ? '' : __t) +
+'">\n  <div class="rank-color">J ' +
+((__t = ( suit )) == null ? '' : __t) +
+'</div>\n  <div class="inner fg-container">\n    <div class="ajqk">J</div>\n  </div>\n  <div class="rank-color rotated-rank-color rtt">J ' +
+((__t = ( suit )) == null ? '' : __t) +
+'</div>\n</div>\n';
+
+}
+return __p
+};
+
+this["JST"]["templates/king.tpl"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="card ' +
+((__t = ( color )) == null ? '' : __t) +
+'">\n  <div class="rank-color">K ' +
+((__t = ( suit )) == null ? '' : __t) +
+'</div>\n  <div class="inner fg-container">\n    <div class="ajqk">K</div>\n  </div>\n  <div class="rank-color rotated-rank-color rtt">K ' +
+((__t = ( suit )) == null ? '' : __t) +
+'</div>\n</div>\n';
+
+}
+return __p
+};
+
+this["JST"]["templates/queen.tpl"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="card ' +
+((__t = ( color )) == null ? '' : __t) +
+'">\n  <div class="rank-color">Q ' +
+((__t = ( suit )) == null ? '' : __t) +
+'</div>\n  <div class="inner fg-container">\n    <div class="ajqk">Q</div>\n  </div>\n  <div class="rank-color rotated-rank-color rtt">Q ' +
+((__t = ( suit )) == null ? '' : __t) +
+'</div>\n</div>\n';
 
 }
 return __p
