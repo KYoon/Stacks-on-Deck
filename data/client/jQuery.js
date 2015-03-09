@@ -7,7 +7,9 @@ $(document).ready(function(){
   $("form").on("submit", function(e){
     e.preventDefault();
     var dealingCount = $(this).find("#initial-deal-count").val();
-    dealCards(dealingCount);
+    var faceDown = $("#facedown").is(':checked');
+    console.log(faceDown);
+    dealCards({dealingCount: dealingCount, cardAppearance: faceDown});
   });
 
   $(".player-hand").on("click", ".card", function(e){
