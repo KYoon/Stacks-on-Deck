@@ -2,7 +2,7 @@ body {
   /*background-color: #222;*/
   /*  background-color: #27ae60;*/
   background: url("/public/images/tablebackground.jpg");
-  font-family: "Times New Roman", Times, serif;
+/*  font-family: "Times New Roman", Times, serif;*/
 }
 
 
@@ -160,4 +160,24 @@ body {
 
 .card-overlap .card {
   margin-right: -113px;
+}
+
+.navbar-roomkey {
+  left: 0;
+  color: white;
+  text-align: left;
+}
+
+.nav-center {
+    margin:0;
+    float:none;
+}
+
+.navbar-inner{
+  color: white;
+    text-align:center;
+    padding: 14.5px 15px;
+    font-size: 30px;
+    line-height: 21px;
+     height: 50px;
 }

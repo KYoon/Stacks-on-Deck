@@ -1,21 +1,2 @@
 
-.create-game-header {
-  width: 100%;
-  height: 7%;
-  background-color: white;
-}
-
-#room-key {
-  display: inline-block;
-  width:20%;
-  margin-left: .5%;
-  margin-top: .5%;
-
-}
-
-.logo {
-  display: inline-block;
-  width: 78%;
-  text-align: center;
-}
 
