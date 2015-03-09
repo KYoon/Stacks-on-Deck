@@ -28,5 +28,13 @@ var Table = Backbone.Collection.extend({
 
   getCard: function(card) {
     socket.emit("getTableCard", card);
+  },
+
+  discardCard: function(card){
+    socket.emit("discardTableCard", card);
+  },
+
+  collectCards: function(){
+    socket.emit("userCollectsTable");
   }
 });

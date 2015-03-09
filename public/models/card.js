@@ -4,15 +4,8 @@ var Card = Backbone.Model.extend({
             active: false
             },
 
-  initialize: function() {
-    // this.on("click", this.updateActive)
-    // this.collection = hand;
-    // this needs to be fixed- collection will sometimes be hand and sometimes table
-    // this.listenTo(this, "click", this.deActive);
-  },
-
   setActive: function(){
-    console.log(this.attributes.collection)
+    console.log(this.attributes.collection);
     this.attributes.collection.setActiveCard(this);
   },
 
@@ -20,11 +13,8 @@ var Card = Backbone.Model.extend({
     var suit = this.attributes.suit;
     var value = this.attributes.value;
     if(suit === "diams"){
-      suit = "diamonds"
+      suit = "diamonds";
     }
     return suit + value[0].toUpperCase() + value.slice(1);
   }
-
-  
-
 })

@@ -15,8 +15,15 @@ var TableButtonView = Backbone.View.extend({
 	}, 
 
 	getCard: function() {
-		table.getCard(table.activeCard)
-	}
+		table.getCard(table.activeCard.toString())
+	},
 
+	discardCard: function() {
+		table.discardCard(table.activeCard.toString())
+	},
+
+	collectCards: function(){
+		table.collectCards()
+	}
 
 })
