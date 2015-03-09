@@ -13,5 +13,4 @@ function updateTable(tableCards){
   }
   $("#pass-card").hide();
   $("#pass-table").hide();
-  $(".table-buttons").hide();
 }

@@ -53,11 +53,11 @@ $(document).ready(function(){
     $("#discard-card").hide();
   })
 
-  $(".table").on("click", ".card", function(e){
-    e.preventDefault();
-    $(".table-buttons").show();
-    passingCard = $(this).attr('id');
-  })
+  // $(".table").on("click", ".card", function(e){
+  //   e.preventDefault();
+  //   $(".table-buttons").show();
+  //   passingCard = $(this).attr('id');
+  // })
 
   $("#table-get-card").click(function(){
     socket.emit("getTableCard", passingCard);
