@@ -12,14 +12,20 @@ var Table = Backbone.Collection.extend({
       tableOfCards.push(createdCard);
     }
     this.models = tableOfCards;
+    console.log("IN UPDATE CARDS" +this.models)
     return this.models;
   },
 
   setActiveCard: function(card){
+    console.log("GETTING INTO SET ACTIVE on table")
     if (this.activeCard) {
       this.activeCard.set({active: false});
     }
     card.set({active: true});
     this.activeCard = card;
+  }, 
+
+  getCard: function(card) {
+    socket.emit("getTableCard", card);
   }
 });

@@ -1,4 +1,5 @@
 var CardView = Backbone.View.extend({
+
   initialize: function(card) {
     this.model = card
     
@@ -10,10 +11,10 @@ var CardView = Backbone.View.extend({
   },
 
   events: {
-    "click": "activeCardShit"
+    "click": "activateCard"
   },
 
-  activeCardShit: function(){
+  activateCard: function(){
     this.model.setActive();
   },
 
