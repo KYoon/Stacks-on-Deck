@@ -12,9 +12,10 @@ var Hand = Backbone.Collection.extend({
 
   
   updateCards: function(formattedCards){
-    // this.activeCard = null;
+    this.activeCard = null;
     newCards = [];
     for(var i=0; i<formattedCards.length; i++) {
+      formattedCards[i].collection = this;
       createdCard = new Card(formattedCards[i]); 
       newCards.push(createdCard);
     }
@@ -24,7 +25,6 @@ var Hand = Backbone.Collection.extend({
   },
 
   setActiveCard: function(card){
-    console.log("GETTING INTO SET ACTIVE on hand")
     if (this.activeCard) {
       this.activeCard.set({active: false});
     }
