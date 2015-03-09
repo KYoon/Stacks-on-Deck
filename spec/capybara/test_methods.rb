@@ -45,3 +45,9 @@ def create_and_join_room(browser_one_username, browser_two_username)
     join_existing_room(browser_two_username, roomkey)
   end
 end
+
+# ----------- untested 
+# check helper_methods_test.rb 
+def click_card(card_index)
+  return find("div:nth-child(#{card_index}) > .card").methods.sort
+end
