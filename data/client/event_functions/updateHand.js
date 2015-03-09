@@ -1,5 +1,5 @@
 function updateHand(data){
-  $("#deal").hide();
+  $(".dealing-cards").hide();
   $('#draw-card').show();
 
   // changing redis strings to JSON

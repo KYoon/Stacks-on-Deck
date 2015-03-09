@@ -1,3 +1,3 @@
-function dealCards(){
-  socket.emit("dealCards");
+function dealCards(dealingCount){
+  socket.emit("dealCards", dealingCount);
 }

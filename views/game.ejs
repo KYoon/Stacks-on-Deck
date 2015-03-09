@@ -10,18 +10,34 @@
   </div>
 
   <div class="row">
+    <div class="table-buttons" style="display: none">
+      <button id="table-get-card">Get Card</button>
+      <button id="table-discard-card">Discard Card</button> 
+      <button id="collect-table-cards">Take All Cards</button>
+    </div>
     <div class = "tableclass"></div>
-    <button id="collect-table-cards" style= "display: none">Take All Cards</button>
   </div>
 
-
-  <div class="row">
-    <button id="deal">Deal them cards</button>
-    <h4>Hand options:</h4>
-    <button id="draw-card" style="display: none">Draw Card</button>
-    <button id="pass-card" style="display: none">Pass Card</button>
-    <button id="pass-table" style="display: none">Play Card</button>
+<div class="row">
+  <h3>Discard Pile</h3>
+  <div class="discard-pile">
   </div>
+</div>
+
+<div class="row">
+  <form class="dealing-cards">
+    <input type="text" id="initial-deal-count">
+    <input type="submit" id="deal" value="Deal Them Cards">
+  </form>
+</div>
+
+<div class="row">
+  <h4>Hand options:</h4>
+  <button id="draw-card" style="display: none">Draw Card</button>
+  <button id="pass-card" style="display: none">Pass Card</button>
+  <button id="pass-table" style="display: none">Play Card</button>
+  <button id="discard-card" style="display: none">Discard Card</button>
+</div>
 
   <div class="row">
     <div class="table col-md-8 offset-col-md-2 passing-player-list" style="display: none">

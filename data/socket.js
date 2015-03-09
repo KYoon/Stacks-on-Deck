@@ -16,10 +16,10 @@ io.on('connection', function(socket){
     });
   });
 
-  socket.on("dealCards", function(){
+  socket.on("dealCards", function(dealingCount){
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
-    repo.dealUsersCards(roomKey, 5);
+    repo.dealUsersCards(roomKey, parseInt(dealingCount));
 
     repo.getUserKeys(roomKey, function(err, keys){
       var socketKeys = keys
@@ -92,18 +92,54 @@ io.on('connection', function(socket){
     }, 105)
   })
 
+  socket.on("userDiscardsCard", function(card){
+    var roomKey = socket.rooms[1];
+    repo.passCard(roomKey, socket.username, "Discard", card);
+    repo.getHand(roomKey, socket.username, function(err, data){
+      io.to(socket.id).emit("updateHand", data);
+      repo.getUserKeys(roomKey, function(err, keys){
+        var socketKeys = keys
+        socketKeys.forEach(function(key){
+          repo.getHand(roomKey, "Discard", function(err, data){
+            io.to(key).emit("updateDiscardPile", data);
+          })
+        })
+      })
+    })
+  })
+
+  socket.on("getTableCard", function(card){
+    var roomKey = socket.rooms[1];
+    repo.passCard(roomKey, "Table", socket.username, card);
+    setTimeout(function(){
+      repo.getHand(roomKey, socket.username, function(err, data){
+        io.to(socket.id).emit("updateHand", data);
+        repo.getUserKeys(roomKey, function(err, keys){
+          var socketKeys = keys
+          socketKeys.forEach(function(key){
+            repo.getHand(roomKey, "Table", function(err, data){
+              io.to(key).emit("updateTable", data);
+            })
+          })
+        })
+      })
+    }, 105)
+  })
+
+  socket.on("discardTableCard", function(card){
+    var roomKey = socket.rooms[1];
+    repo.passCard(roomKey, "Table", "Discard", card);
+    repo.getUserKeys(roomKey, function(err, keys){
+      var socketKeys = keys
+      socketKeys.forEach(function(key){
+        repo.getHand(roomKey, "Table", function(err, data){
+          io.to(key).emit("updateTable", data);
+        })
+        repo.getHand(roomKey, "Discard", function(err, data){
+          io.to(key).emit("updateDiscardPile", data);
+        })
+      })
+    })
+  })
+
 });
-
-// function randomHand(quantity){
-//   var newHand = []
-//   for(var i=0; i < quantity; i++ ){
-//     newHand.push(randomCard())
-//   }
-//   return newHand;
-// }
-
-// function randomCard(){
-//   var suits = ["hearts", "clubs", "spades", "diamonds"];
-//   var values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
-//   return {suit:_.sample(suits), value: _.sample(values)};
-// }
