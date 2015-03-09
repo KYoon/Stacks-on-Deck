@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.0.0
+install:
+  - cd spec/capybara 
+  - bundle install
+script: 
+  - bundle exec rspec giant_rodent.rb 
