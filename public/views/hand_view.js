@@ -26,5 +26,5 @@ var HandView = Backbone.View.extend({
     }, this);
     return this;
   }
-  
+
 })
