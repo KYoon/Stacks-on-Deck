@@ -6,8 +6,10 @@ var Table = Backbone.Collection.extend({
   },
 
   updateCards: function(formattedCards){
+    this.activeCard = null;
     tableOfCards = [];
     for(var i=0; i<formattedCards.length; i++) {
+      formattedCards[i].collection = this;
       createdCard = new Card(formattedCards[i]);
       tableOfCards.push(createdCard);
     }
@@ -17,7 +19,6 @@ var Table = Backbone.Collection.extend({
   },
 
   setActiveCard: function(card){
-    console.log("GETTING INTO SET ACTIVE on table")
     if (this.activeCard) {
       this.activeCard.set({active: false});
     }
@@ -27,5 +28,13 @@ var Table = Backbone.Collection.extend({
 
   getCard: function(card) {
     socket.emit("getTableCard", card);
+  },
+
+  discardCard: function(card){
+    socket.emit("discardTableCard", card);
+  },
+
+  collectCards: function(){
+    socket.emit("userCollectsTable");
   }
 });
