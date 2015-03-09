@@ -2,7 +2,6 @@ var CardView = Backbone.View.extend({
 
   initialize: function(card) {
     this.model = card
-
     this.suit = card.attributes.suit;
     this.value = card.attributes.value.toLowerCase();
     this.color = cardColor(this.suit);

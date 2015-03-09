@@ -13,12 +13,12 @@ var Card = Backbone.Model.extend({
     this.setActiveClass();
   },
 
-  toString: function() {
-    var suit = this.attributes.suit;
-    var value = this.attributes.value;
-    if(suit === "diams"){
-      suit = "diamonds";
-    }
-    return suit + value[0].toUpperCase() + value.slice(1);
-  }
+  // toString: function() {
+  //   var suit = this.attributes.suit;
+  //   var value = this.attributes.value;
+  //   if(suit === "diams"){
+  //     suit = "diamonds";
+  //   }
+  //   return suit + value[0].toUpperCase() + value.slice(1);
+  // }
 })
