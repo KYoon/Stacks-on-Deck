@@ -1,10 +1,12 @@
-// core frameworks
+// Core frameworks
 var io = require('socket.io')(server);
 var _ = require('underscore');
 var repo = require('./repository');
 
-// sockets!
+// Sockets!
 io.on('connection', function(socket){
+
+  // User enters room
   socket.on("joinRoom", function(data){
     socket.join(data.roomkey, function(error){
       socket.username = data.username;
@@ -70,6 +72,7 @@ io.on('connection', function(socket){
     var username = socket.username;
     var socketId = socket.id;
     repo.getTable(roomKey, username);
+    // Possible to get around setTimeout?
     setTimeout(function(){
       updateUserHandAndTable(roomKey, username, socketId);
     }, 105);
@@ -90,6 +93,7 @@ io.on('connection', function(socket){
     var username = socket.username;
     var socketId = socket.id;
     repo.passCard(roomKey, "Table", username, cardId);
+    // Possible to get around setTimeout?
     setTimeout(function(){
       updateUserHandAndTable(roomKey, username, socketId);
     }, 105);
@@ -104,7 +108,7 @@ io.on('connection', function(socket){
 
 });
 
-// Refactoring Functions
+// Refactored Functions
 
 // Update User's Hand
 function updateUserHand(roomKey, username, socketId){
