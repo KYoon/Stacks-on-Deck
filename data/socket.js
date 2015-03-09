@@ -29,6 +29,7 @@ io.on('connection', function(socket){
     return jsonCards;
   }
 
+  // Deal cards to all users in a room
   socket.on("dealCards", function(data){
     console.log(data);
     // need to transfer the data of faceDown card attribute to cards
@@ -38,68 +39,79 @@ io.on('connection', function(socket){
     updateAllUserHands(roomKey);
   });
 
+  // Pass a card from one user to another
   socket.on("passCard", function(data){
     var roomKey = socket.rooms[1];
     repo.passCard(roomKey, socket.username, data.toUser, data.cardId);
     updateAllUserHands(roomKey);
   });
 
+  // Draw a card from the deck
   socket.on("drawCard", function(){
     var roomKey = socket.rooms[1];
-    repo.dealUserCard(roomKey, socket.username);
-    repo.getHand(roomKey, socket.username, function(err, data){
-      io.to(socket.id).emit("updateHand",  jsonParser(data));
-    })
-  })
+    var username = socket.username;
+    var socketId = socket.id;
+    repo.dealUserCard(roomKey, username);
+    updateUserHand(roomKey, username, socketId);
+  });
 
+  // Pass a card to the table from the user's hand
   socket.on("passTable", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, socket.username, "Table", cardId);
-    repo.getHand(roomKey, socket.username, function(err, data){
-      io.to(socket.id).emit("updateHand", data.sort());
-      updateTableView(roomKey);
-    });
+    var username = socket.username;
+    var socketId = socket.id;
+    repo.passCard(roomKey, username, "Table", cardId);
+    updateUserHandAndTable(roomKey, username, socketId);
   });
 
+  // User collects all the cards on the table
   socket.on("userCollectsTable", function(){
     var roomKey = socket.rooms[1];
-    repo.getTable(roomKey, socket.username);
+    var username = socket.username;
+    var socketId = socket.id;
+    repo.getTable(roomKey, username);
     setTimeout(function(){
-      repo.getHand(roomKey, socket.username, function(err, data){
-        io.to(socket.id).emit("updateHand", data.sort());
-        updateTableView(roomKey);
-      });
+      updateUserHandAndTable(roomKey, username, socketId);
     }, 105);
   });
 
+  // User discards a card from his/her hand
   socket.on("userDiscardsCard", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, socket.username, "Discard", cardId);
-    repo.getHand(roomKey, socket.username, function(err, data){
-      io.to(socket.id).emit("updateHand",  jsonParser(data));
-    })
-  })
+    var username = socket.username;
+    var socketId = socket.id;
+    repo.passCard(roomKey, username, "Discard", cardId);
+    updateUserHand(roomKey, username, socketId);
+  });
 
+  // User obtains a card from a table
   socket.on("getTableCard", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, "Table", socket.username, cardId);
+    var username = socket.username;
+    var socketId = socket.id;
+    repo.passCard(roomKey, "Table", username, cardId);
     setTimeout(function(){
-      repo.getHand(roomKey, socket.username, function(err, data){
-        io.to(socket.id).emit("updateHand", data.sort());
-        updateTableView(roomKey);
-      });
+      updateUserHandAndTable(roomKey, username, socketId);
     }, 105);
   });
 
+  // Discard a card from the table
   socket.on("discardTableCard", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, "Table", "Discard", card);
+    repo.passCard(roomKey, "Table", "Discard", cardId);
     updateTableView(roomKey);
   });
 
 });
 
 // Refactoring Functions
+
+// Update User's Hand
+function updateUserHand(roomKey, username, socketId){
+  repo.getHand(roomKey, username, function(err, data){
+    io.to(socketId).emit("updateHand", data.sort());
+  });
+}
 
 // Update Table for each client
 function updateTableView(roomKey){
@@ -123,4 +135,12 @@ function updateAllUserHands(roomKey){
       })
     })
   })
+}
+
+// Update the user's hand that activated the event and update the table
+function updateUserHandAndTable(roomKey, username, socketId){
+  repo.getHand(roomKey, username, function(err, data){
+    io.to(socketId).emit("updateHand", data.sort());
+    updateTableView(roomKey);
+  });
 }
