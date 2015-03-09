@@ -5,13 +5,14 @@ var Card = Backbone.Model.extend({
             },
 
   initialize: function() {
-    this.on("click", this.updateActive)
+    // this.on("click", this.updateActive)
     this.collection = hand;
+    // this needs to be fixed- collection will sometimes be hand and sometimes table
     // this.listenTo(this, "click", this.deActive);
   },
 
   setActive: function(){
-    console.log(this.collection)
+    console.log("this should be a table not a hand:"+ this.collection)
     this.collection.setActiveCard(this);
   },
 
@@ -23,5 +24,7 @@ var Card = Backbone.Model.extend({
     }
     return suit + value[0].toUpperCase() + value.slice(1);
   }
+
+  
 
 })

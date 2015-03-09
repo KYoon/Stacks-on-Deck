@@ -4,6 +4,10 @@ var TableView = Backbone.View.extend({
     this.listenTo(this.collection, "change", this.render);
   },
 
+  events: {
+    'click .card' : 'buttonDisplay'
+  },
+
   attributes: {
     class: "table-cards"
   },
@@ -24,5 +28,12 @@ var TableView = Backbone.View.extend({
       this.addOne(card);
     }, this);
     return this;
+  },
+
+  buttonDisplay: function() {
+    $('.table-buttons').empty();
+    tableButtons = new TableButtonView();
+    tableButtons.render();
+    $('.table-buttons').append(tableButtons.$el);
   }
 })

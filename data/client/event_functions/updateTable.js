@@ -1,6 +1,4 @@
 function updateTable(tableCards){
-  console.log(tableCards);
-  console.log('GETTING HERE to updateTable')
   var formattedTable = formatHand(tableCards);
   table.updateCards(formattedTable)
   tableView.render();
@@ -13,5 +11,4 @@ function updateTable(tableCards){
   }
   $("#pass-card").hide();
   $("#pass-table").hide();
-  $(".table-buttons").hide();
 }

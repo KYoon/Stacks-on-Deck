@@ -362,3 +362,13 @@ __p += '<div class="card ' +
 }
 return __p
 };
+
+this["JST"]["templates/tableButtons.tpl"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<button id="table-get-card">Get Card</button>\n<button id="table-discard-card">Discard Card</button> \n<button id="collect-table-cards">Take All Cards</button>';
+
+}
+return __p
+};
