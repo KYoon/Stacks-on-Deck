@@ -7,6 +7,5 @@ $(document).ready(function(){
   socket.on("updateHand", updateHand);
   socket.on("updateClients", updateUserList);
   socket.on("updateTable", updateTable);
-  socket.on("updateDiscardPile", updateDiscardPile);
 
 });

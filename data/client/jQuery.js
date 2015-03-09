@@ -48,6 +48,9 @@ $(document).ready(function(){
 
   $("#discard-card").click(function(){
     socket.emit("userDiscardsCard", passingCard);
+    $("#pass-card").hide();
+    $("#pass-table").hide();
+    $("#discard-card").hide();
   })
 
   $(".table").on("click", ".card", function(e){
