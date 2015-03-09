@@ -8,7 +8,6 @@ $(document).ready(function(){
     e.preventDefault();
     var dealingCount = $(this).find("#initial-deal-count").val();
     var faceDown = $("#facedown").is(':checked');
-    console.log(faceDown);
     dealCards({dealingCount: dealingCount, cardAppearance: faceDown});
   });
 

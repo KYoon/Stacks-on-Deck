@@ -19,7 +19,7 @@ var HandView = Backbone.View.extend({
   },
 
   addAll: function(){
-    console.log(this.collection);
+    console.log("hand view collection: " +this.collection);
     this.collection.forEach(function(card) {
       this.addOne(card);
     }, this);

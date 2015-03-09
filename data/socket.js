@@ -21,7 +21,6 @@ io.on('connection', function(socket){
   });
 
   socket.on("dealCards", function(data){
-    console.log(data)
     // need to transfer the data of faceDown card attribute to cards
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
@@ -32,9 +31,11 @@ io.on('connection', function(socket){
       socketKeys.forEach(function(key){
         repo.getUser(roomKey, key, function(err, username){
           repo.getHand(roomKey, username, function(err, data){
-            console.log(data)
-            console.log(data.sort());
-            io.to(key).emit("updateHand", data.sort());
+            console.log("data" + data)
+            for ( i=0; i < data.length; i++) {
+              var jsonObject = (JSON.parse(data[i]))
+              io.to(key).emit("updateHand", jsonObject);
+            }
           })
         })
       })
