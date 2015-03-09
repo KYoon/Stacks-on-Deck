@@ -23,4 +23,7 @@ $(document).ready(function() {
   playerListForPassing = new PlayerList();
   playerListViewForPassing = new PlayerListView();
   $(".passing-player-list").append(playerListViewForPassing.$el);
+
+  // add table buttons to table view
+  tableButtons = new TableButtonView();
 })

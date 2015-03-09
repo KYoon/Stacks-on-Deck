@@ -1,0 +1,1 @@
+<button id="collect-table-cards">Take All Cards</button>
