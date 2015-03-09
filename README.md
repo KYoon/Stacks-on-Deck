@@ -8,6 +8,16 @@
 * run grunt for development, check .gitignore before final deployment for public/socket_magic.js
 * $ redis-server -- runs redis server
 * $ node app.js --
-## useful
+### useful
 * $ redis-cli -- access redis command line interface
 * $ grunt jst -- compile backbone templates from public/templates **(may change)
+
+## technology stack
+* node.js
+* redis
+* express.js
+* socket.io
+* backbone.js
+* underscore.js
+* grunt 
+* capybara
