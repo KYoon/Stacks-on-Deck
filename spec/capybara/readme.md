@@ -3,7 +3,7 @@
 ## dependencies
 * capybara
 * selenium-webdriver
-* capybara/rspec
+* rspec
 
 ```
         _        _ 
