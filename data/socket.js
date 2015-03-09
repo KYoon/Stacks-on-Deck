@@ -30,36 +30,19 @@ io.on('connection', function(socket){
   }
 
   socket.on("dealCards", function(data){
+    console.log(data);
+    // need to transfer the data of faceDown card attribute to cards
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
     repo.dealUsersCards(roomKey, parseInt(data.dealingCount));
-
-    repo.getUserKeys(roomKey, function(err, keys){
-      var socketKeys = keys
-      socketKeys.forEach(function(key){
-        repo.getUser(roomKey, key, function(err, username){
-          repo.getHand(roomKey, username, function(err, data){
-            io.to(key).emit("updateHand", jsonParser(data));
-          })
-        })
-      })
-    })
+    updateAllUserHands(roomKey);
   });
 
   socket.on("passCard", function(data){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, socket.username, data.toUser, data.cardId)
-    repo.getUserKeys(roomKey, function(err, keys){
-      var socketKeys = keys
-      socketKeys.forEach(function(key){
-        repo.getUser(roomKey, key, function(err, username){
-          repo.getHand(roomKey, username, function(err, data){
-            io.to(key).emit("updateHand",  jsonParser(data));
-          })
-        })
-      })
-    })
-  })
+    repo.passCard(roomKey, socket.username, data.toUser, data.cardId);
+    updateAllUserHands(roomKey);
+  });
 
   socket.on("drawCard", function(){
     var roomKey = socket.rooms[1];
@@ -75,19 +58,19 @@ io.on('connection', function(socket){
     repo.getHand(roomKey, socket.username, function(err, data){
       io.to(socket.id).emit("updateHand", data.sort());
       updateTableView(roomKey);
-    })
-  })
+    });
+  });
 
   socket.on("userCollectsTable", function(){
     var roomKey = socket.rooms[1];
     repo.getTable(roomKey, socket.username);
     setTimeout(function(){
       repo.getHand(roomKey, socket.username, function(err, data){
-        io.to(socket.id).emit("updateHand", data);
+        io.to(socket.id).emit("updateHand", data.sort());
         updateTableView(roomKey);
-      })
-    }, 105)
-  })
+      });
+    }, 105);
+  });
 
   socket.on("userDiscardsCard", function(cardId){
     var roomKey = socket.rooms[1];
@@ -102,17 +85,17 @@ io.on('connection', function(socket){
     repo.passCard(roomKey, "Table", socket.username, cardId);
     setTimeout(function(){
       repo.getHand(roomKey, socket.username, function(err, data){
-        io.to(socket.id).emit("updateHand", data);
+        io.to(socket.id).emit("updateHand", data.sort());
         updateTableView(roomKey);
-      })
-    }, 105)
-  })
+      });
+    }, 105);
+  });
 
   socket.on("discardTableCard", function(cardId){
     var roomKey = socket.rooms[1];
     repo.passCard(roomKey, "Table", "Discard", card);
     updateTableView(roomKey);
-  })
+  });
 
 });
 
@@ -121,10 +104,22 @@ io.on('connection', function(socket){
 // Update Table for each client
 function updateTableView(roomKey){
   repo.getUserKeys(roomKey, function(err, keys){
-    var socketKeys = keys
-    socketKeys.forEach(function(key){
+    keys.forEach(function(key){
       repo.getHand(roomKey, "Table", function(err, data){
         io.to(key).emit("updateTable",  jsonParser(data));
+      })
+    })
+  })
+}
+
+// Update Hands for all users
+function updateAllUserHands(roomKey){
+  repo.getUserKeys(roomKey, function(err, keys){
+    keys.forEach(function(key){
+      repo.getUser(roomKey, key, function(err, username){
+        repo.getHand(roomKey, username, function(err, data){
+          io.to(key).emit("updateHand", jsonParser(data));
+        })
       })
     })
   })
