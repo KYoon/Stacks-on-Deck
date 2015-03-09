@@ -20,11 +20,6 @@ feature "splash page" do
   end
 end
 
-feature "create room" do
-
-
-end
-
 
 
 

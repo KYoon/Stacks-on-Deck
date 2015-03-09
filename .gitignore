@@ -1,5 +1,6 @@
 /node_modules
 /public/socket_magic.js
+spec/capybara/Gemfile.lock
 dump.rdb
 npm-debug.log
 .DS_Store
