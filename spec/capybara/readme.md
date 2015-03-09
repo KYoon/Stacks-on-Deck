@@ -1,4 +1,4 @@
-# "testing, it's a thing now" - lucas willet
+# "testing, it's a thing now" - lucas willett
 
 ## dependencies
 * capybara
