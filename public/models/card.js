@@ -5,8 +5,12 @@ var Card = Backbone.Model.extend({
             },
 
   setActive: function(){
-    console.log(this.attributes.collection);
-    this.attributes.collection.setActiveCard(this);
+
+    // console.log(this.attributes.collection);
+    // this.attributes.collection.setActiveCard(this);
+
+    this.collection.setActiveCard(this);
+    this.setActiveClass();
   },
 
   toString: function() {

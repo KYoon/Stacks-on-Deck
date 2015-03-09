@@ -1,8 +1,10 @@
 body {
   /*background-color: #222;*/
-  background-color: #27ae60;
+  /*  background-color: #27ae60;*/
+  background: url("/public/images/tablebackground.jpg");
   font-family: "Times New Roman", Times, serif;
 }
+
 
 .active {
   border: solid 1px red;
