@@ -73,17 +73,8 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     repo.passCard(roomKey, socket.username, "Table", cardId);
     repo.getHand(roomKey, socket.username, function(err, data){
-      io.to(socket.id).emit("updateHand", jsonParser(data));
-
-      repo.getUserKeys(roomKey, function(err, keys){
-        var socketKeys = keys
-        socketKeys.forEach(function(key){
-          repo.getHand(roomKey, "Table", function(err, data){
-            console.log("table" + data)
-            io.to(key).emit("updateTable",  jsonParser(data));
-          })
-        })
-      })
+      io.to(socket.id).emit("updateHand", data.sort());
+      updateTableView(roomKey);
     })
   })
 
@@ -92,15 +83,8 @@ io.on('connection', function(socket){
     repo.getTable(roomKey, socket.username);
     setTimeout(function(){
       repo.getHand(roomKey, socket.username, function(err, data){
-        io.to(socket.id).emit("updateHand", jsonParser(data));
-        repo.getUserKeys(roomKey, function(err, keys){
-          var socketKeys = keys
-          socketKeys.forEach(function(key){
-            repo.getHand(roomKey, "Table", function(err, data){
-              io.to(key).emit("updateTable",  jsonParser(data));
-            })
-          })
-        })
+        io.to(socket.id).emit("updateHand", data);
+        updateTableView(roomKey);
       })
     }, 105)
   })
@@ -118,30 +102,30 @@ io.on('connection', function(socket){
     repo.passCard(roomKey, "Table", socket.username, cardId);
     setTimeout(function(){
       repo.getHand(roomKey, socket.username, function(err, data){
-        io.to(socket.id).emit("updateHand", jsonParser(data));
-        repo.getUserKeys(roomKey, function(err, keys){
-          var socketKeys = keys
-          socketKeys.forEach(function(key){
-            repo.getHand(roomKey, "Table", function(err, data){
-              io.to(key).emit("updateTable",  jsonParser(data));
-            })
-          })
-        })
+        io.to(socket.id).emit("updateHand", data);
+        updateTableView(roomKey);
       })
     }, 105)
   })
 
   socket.on("discardTableCard", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, "Table", "Discard", cardId);
-    repo.getUserKeys(roomKey, function(err, keys){
-      var socketKeys = keys
-      socketKeys.forEach(function(key){
-        repo.getHand(roomKey, "Table", function(err, data){
-          io.to(key).emit("updateTable",  jsonParser(data));
-        })
-      })
-    })
+    repo.passCard(roomKey, "Table", "Discard", card);
+    updateTableView(roomKey);
   })
 
 });
+
+// Refactoring Functions
+
+// Update Table for each client
+function updateTableView(roomKey){
+  repo.getUserKeys(roomKey, function(err, keys){
+    var socketKeys = keys
+    socketKeys.forEach(function(key){
+      repo.getHand(roomKey, "Table", function(err, data){
+        io.to(key).emit("updateTable",  jsonParser(data));
+      })
+    })
+  })
+}
