@@ -270,6 +270,16 @@ __p += '<div class="card ' +
 return __p
 };
 
+this["JST"]["templates/cardDown.tpl"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '  <div class="card">\n    <div class="inner bg-pattern"></div>\n  </div>\n';
+
+}
+return __p
+};
+
 this["JST"]["templates/hand.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
