@@ -24,7 +24,12 @@ $(document).ready(function(){
   })
 
   $("#pass-table").click(function(){
-    socket.emit("passTable", passingCard)
+    console.log(passingCard.attributes);
+    var suit = passingCard.attributes.suit;
+    var value = passingCard.attributes.value;
+
+    console.log("GETTING HERE FOOL")
+    socket.emit("passTable", JSON.stringify({suit: suit, value: value}))
   })
 
   $(".passing-player-list").on("click", ".pass-to", function(e){
