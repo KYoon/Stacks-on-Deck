@@ -45,7 +45,8 @@ feature "a user plays a card" do
     create_and_join_room("jnmandal", "bsheridan12")
     in_browser(:one) do
       deal_cards(5)
-      find('div:nth-child(3) > .card').click
+      # find('div:nth-child(3) > .card').click
+      click_card(3)
       click_button("Play Card")
     end
   end
@@ -66,6 +67,11 @@ feature "a user plays a card" do
     end
   end
 
+  scenario "card on table is card that was in hand" do
+
+
+  end
+
   scenario "second user can see player card" do
     in_browser(:two) do
       within "div.table-cards" do
@@ -84,7 +90,6 @@ feature "a user discards a card" do
       click_button("Discard Card")
     end
   end
-
 end
 
 
