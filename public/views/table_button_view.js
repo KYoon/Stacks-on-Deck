@@ -8,7 +8,7 @@ var TableButtonView = Backbone.View.extend({
 	},
 
 	initialize: function() {
-		this.tableButtonTemplate = JST['templates/tableButtons.tpl'];
+		this.tableButtonTemplate = JST['templates/tableButtons.jst'];
 	},
 
 	render: function() {

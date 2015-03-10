@@ -1,7 +1,7 @@
 var CurrentPlayerView = Backbone.View.extend({
   tagName: "li",
 
-  template: JST['templates/player.tpl'],
+  template: JST['templates/player.jst'],
 
   attributes: {
     class: "user"

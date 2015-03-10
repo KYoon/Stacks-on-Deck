@@ -1,5 +1,5 @@
 var CardView = Backbone.View.extend({
-  cardDownTemplate: JST['templates/cardDown.tpl'],
+  cardDownTemplate: JST['templates/cardDown.jst'],
 
   initialize: function() {
     //Refactoring IMMINENT
