@@ -1,6 +1,6 @@
 this["JST"] = this["JST"] || {};
 
-this["JST"]["templates/10.tpl"] = function(obj) {
+this["JST"]["templates/10.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -36,7 +36,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/2.tpl"] = function(obj) {
+this["JST"]["templates/2.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -56,7 +56,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/3.tpl"] = function(obj) {
+this["JST"]["templates/3.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -78,7 +78,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/4.tpl"] = function(obj) {
+this["JST"]["templates/4.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -102,7 +102,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/5.tpl"] = function(obj) {
+this["JST"]["templates/5.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -128,7 +128,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/6.tpl"] = function(obj) {
+this["JST"]["templates/6.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -156,7 +156,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/7.tpl"] = function(obj) {
+this["JST"]["templates/7.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -186,7 +186,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/8.tpl"] = function(obj) {
+this["JST"]["templates/8.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -218,7 +218,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/9.tpl"] = function(obj) {
+this["JST"]["templates/9.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -252,7 +252,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/ace.tpl"] = function(obj) {
+this["JST"]["templates/ace.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -270,7 +270,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/cardDown.tpl"] = function(obj) {
+this["JST"]["templates/cardDown.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -280,7 +280,7 @@ __p += '  <div class="card">\n    <div class="inner bg-pattern"></div>\n  </div>
 return __p
 };
 
-this["JST"]["templates/hand.tpl"] = function(obj) {
+this["JST"]["templates/hand.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -290,7 +290,7 @@ __p += '<div class="player-hand">\n</div>\n';
 return __p
 };
 
-this["JST"]["templates/handButtons.tpl"] = function(obj) {
+this["JST"]["templates/handButtons.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -300,7 +300,7 @@ __p += '<button id="hand-discard-button" class="btn btn-block">Discard</button>\
 return __p
 };
 
-this["JST"]["templates/header.tpl"] = function(obj) {
+this["JST"]["templates/header.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -310,7 +310,7 @@ __p += '<nav class="navbar navbar-default">\n  <div class="container-fluid">\n  
 return __p
 };
 
-this["JST"]["templates/jack.tpl"] = function(obj) {
+this["JST"]["templates/jack.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -326,7 +326,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/king.tpl"] = function(obj) {
+this["JST"]["templates/king.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -342,7 +342,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/passingPlayer.tpl"] = function(obj) {
+this["JST"]["templates/passingPlayer.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -356,7 +356,7 @@ __p += '<a class="pass-to" id="' +
 return __p
 };
 
-this["JST"]["templates/player.tpl"] = function(obj) {
+this["JST"]["templates/player.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -367,7 +367,7 @@ __p +=
 return __p
 };
 
-this["JST"]["templates/queen.tpl"] = function(obj) {
+this["JST"]["templates/queen.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
@@ -383,7 +383,7 @@ __p += '<div class="card ' +
 return __p
 };
 
-this["JST"]["templates/tableButtons.tpl"] = function(obj) {
+this["JST"]["templates/tableButtons.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
