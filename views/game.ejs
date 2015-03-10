@@ -14,36 +14,39 @@
   </div>
 
 
-  <div class= "col-xs-12">
+  <div class="row">
+  <div class="card-count-container col-xs-12">
+  <div class="card" id="hand-count">
+  <div class="up-arrow">
+      <i class="fa fa-sort-asc fa-5x"></i>
+  </div>
+
+  <div class="hand-count-number">
+    <h1 id="count">5</h1>
+  </div>
+
+    <div class="down-arrow">
+      <i class="fa fa-sort-desc fa-5x"></i>
+    </div>
+  </div>
+
+  </div>
+  <div class="start-game">
+    <button id="start-game-btn">Start Game</button>
+  </div>
+</div>
+</div>
+
+
+<div class="active-game" style="display: none">
+
     <div class="row table-container">
+      <div class= "col-xs-12">
       <div class="table-buttons"></div>
       <div class = "tableclass"></div>
     </div>
   </div>
 
-  <div class="row">
-  <div class="test col-xs-12">
-  <div class="card" id="hand-count">
-  <div class="up-arrow">
-      <i class="fa fa-arrow-up fa-5x"></i>
-    </div>
-
-    <div class="down-arrow">
-      <i class="fa fa-arrow-down fa-5x"></i>
-    </div>
-  </div>
-    <!-- <div class="inner bg-pattern"></div> -->
-  </div>
-</div>
-
-
-
-
-
-</div>
-</div>
-
-<div class="active-game" style="display: none">
   <div class="row">
     <div class="col-md-8 offset-col-md-2 hand-buttons-view">
       <h4>Hand options:</h4>
@@ -70,6 +73,6 @@
 <script>
 var userData = {
   username: "<%= username %>",
-  roomkey: "<%= roomkey %>"
+  roomkey: "<%= roomkey %>",
 }
 </script>

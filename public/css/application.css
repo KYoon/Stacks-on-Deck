@@ -89,24 +89,39 @@ li {
   list-style-type: none;
 }
 
-.test {
+.card-count-container {
   position: relative;
-  left: 400px;
+  left: 30%;
 }
 
 .up-arrow {
+  color: #8D1B0F;
   position: absolute;
-  left: 28px;
-  top: 10px;
+  left: 106px;
+  top: 20px;
 }
 
 .down-arrow {
+  color: #8D1B0F;
   position: absolute;
-  left: 40%;
-  bottom: 10px;
+  left: 106px;
+  bottom: 20px;
 }
 
 #hand-count {
-  height: 40%;
-  width: 26%;
+  height: 392px;
+  width: 254px;
+}
+
+.hand-count-number {
+  position: relative;
+  top: 120px;
+  text-align: center;
+  left: 106px;
+  width: 43px;
+}
+
+.hand-count-number h1 {
+  font-weight: bold;
+  font-size: 75px;
 }
