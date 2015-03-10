@@ -33,12 +33,6 @@ $(document).ready(function(){
   });
 });
 
-// function addCardToHand(data) {
-//   console.log(data)
-//   console.log('getting to addCardToHand')
-
-//   hand.addCardToHand(data)
-// }
 function cardColor(suit){
   var color;
   switch(suit) {

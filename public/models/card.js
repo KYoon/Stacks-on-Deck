@@ -6,8 +6,14 @@ var Card = Backbone.Model.extend({
             },
 
   setActive: function(){
-    console.log("this.collection: " + this)
-    this.attributes.collection.setActiveCard(this);
+      //REFACTOR
+    if (this.collection) {
+      //when you draw a card it's like this:
+      this.collection.setActiveCard(this);
+    } else {
+      //when you deal cards it's like this:
+      this.attributes.collection.setActiveCard(this);
+    }
   },
 
   flipCard: function(){

@@ -7,6 +7,7 @@ var Hand = Backbone.Collection.extend({
   },
 
   addNewCard: function(card) {
+    // card.collection = this
     this.add(new Card(card))
   },
 

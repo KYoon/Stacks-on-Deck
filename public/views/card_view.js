@@ -23,6 +23,7 @@ var CardView = Backbone.View.extend({
   },
 
   render: function(){
+    console.log('rendering')
     if (this.model.get('faceUp') === true) {
       this.$el.html(this.cardTemplate({color: this.color, suit: "&"+ this.suit +";"}))
     } else {
@@ -34,12 +35,10 @@ var CardView = Backbone.View.extend({
   },
 
   flipCard: function() {
-    console.log("dblclick")
     if (this.model.get('faceUp') === false) {
       this.model.set({faceUp: true})
     } else {
       this.model.set({faceUp: false})
     }
-    this.render();
   }
 })
