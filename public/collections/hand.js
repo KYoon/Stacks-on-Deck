@@ -13,7 +13,6 @@ var Hand = Backbone.Collection.extend({
       createdCard = new Card(jsonCards[i]);
       newCards.push(createdCard);
     }
-
     this.models = newCards;
     return this.models;
   },
@@ -25,5 +24,17 @@ var Hand = Backbone.Collection.extend({
     card.set({active: true});
     this.activeCard = card;
   },
+
+  discard: function(){
+    socket.emit("userDiscardsCard", this.activeCard.toString());
+  },
+
+  passCard: function(){
+
+  },
+
+  playCard: function(){
+    socket.emit("passTable", this.activeCard.toString());
+  }
 
 })

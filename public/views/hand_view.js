@@ -1,6 +1,7 @@
 var HandView = Backbone.View.extend({
   initialize: function() {
     this.listenTo(this.collection, "change", this.render);
+    this.on("click", showButtons)
   },
 
   attributes: {
@@ -24,6 +25,10 @@ var HandView = Backbone.View.extend({
       this.addOne(card);
     }, this);
     return this;
+  }
+
+  showButtons: function (){
+
   }
 
 })
