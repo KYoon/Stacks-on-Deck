@@ -94,6 +94,13 @@ io.on('connection', function(socket){
     updateTableView(roomKey);
   });
 
+  socket.on("tableDeckDraw", function(){
+    var roomKey = socket.rooms[1];
+    var socketId = socket.id;
+    repo.dealUserCard(roomKey, "Table");
+    updateTableView(roomKey);
+  });
+
 });
 
 // Refactored Functions

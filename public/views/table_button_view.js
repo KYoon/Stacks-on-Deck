@@ -3,7 +3,8 @@ var TableButtonView = Backbone.View.extend({
 	events: {
 		'click #table-get-card' : 'getCard',
 		'click #table-discard-card' : 'discardCard',
-		'click #collect-table-cards' : 'collectCards'
+		'click #collect-table-cards' : 'collectCards',
+		'click #table-draw-card' : 'deckDraw'
 	},
 
 	initialize: function() {
@@ -24,6 +25,10 @@ var TableButtonView = Backbone.View.extend({
 
 	collectCards: function(){
 		table.collectCards();
+	},
+
+	deckDraw: function(){
+		table.deckDraw();
 	}
 
 })
