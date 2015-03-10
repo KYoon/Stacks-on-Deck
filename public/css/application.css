@@ -35,9 +35,12 @@ h4 {
 }
 
 .hand-buttons {
-  width: 30%;
-  background-color: darkgray;
   border-radius: .4em;
+  }
+
+  .single-hand-button {
+    width: 30%;
+    float: left;
   }
 
 .hand-buttons button {

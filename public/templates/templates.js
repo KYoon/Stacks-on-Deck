@@ -294,7 +294,7 @@ this["JST"]["templates/handButtons.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<button id="hand-discard-button" class="btn btn-block">Discard</button>\n<button id="hand-pass-button" class="btn btn-block">Pass</button>\n<button id="hand-play-button" class="btn btn-block">Play</button>\n';
+__p += '<div class="single-hand-button"><button class="btn btn-default" id="hand-discard-button" >Discard</button></div>\n<div class="single-hand-button"><button class="btn btn-default" id="hand-pass-button" >Pass</button></div>\n<div class="single-hand-button"><button class="btn btn-default" id="hand-play-button">Play</button></div>\n';
 
 }
 return __p
