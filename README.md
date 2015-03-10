@@ -4,13 +4,12 @@
 ## Commands
 ### must be run
 * If grunt is not installed on the local machine, run $ npm install grunt-cli -g
-* $ grunt concat (or just $ grunt) -- combine all clientside js files into socket_magic.js
-* run grunt for development, check .gitignore before final deployment for public/socket_magic.js
+* $ grunt -- combine all clientside js files into socket_magic.js and compile templates
 * $ redis-server -- runs redis server
-* $ node app.js --
+* $ node app.js -- runs the app server
 ### useful
 * $ redis-cli -- access redis command line interface
-* $ grunt jst -- compile backbone templates from public/templates **(may change)
+* $ grunt jshint -- run jshint across all js files
 
 ## technology stack
 * node.js
