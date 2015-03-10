@@ -41,9 +41,15 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     var username = socket.username;
     var socketId = socket.id;
-    repo.dealUserCard(roomKey, username);
-    updateUserHand(roomKey, username, socketId);
+
+    repo.dealUserCard(roomKey, username, function(card) {
+      var card = JSON.parse(card);
+      io.to(socketId).emit("addCardToHand", card);
+    });
   });
+
+    // sendUserHand(roomKey, username, socketId);
+  // });
 
   // Pass a card to the table from the user's hand
   socket.on("passTable", function(cardId){
@@ -114,10 +120,10 @@ function jsonParser(data) {
   return jsonCards;
 }
 
-// Update User's Hand
-function updateUserHand(roomKey, username, socketId){
+
+function sendUserHand(roomKey, username, socketId){
   repo.getHand(roomKey, username, function(err, data){
-    io.to(socketId).emit("updateHand", jsonParser(data.sort()));
+    io.to(socketId).emit("addCardToHand", jsonParser(data.sort()));
   });
 }
 

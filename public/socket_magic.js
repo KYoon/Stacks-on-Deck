@@ -6,6 +6,7 @@ $(document).ready(function(){
   // listen for card event
   socket.on("updateHand", updateHand);
   socket.on("updateTable", updateTable);
+  // socket.on("addCardToHand", addCardToHand)
   
 });
 
@@ -32,6 +33,12 @@ $(document).ready(function(){
   });
 });
 
+// function addCardToHand(data) {
+//   console.log(data)
+//   console.log('getting to addCardToHand')
+
+//   hand.addCardToHand(data)
+// }
 function cardColor(suit){
   var color;
   switch(suit) {

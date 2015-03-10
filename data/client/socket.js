@@ -6,5 +6,6 @@ $(document).ready(function(){
   // listen for card event
   socket.on("updateHand", updateHand);
   socket.on("updateTable", updateTable);
+  // socket.on("addCardToHand", addCardToHand)
   
 });

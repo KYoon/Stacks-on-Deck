@@ -3,6 +3,11 @@ var Hand = Backbone.Collection.extend({
 
   initialize: function() {
     this.unsetActiveCard();
+    this.listenTo(socket, 'addCardToHand', this.addNewCard.bind(this))
+  },
+
+  addNewCard: function(card) {
+    this.add(new Card(card))
   },
 
   updateCards: function(jsonCards){
@@ -16,6 +21,10 @@ var Hand = Backbone.Collection.extend({
     this.models = newCards;
     return this.models;
   },
+
+  // addCardToHand: function(jsonCard) {
+
+  // },
 
   setActiveCard: function(card){
     if (this.activeCard) {
