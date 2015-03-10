@@ -23,6 +23,12 @@ def deal_cards(quantity)
   click_button "Deal Them Cards"
 end
 
+def click_card(card_index)
+  card = find("div:nth-child(#{card_index}) > .card")
+  card.click
+  return card.text
+end
+
 # < - > multi-browser methods < - >
 # bruz marzolf
 # http://blog.bruzilla.com/2012/04/10/using-multiple-capybara-sessions-in-rspec-request.html
@@ -44,10 +50,4 @@ def create_and_join_room(browser_one_username, browser_two_username)
   in_browser(:two) do
     join_existing_room(browser_two_username, roomkey)
   end
-end
-
-# ----------- untested 
-# check helper_methods_test.rb 
-def click_card(card_index)
-  return find("div:nth-child(#{card_index}) > .card").methods.sort
 end
