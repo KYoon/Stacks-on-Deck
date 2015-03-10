@@ -7,9 +7,9 @@ var CardView = Backbone.View.extend({
     this.value = this.model.get('value').toLowerCase();
 
     this.color = cardColor(this.suit);
-    this.faceUp = true;
     this.cardTemplate = JST['templates/'+ this.value +'.jst'];
 
+    this.listenTo(this.model, "change:faceUp", this.render);
   },
 
   events: {
@@ -23,7 +23,7 @@ var CardView = Backbone.View.extend({
   },
 
   render: function(){
-    if (this.faceUp === true) {
+    if (this.model.get('faceUp') === true) {
       this.$el.html(this.cardTemplate({color: this.color, suit: "&"+ this.suit +";"}))
     } else {
       this.$el.html(this.cardDownTemplate)
@@ -35,10 +35,10 @@ var CardView = Backbone.View.extend({
 
   flipCard: function() {
     console.log("dblclick")
-    if (this.faceUp === false) {
-      this.faceUp = true
+    if (this.model.get('faceUp') === false) {
+      this.model.set({faceUp: true})
     } else {
-      this.faceUp = false
+      this.model.set({faceUp: false})
     }
     this.render();
   }

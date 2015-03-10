@@ -8,6 +8,10 @@ var HandView = Backbone.View.extend({
     class: "card-overlap"
   },
 
+  events: {
+    "drag": "flipCards"
+  },
+
   render: function(){
     this.$el.empty();
     this.addAll();
@@ -26,8 +30,15 @@ var HandView = Backbone.View.extend({
     return this;
   },
 
-  showButtons: function (){
+  showButtons: function(){
 
+  },
+
+  flipCards: function(){
+    this.collection.each(function(card) {
+      card.flipCard()  
+    })
+    
   }
 
 })
