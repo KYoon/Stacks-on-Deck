@@ -22,10 +22,6 @@ var Hand = Backbone.Collection.extend({
     return this.models;
   },
 
-  // addCardToHand: function(jsonCard) {
-
-  // },
-
   setActiveCard: function(card){
     if (this.activeCard) {
       this.activeCard.set({active: false});
