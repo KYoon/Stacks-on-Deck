@@ -9,9 +9,13 @@ io.on('connection', function(socket){
     socket.join(data.roomkey, function(error){
       socket.username = data.username;
       repo.createUser(data.roomkey, data.username, socket.id);
+
       repo.getUsers(data.roomkey, function(err, users){
-        io.to(data.roomkey).emit("updateClients", users);
+        socket.emit("joinedGame", users);
       });
+
+      socket.broadcast.to(data.roomkey).emit('newPlayer', data.username);
+
       if(error){console.log("error:" + error);}
     });
   });

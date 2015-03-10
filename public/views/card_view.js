@@ -1,14 +1,15 @@
 var CardView = Backbone.View.extend({
+  cardDownTemplate: JST['templates/cardDown.tpl'],
 
-  initialize: function(card) {
-    this.model = card
+  initialize: function() {
+    //Refactoring IMMINENT
+    this.suit = this.model.get('suit');
+    this.value = this.model.get('value').toLowerCase();
 
-    this.suit = card.attributes.suit;
-    this.value = card.attributes.value.toLowerCase();
     this.color = cardColor(this.suit);
     this.faceUp = true;
-    this.cardTemplate = window['JST']['templates/'+ this.value +'.tpl'];
-    this.cardDownTemplate = window['JST']['templates/cardDown.tpl'];
+    this.cardTemplate = JST['templates/'+ this.value +'.tpl'];
+
   },
 
   events: {
@@ -16,11 +17,6 @@ var CardView = Backbone.View.extend({
     "dblclick": "flipCard",
     "doubletap": "flipCard"
   },
-
-// var divdbl = $( "body" );
-// divdbl.dblclick(function() {
-//   alert( "dbl" );
-// });
 
   activateCard: function(){
     console.log("single click");

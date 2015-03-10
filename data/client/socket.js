@@ -3,9 +3,8 @@ $(document).ready(function(){
   socket = io.connect();
   socket.emit("joinRoom", userData);
 
-  // listen for event
+  // listen for card event
   socket.on("updateHand", updateHand);
-  socket.on("updateClients", updateUserList);
   socket.on("updateTable", updateTable);
-
+  
 });

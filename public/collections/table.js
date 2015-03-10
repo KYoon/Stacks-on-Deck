@@ -14,7 +14,6 @@ var Table = Backbone.Collection.extend({
       tableOfCards.push(createdCard);
     }
     this.models = tableOfCards;
-    console.log("IN UPDATE CARDS" +this.models)
     return this.models;
   },
 

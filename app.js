@@ -24,7 +24,8 @@ app.use(bodyParser.json());
 app.use("/public", express.static(__dirname + '/public'));
 app.use("/socket.io", express.static(__dirname + '/node_modules/socket.io'));
 app.use("/underscore", express.static(__dirname + '/node_modules/underscore'));
-app.use("/jquery.finger", express.static(__dirname + '/node_modules/jquery.finger'))
+app.use("/jquery.finger", express.static(__dirname + '/node_modules/jquery.finger'));
+
 // server
 server.listen(3000);
 
