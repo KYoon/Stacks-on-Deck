@@ -338,7 +338,9 @@ this["JST"]["templates/passingPlayer.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<a class="user" href="#">' +
+__p += '<a class="pass-to" id="' +
+((__t = ( username )) == null ? '' : __t) +
+'" href="#">' +
 ((__t = ( username )) == null ? '' : __t) +
 '</a>';
 

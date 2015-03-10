@@ -1,6 +1,5 @@
 var HandView = Backbone.View.extend({
-  initialize: function(cards) {
-    this.collection = cards;
+  initialize: function() {
     this.listenTo(this.collection, "change", this.render);
   },
 
@@ -14,7 +13,7 @@ var HandView = Backbone.View.extend({
   },
 
   addOne: function(card){
-    var view = new CardView(card);
+    var view = new CardView({model: card});
     view.render();
     this.$el.append(view.$el)
   },
