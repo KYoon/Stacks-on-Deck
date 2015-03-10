@@ -48,15 +48,12 @@ client.on("ready", function(){
 
 
 function createDeck(gameId) {
-  var suit = ["hearts", "clubs", "spades", "diamonds"];
+  var suit = ["hearts", "clubs", "spades", "diams"];
   var value = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
 
 var count = 1
   for (i = 0; i < suit.length; i++) {
     for (x = 0; x < value.length; x++) {
-      // client.hset(suit[i] + value[x], suit[i], value[x])
-      // client.sadd(gameId+":deck", (suit[i] + value[x]))
-      // client.hmset("deck", count, '"{"suit":"'+ suit[i]+'", "value":"'+ value[x]+'"}"')
       client.hmset("deck", count, '{"suit":"'+ suit[i]+'", "value":"'+ value[x]+'"}')
       client.sadd(gameId + ":deck", count)
       count++
@@ -96,7 +93,6 @@ function dealUsersCards(gameId, handSize, callback) {
     var count = 0;
     while( count < handSize ) {
       users.forEach(function(user) {
-        // console.log("user: " + user + " count: " + count)
         dealUserCard(gameId, user);
       });
       count++;

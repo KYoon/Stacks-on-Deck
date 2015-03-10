@@ -5,12 +5,13 @@ var Table = Backbone.Collection.extend({
     this.activeCard = null;
   },
 
-  updateCards: function(formattedCards){
+  updateCards: function(jsonCards){
     this.activeCard = null;
     tableOfCards = [];
-    for(var i=0; i<formattedCards.length; i++) {
-      formattedCards[i].collection = this;
-      createdCard = new Card(formattedCards[i]);
+    for(var i=0; i<jsonCards.length; i++) {
+      jsonCards[i].collection = this;
+      createdCard = new Card(jsonCards[i]);
+      console.log(createdCard)
       tableOfCards.push(createdCard);
     }
     this.models = tableOfCards;
@@ -24,7 +25,7 @@ var Table = Backbone.Collection.extend({
     }
     card.set({active: true});
     this.activeCard = card;
-  }, 
+  },
 
   getCard: function(card) {
     socket.emit("getTableCard", card);

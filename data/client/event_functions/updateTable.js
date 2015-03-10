@@ -1,6 +1,7 @@
 function updateTable(tableCards){
-  var formattedTable = formatHand(tableCards);
-  table.updateCards(formattedTable)
+  console.log(tableCards)
+  // var formattedTable = formatHand(tableCards);
+  table.updateCards(tableCards)
   tableView.render();
 
   if (tableCards.length > 0){

@@ -15,7 +15,7 @@ $(document).ready(function(){
     e.preventDefault();
     $("#pass-card").show();
     $("#pass-table").show();
-    passingCard = hand.activeCard.toString();
+    passingCard = hand.activeCard;
     $("#discard-card").show();
   });
 

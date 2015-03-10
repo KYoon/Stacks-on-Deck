@@ -4,19 +4,13 @@ var Hand = Backbone.Collection.extend({
   initialize: function() {
     this.activeCard = null;
   },
-  
-  //not sure how to use comparator
-  // comparator: function(collection){
-  //     return collection.get('suit')
-  // },
 
-  
-  updateCards: function(formattedCards){
+  updateCards: function(jsonCards){
     this.activeCard = null;
     newCards = [];
-    for(var i=0; i<formattedCards.length; i++) {
-      formattedCards[i].collection = this;
-      createdCard = new Card(formattedCards[i]); 
+    for(var i=0; i< jsonCards.length; i++) {
+      jsonCards[i].collection = this;
+      createdCard = new Card(jsonCards[i]);
       newCards.push(createdCard);
     }
 

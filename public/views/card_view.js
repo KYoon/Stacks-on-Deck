@@ -1,6 +1,9 @@
 var CardView = Backbone.View.extend({
 
   initialize: function(card) {
+    console.log("card:" + card)
+    console.log("card:" + card.attributes.suit)
+
     this.model = card
     this.suit = card.attributes.suit;
     this.value = card.attributes.value.toLowerCase();
