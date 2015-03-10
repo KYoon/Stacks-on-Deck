@@ -6716,3 +6716,8 @@ a.list-group-item-danger.active:focus {
   color: #333333;
 }
 
+@media (min-width: 768px) {
+  h3 {
+    font-size: 22.5px;
+  }
+}

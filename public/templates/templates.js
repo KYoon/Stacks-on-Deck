@@ -6,7 +6,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class="card ' +
 ((__t = ( color )) == null ? '' : __t) +
-'">\n    <div class="test-div">\n  <div class="rank-color">10 ' +
+'">\n  <div class="rank-color">10 ' +
 ((__t = ( suit )) == null ? '' : __t) +
 '</div>\n  <div class="inner fg-container">\n    <div class="two nine">' +
 ((__t = ( suit )) == null ? '' : __t) +
@@ -30,7 +30,7 @@ __p += '<div class="card ' +
 ((__t = ( suit )) == null ? '' : __t) +
 '</div>\n  </div>\n  <div class="rank-color rotated-rank-color rtt">10 ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n</div>\n';
+'</div>\n</div>\n';
 
 }
 return __p
