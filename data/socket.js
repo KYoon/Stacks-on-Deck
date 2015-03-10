@@ -20,9 +20,16 @@ io.on('connection', function(socket){
     });
   });
 
+  // need to use inside every getHand callback
+  function jsonParser(data) {
+    var jsonCards = [];
+    for ( i=0; i < data.length; i++) {
+      jsonCards.push(JSON.parse(data[i]))
+    }
+    return jsonCards;
+  }
+
   socket.on("dealCards", function(data){
-    console.log(data)
-    // need to transfer the data of faceDown card attribute to cards
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
     repo.dealUsersCards(roomKey, parseInt(data.dealingCount));
@@ -32,9 +39,7 @@ io.on('connection', function(socket){
       socketKeys.forEach(function(key){
         repo.getUser(roomKey, key, function(err, username){
           repo.getHand(roomKey, username, function(err, data){
-            console.log(data)
-            console.log(data.sort());
-            io.to(key).emit("updateHand", data.sort());
+            io.to(key).emit("updateHand", jsonParser(data));
           })
         })
       })
@@ -43,13 +48,13 @@ io.on('connection', function(socket){
 
   socket.on("passCard", function(data){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, socket.username, data.toUser, data.passingCard)
+    repo.passCard(roomKey, socket.username, data.toUser, data.cardId)
     repo.getUserKeys(roomKey, function(err, keys){
       var socketKeys = keys
       socketKeys.forEach(function(key){
         repo.getUser(roomKey, key, function(err, username){
           repo.getHand(roomKey, username, function(err, data){
-            io.to(key).emit("updateHand", data.sort());
+            io.to(key).emit("updateHand",  jsonParser(data));
           })
         })
       })
@@ -60,20 +65,22 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     repo.dealUserCard(roomKey, socket.username);
     repo.getHand(roomKey, socket.username, function(err, data){
-      io.to(socket.id).emit("updateHand", data.sort());
+      io.to(socket.id).emit("updateHand",  jsonParser(data));
     })
   })
 
-  socket.on("passTable", function(card){
+  socket.on("passTable", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, socket.username, "Table", card);
+    repo.passCard(roomKey, socket.username, "Table", cardId);
     repo.getHand(roomKey, socket.username, function(err, data){
-      io.to(socket.id).emit("updateHand", data.sort());
+      io.to(socket.id).emit("updateHand", jsonParser(data));
+
       repo.getUserKeys(roomKey, function(err, keys){
         var socketKeys = keys
         socketKeys.forEach(function(key){
           repo.getHand(roomKey, "Table", function(err, data){
-            io.to(key).emit("updateTable", data);
+            console.log("table" + data)
+            io.to(key).emit("updateTable",  jsonParser(data));
           })
         })
       })
@@ -85,12 +92,12 @@ io.on('connection', function(socket){
     repo.getTable(roomKey, socket.username);
     setTimeout(function(){
       repo.getHand(roomKey, socket.username, function(err, data){
-        io.to(socket.id).emit("updateHand", data);
+        io.to(socket.id).emit("updateHand", jsonParser(data));
         repo.getUserKeys(roomKey, function(err, keys){
           var socketKeys = keys
           socketKeys.forEach(function(key){
             repo.getHand(roomKey, "Table", function(err, data){
-              io.to(key).emit("updateTable", data);
+              io.to(key).emit("updateTable",  jsonParser(data));
             })
           })
         })
@@ -98,25 +105,25 @@ io.on('connection', function(socket){
     }, 105)
   })
 
-  socket.on("userDiscardsCard", function(card){
+  socket.on("userDiscardsCard", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, socket.username, "Discard", card);
+    repo.passCard(roomKey, socket.username, "Discard", cardId);
     repo.getHand(roomKey, socket.username, function(err, data){
-      io.to(socket.id).emit("updateHand", data);
+      io.to(socket.id).emit("updateHand",  jsonParser(data));
     })
   })
 
-  socket.on("getTableCard", function(card){
+  socket.on("getTableCard", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, "Table", socket.username, card);
+    repo.passCard(roomKey, "Table", socket.username, cardId);
     setTimeout(function(){
       repo.getHand(roomKey, socket.username, function(err, data){
-        io.to(socket.id).emit("updateHand", data);
+        io.to(socket.id).emit("updateHand", jsonParser(data));
         repo.getUserKeys(roomKey, function(err, keys){
           var socketKeys = keys
           socketKeys.forEach(function(key){
             repo.getHand(roomKey, "Table", function(err, data){
-              io.to(key).emit("updateTable", data);
+              io.to(key).emit("updateTable",  jsonParser(data));
             })
           })
         })
@@ -124,14 +131,14 @@ io.on('connection', function(socket){
     }, 105)
   })
 
-  socket.on("discardTableCard", function(card){
+  socket.on("discardTableCard", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, "Table", "Discard", card);
+    repo.passCard(roomKey, "Table", "Discard", cardId);
     repo.getUserKeys(roomKey, function(err, keys){
       var socketKeys = keys
       socketKeys.forEach(function(key){
         repo.getHand(roomKey, "Table", function(err, data){
-          io.to(key).emit("updateTable", data);
+          io.to(key).emit("updateTable",  jsonParser(data));
         })
       })
     })

@@ -12,14 +12,14 @@ var TableButtonView = Backbone.View.extend({
 
 	render: function() {
 		this.$el.html(this.tableButtonTemplate);
-	}, 
+	},
 
 	getCard: function() {
-		table.getCard(table.activeCard.toString())
+		table.getCard(table.activeCard.attributes.id)
 	},
 
 	discardCard: function() {
-		table.discardCard(table.activeCard.toString())
+		table.discardCard(table.activeCard.attributes.id)
 	},
 
 	collectCards: function(){
