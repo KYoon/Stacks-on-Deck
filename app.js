@@ -28,7 +28,7 @@ app.use("/underscore", express.static(__dirname + '/node_modules/underscore'));
 app.use("/jquery.finger", express.static(__dirname + '/node_modules/jquery.finger'));
 
 // server
-server.listen(3000);
+server.listen(process.env.PORT || 3000);
 
 // routes
 app.get('/', function(req, res){
