@@ -2,6 +2,7 @@ body {
   /*background-color: #222;*/
   /*  background-color: #27ae60;*/
   background: url("/public/images/tablebackground.jpg");
+  background-position: center;
 /*  font-family: "Times New Roman", Times, serif;*/
 }
 
@@ -159,7 +160,6 @@ body {
 .card-overlap{
   position: relative;
   width: 60%;
-  left:20%;
   bottom: 0;
 }
 
@@ -187,6 +187,9 @@ body {
      height: 50px;
 }
 
-.player-hand {
-
+@media screen and (max-width: 768px) {
+  .player-hand {
+    overflow: scroll;
+    height: 350px;
+  }
 }
