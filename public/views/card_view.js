@@ -10,6 +10,7 @@ var CardView = Backbone.View.extend({
     this.cardTemplate = JST['templates/'+ this.value +'.jst'];
 
     this.listenTo(this.model, "change:faceUp", this.render);
+    this.listenTo(this.model, "change:active", this.setClass);
   },
 
   events: {
@@ -22,15 +23,19 @@ var CardView = Backbone.View.extend({
     this.model.setActive();
   },
 
+  setClass: function(){
+    if (this.model.get('active') === true) {
+      this.$el.addClass("active");
+    } else {
+      this.$el.removeClass("active")
+    }
+  },
+
   render: function(){
-    console.log('rendering')
     if (this.model.get('faceUp') === true) {
       this.$el.html(this.cardTemplate({color: this.color, suit: "&"+ this.suit +";"}))
     } else {
       this.$el.html(this.cardDownTemplate)
-    }
-    if (this.model.active) {
-      this.$el.addClass("active");
     }
   },
 

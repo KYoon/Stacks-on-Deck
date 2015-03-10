@@ -3,24 +3,29 @@ var Hand = Backbone.Collection.extend({
 
   initialize: function() {
     this.unsetActiveCard();
-    this.listenTo(socket, 'addCardToHand', this.addNewCard.bind(this))
+    this.listenTo(socket, 'addCardToHand', this.addNewCard.bind(this));
+    this.listenTo(socket, 'removeCardFromHand', this.removeCard.bind(this));
   },
 
   addNewCard: function(card) {
-    // card.collection = this
-    this.add(new Card(card))
+    this.add(new Card(card));
+  },
+
+  removeCard: function(card) {
+    var cardId = card.id;
+    var cardModel = this.find(function(model) { return model.get('id') === cardId});
+    this.remove(cardModel);
   },
 
   updateCards: function(jsonCards){
     this.unsetActiveCard();
+    this.reset()
     newCards = [];
     for(var i=0; i< jsonCards.length; i++) {
       jsonCards[i].collection = this;
-      createdCard = new Card(jsonCards[i]);
-      newCards.push(createdCard);
+      this.add(new Card(jsonCards[i]));
     }
-    this.models = newCards;
-    return this.models;
+    return this;
   },
 
   setActiveCard: function(card){
