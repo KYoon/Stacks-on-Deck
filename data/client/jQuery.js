@@ -24,20 +24,23 @@ $(document).ready(function(){
   })
 
   $("#pass-table").click(function(){
-    console.log(passingCard.attributes);
-    var suit = passingCard.attributes.suit;
-    var value = passingCard.attributes.value;
+    // console.log(passingCard.attributes);
+    // var suit = passingCard.attributes.suit;
+    // var value = passingCard.attributes.value;
+    var id = passingCard.attributes.id;
 
     console.log("GETTING HERE FOOL")
-    socket.emit("passTable", JSON.stringify({suit: suit, value: value}))
+    socket.emit("passTable", id)
   })
 
   $(".passing-player-list").on("click", ".pass-to", function(e){
     e.preventDefault();
+    var id = passingCard.attributes.id;
+
     toUser = $(this).attr("id")
     console.log("toUser")
     console.log(toUser)
-    socket.emit("passCard", {toUser: toUser, passingCard: passingCard})
+    socket.emit("passCard", {toUser: toUser, cardId: id})
   })
 
   $("#draw-card").click(function(){
@@ -45,7 +48,8 @@ $(document).ready(function(){
   })
 
   $("#discard-card").click(function(){
-    socket.emit("userDiscardsCard", passingCard);
+    var cardId = passingCard.attributes.id;
+    socket.emit("userDiscardsCard", cardId);
     $("#pass-card").hide();
     $("#pass-table").hide();
     $("#discard-card").hide();

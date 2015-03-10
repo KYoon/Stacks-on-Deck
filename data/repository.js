@@ -54,7 +54,7 @@ function createDeck(gameId) {
 var count = 1
   for (i = 0; i < suit.length; i++) {
     for (x = 0; x < value.length; x++) {
-      client.hmset("deck", count, '{"suit":"'+ suit[i]+'", "value":"'+ value[x]+'"}')
+      client.hmset(gameId+"deck", count, '{"suit":"'+ suit[i]+'", "value":"'+ value[x]+'", "id":"' + count + '"}')
       client.sadd(gameId + ":deck", count)
       count++
     };
@@ -80,9 +80,9 @@ function getUser(gameId, userKey, callback) {
 }
 
 function dealUserCard(gameId, user) {
-  oneRandCard(gameId, function(err, card) {
-      client.hget("deck", card, function(err, card){
-      client.sadd(userHand(gameId, user), card, function(err) {
+  oneRandCard(gameId, function(err, id) {
+      client.hget(gameId+"deck", id, function(err, card){
+        client.sadd(userHand(gameId, user), card, function(err) {
       })
     });
   });
@@ -124,14 +124,16 @@ function getHand(gameId, user, callback) {
   }, 200)
 }
 
-function passCard(gameId, from, to, card) {
-  client.smove(userHand(gameId, from), userHand(gameId, to), card)
+function passCard(gameId, from, to, id) {
+  client.hget(gameId+"deck", id, function(err, card) {
+    client.smove(userHand(gameId, from), userHand(gameId, to), card)
+  })
 }
 
 function getTable(gameId, to) {
   getHand(gameId, "Table", function(err, cards){
     cards.forEach(function(card){
-      passCard(gameId, "Table", to, card);
+      client.smove(userHand(gameId, "Table"), userHand(gameId, to), card)
     });
   });
 }
