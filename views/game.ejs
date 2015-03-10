@@ -1,18 +1,26 @@
  <div class = "container">
-  <div class="row">
-    <p>Welcome <span id="username"><%= username %></span></p>
-    <p>You are in the room: <span id="roomkey"><%= roomkey %></span></p>
+
+   <div class="waiting-room">
+    <div class="row">
+     <div class= "col-xs-12">
+      <h3>Welcome <span id="username"><%= username %></span></h3>
+      <p>You are in the room: <span id="roomkey"><%= roomkey %></span></p>
+    </div>
   </div>
 
   <div class="row player-list">
-    <p>Players in the game:</p>
+    <div class= "col-xs-12">
+      <p>Players in the game:</p>
+    </div>
   </div>
+</div>
 
-  <div class="row">
+<div class= "col-xs-12">
+  <div class="row table-container">
     <div class="table-buttons"></div>
     <div class = "tableclass"></div>
   </div>
-
+</div>
 
 <div class="row">
   <form class="dealing-cards">
@@ -29,24 +37,24 @@
   </div>
 </div>
 
-  <div class="row">
-    <div class="table col-md-8 offset-col-md-2 passing-player-list" style="display: none">
-      <p>Pass card to player: </p>
-    </div>
+<div class="row">
+  <div class="table col-md-8 offset-col-md-2 passing-player-list" style="display: none">
+    <p>Pass card to player: </p>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-10 player-hand">
-      <p>Your cards are:</p>
-    </div>
+<div class="row">
+  <div class="col-md-10 player-hand">
+    <p>Your cards are:</p>
   </div>
+</div>
 </div>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/public/socket_magic.js"></script>
 <script>
-  var userData = {
-    username: "<%= username %>",
-    roomkey: "<%= roomkey %>"
-  }
+var userData = {
+  username: "<%= username %>",
+  roomkey: "<%= roomkey %>"
+}
 </script>
