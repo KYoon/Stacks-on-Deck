@@ -1,6 +1,6 @@
 var HandButtonView = Backbone.View.extend({
 
-  template: JST['templates/handButtons.tpl'],
+  template: JST['templates/handButtons.jst'],
 
   attributes: {
     class: "hand-buttons",

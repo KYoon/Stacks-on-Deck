@@ -31,7 +31,7 @@ module.exports = function(grunt) {
                 }
               },
               files: {
-                "public/templates/templates.js": ["public/templates/**/*.tpl"]
+                "public/templates/templates.js": ["public/templates/**/*.jst"]
               }
             }
           },
@@ -44,6 +44,10 @@ module.exports = function(grunt) {
               src: ['data/client/socket.js','data/client/jquery.js','data/client/event_functions/*.js'],
               dest: 'public/socket_magic.js',
             },
+          },
+
+          jshint: {
+            all: ['Gruntfile.js', 'data/**/*.js', 'public/**/.js']
           }
 
         });
@@ -51,8 +55,9 @@ module.exports = function(grunt) {
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-jst');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Default task
-    grunt.registerTask('default', ['concat']);
+    grunt.registerTask('default', ['concat', 'jst']);
 
   };
