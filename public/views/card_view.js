@@ -8,7 +8,7 @@ var CardView = Backbone.View.extend({
 
     this.color = cardColor(this.suit);
     this.faceUp = true;
-    this.cardTemplate = JST['templates/'+ this.value +'.tpl'];
+    this.cardTemplate = JST['templates/'+ this.value +'.jst'];
 
   },
 
