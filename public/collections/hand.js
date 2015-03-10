@@ -7,7 +7,6 @@ var Hand = Backbone.Collection.extend({
 
   updateCards: function(jsonCards){
     this.unsetActiveCard();
-    console.log("in updateCards")
     newCards = [];
     for(var i=0; i< jsonCards.length; i++) {
       jsonCards[i].collection = this;

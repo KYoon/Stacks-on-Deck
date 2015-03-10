@@ -51,8 +51,8 @@ function cardColor(suit){
   return color
 }
 
-function dealCards(dealingCount){
-  socket.emit("dealCards", dealingCount);
+function dealCards(data){
+  socket.emit("dealCards", data);
 }
 
 function joinedGame(data) {
