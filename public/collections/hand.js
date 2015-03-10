@@ -2,11 +2,11 @@ var Hand = Backbone.Collection.extend({
   model: Card,
 
   initialize: function() {
-    this.activeCard = null;
+    this.unsetActiveCard();
   },
 
   updateCards: function(jsonCards){
-    this.activeCard = null;
+    this.unsetActiveCard();
     newCards = [];
     for(var i=0; i< jsonCards.length; i++) {
       jsonCards[i].collection = this;
@@ -23,6 +23,12 @@ var Hand = Backbone.Collection.extend({
     }
     card.set({active: true});
     this.activeCard = card;
+    this.trigger("cardActivate");
+  },
+
+  unsetActiveCard: function(){
+    this.activeCard = null;
+    this.trigger("cardDeactivate");
   },
 
   discard: function(){

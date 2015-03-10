@@ -27,6 +27,6 @@ $(document).ready(function() {
   // add table buttons to table view
 
   // add hand buttons to table
-  handButtonView = new handButtonView();
-
+  handButtonView = new HandButtonView({collection: hand});
+  $(".hand-buttons-view").append(handButtonView.$el);
 })
