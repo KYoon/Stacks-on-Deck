@@ -11,25 +11,13 @@ io.on('connection', function(socket){
     socket.join(data.roomkey, function(error){
       socket.username = data.username;
       repo.createUser(data.roomkey, data.username, socket.id);
-
       repo.getUsers(data.roomkey, function(err, users){
         socket.emit("joinedGame", users);
       });
-
       socket.broadcast.to(data.roomkey).emit('newPlayer', data.username);
-
       if(error){console.log("error:" + error);}
     });
   });
-
-  // need to use inside every getHand callback
-  function jsonParser(data) {
-    var jsonCards = [];
-    for ( i=0; i < data.length; i++) {
-      jsonCards.push(JSON.parse(data[i]))
-    }
-    return jsonCards;
-  }
 
   // Deal cards to all users in a room
   socket.on("dealCards", function(data){
@@ -110,10 +98,19 @@ io.on('connection', function(socket){
 
 // Refactored Functions
 
+// need to use inside every getHand callback
+function jsonParser(data) {
+  var jsonCards = [];
+  for ( i=0; i < data.length; i++) {
+    jsonCards.push(JSON.parse(data[i]))
+  }
+  return jsonCards;
+}
+
 // Update User's Hand
 function updateUserHand(roomKey, username, socketId){
   repo.getHand(roomKey, username, function(err, data){
-    io.to(socketId).emit("updateHand", data.sort());
+    io.to(socketId).emit("updateHand", jsonParser(data.sort()));
   });
 }
 
@@ -122,7 +119,7 @@ function updateTableView(roomKey){
   repo.getUserKeys(roomKey, function(err, keys){
     keys.forEach(function(key){
       repo.getHand(roomKey, "Table", function(err, data){
-        io.to(key).emit("updateTable",  jsonParser(data));
+        io.to(key).emit("updateTable",  jsonParser(data.sort()));
       })
     })
   })
@@ -134,7 +131,7 @@ function updateAllUserHands(roomKey){
     keys.forEach(function(key){
       repo.getUser(roomKey, key, function(err, username){
         repo.getHand(roomKey, username, function(err, data){
-          io.to(key).emit("updateHand", jsonParser(data));
+          io.to(key).emit("updateHand", jsonParser(data.sort()));
         })
       })
     })
@@ -144,7 +141,7 @@ function updateAllUserHands(roomKey){
 // Update the user's hand that activated the event and update the table
 function updateUserHandAndTable(roomKey, username, socketId){
   repo.getHand(roomKey, username, function(err, data){
-    io.to(socketId).emit("updateHand", data.sort());
+    io.to(socketId).emit("updateHand", jsonParser(data.sort()));
     updateTableView(roomKey);
   });
 }
