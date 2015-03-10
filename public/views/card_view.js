@@ -5,10 +5,8 @@ var CardView = Backbone.View.extend({
     //Refactoring IMMINENT??
     this.suit = this.model.get('suit');
     this.value = this.model.get('value').toLowerCase();
-
     this.color = cardColor(this.suit);
     this.cardTemplate = JST['templates/'+ this.value +'.jst'];
-
     this.listenTo(this.model, "change:faceUp", this.render);
     this.listenTo(this.model, "change:active", this.setClass);
   },

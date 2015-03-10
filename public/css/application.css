@@ -2,6 +2,10 @@ p, label {
     color: white;
 }
 
+#splash-page-container {
+  max-width: 480px;
+}
+
 .splash {
   margin-top: 1em;
 }
@@ -26,6 +30,9 @@ ul {
 h4 {
     color: white;
 }
+h3 {
+    color: white;
+}
 
 .logo {
   display: inline-block;
@@ -39,10 +46,10 @@ h4 {
   margin: 20px 0 75px 0;
   }
 
-  .single-hand-button {
-    width: 30%;
-    float: left;
-  }
+.single-hand-button {
+  width: 30%;
+  float: left;
+}
 
 .hand-buttons button {
   width: 100%;
@@ -72,4 +79,34 @@ h4 {
 }
 .alert-yoonify > [data-notify="message"] {
   color: #6A0D0C;
+}
+
+.waiting-room div{
+/*  text-align: center;
+*/}
+
+li {
+  list-style-type: none;
+}
+
+.test {
+  position: relative;
+  left: 400px;
+}
+
+.up-arrow {
+  position: absolute;
+  left: 28px;
+  top: 10px;
+}
+
+.down-arrow {
+  position: absolute;
+  left: 40%;
+  bottom: 10px;
+}
+
+#hand-count {
+  height: 40%;
+  width: 26%;
 }

@@ -191,5 +191,10 @@ body {
   .player-hand {
     overflow: scroll;
     height: 350px;
-  }
+}
+
+@media and screen (max-width: 768px) {
+  .card {
+    width: 115px;
+    height: 125px;
 }

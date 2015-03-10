@@ -284,7 +284,9 @@ this["JST"]["templates/header.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<nav class="navbar navbar-default">\n  <div class="container-fluid">\n    <p class="navbar-brand" href="#">ROOM KEY</p>\n      <div class="navbar-inner">\n        <div class="navbar-center inline">\n      <p>Stacks on Deck</p>\n    </div>\n  </div>\n  </div>\n</nav>';
+__p += '<nav class="navbar navbar-default">\n  <div class="container-fluid">\n    <div class="room-key-div">\n    <div><p class="navbar-brand">Room: ' +
+((__t = ( userData.roomkey )) == null ? '' : __t) +
+'</p></div>\n\n      <div class="navbar-inner">\n        <div class="navbar-center inline">\n      <p>Stacks on Deck</p>\n    </div>\n  </div>\n  </div>\n</nav>';
 
 }
 return __p

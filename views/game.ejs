@@ -4,48 +4,63 @@
     <div class="row">
      <div class= "col-xs-12">
       <h3>Welcome <span id="username"><%= username %></span></h3>
-      <p>You are in the room: <span id="roomkey"><%= roomkey %></span></p>
     </div>
   </div>
 
-  <div class="row player-list">
-    <div class= "col-xs-12">
+  <div class="row">
+    <div class="col-xs-12 player-list">
       <p>Players in the game:</p>
     </div>
   </div>
-</div>
 
-<div class= "col-xs-12">
-  <div class="row table-container">
-    <div class="table-buttons"></div>
-    <div class = "tableclass"></div>
+
+  <div class= "col-xs-12">
+    <div class="row table-container">
+      <div class="table-buttons"></div>
+      <div class = "tableclass"></div>
+    </div>
+  </div>
+
+  <div class="row">
+  <div class="test col-xs-12">
+  <div class="card" id="hand-count">
+  <div class="up-arrow">
+      <i class="fa fa-arrow-up fa-5x"></i>
+    </div>
+
+    <div class="down-arrow">
+      <i class="fa fa-arrow-down fa-5x"></i>
+    </div>
+  </div>
+    <!-- <div class="inner bg-pattern"></div> -->
   </div>
 </div>
 
-<div class="row">
-  <form class="dealing-cards">
-    <input type="text" id="initial-deal-count">
-    <input type= "checkbox" id = "facedown" name="card-appearance">Deal Cards Face Down<br>
-    <input type="submit" id="deal" value="Deal Them Cards">
-  </form>
+
+
+
+
+</div>
 </div>
 
-<div class="row">
-  <div class="col-md-8 offset-col-md-2 hand-buttons-view">
-    <h4>Hand options:</h4>
-    <button id="draw-card" style="display: none">Draw Card</button>
+<div class="active-game" style="display: none">
+  <div class="row">
+    <div class="col-md-8 offset-col-md-2 hand-buttons-view">
+      <h4>Hand options:</h4>
+      <button id="draw-card" style="display: none">Draw Card</button>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="table col-md-8 offset-col-md-2 passing-player-list" style="display: none">
-    <p>Pass card to player: </p>
+  <div class="row">
+    <div class="table col-md-8 offset-col-md-2 passing-player-list" style="display: none">
+      <p>Pass card to player: </p>
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-10 player-hand">
-    <p>Your cards are:</p>
+  <div class="row">
+    <div class="col-md-10 player-hand">
+      <p>Your cards are:</p>
+    </div>
   </div>
 </div>
 </div>
