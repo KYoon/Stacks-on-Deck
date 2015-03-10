@@ -6,7 +6,7 @@ var Card = Backbone.Model.extend({
 
   setActive: function(){
     console.log("this.collection: " + this)
-    this.collection.setActiveCard(this);
-    this.setActiveClass();
+    this.attributes.collection.setActiveCard(this);
+    // this.setActiveClass();
   },
 })
