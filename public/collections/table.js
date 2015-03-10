@@ -36,5 +36,9 @@ var Table = Backbone.Collection.extend({
 
   collectCards: function(){
     socket.emit("userCollectsTable");
+  },
+
+  deckDraw: function(){
+    socket.emit("tableDeckDraw");
   }
 });
