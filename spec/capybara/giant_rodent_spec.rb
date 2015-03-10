@@ -12,15 +12,15 @@ feature "a user clicks card in hand" do
   end
 
   scenario "has Pass Card button" do
-    expect(page).to have_button("Pass Card")
+    expect(page).to have_button("Pass")
   end
 
   scenario "has Play Card button" do
-    expect(page).to have_button("Play Card")
+    expect(page).to have_button("Play")
   end
 
   scenario "has Discard Card button" do
-    expect(page).to have_button("Discard Card")
+    expect(page).to have_button("Discard")
   end
 end
 
@@ -37,17 +37,13 @@ feature "a user draws a card" do
   end
 end
 
-
-# Need to add helper that returns the clicked card so
-# we can ensure the correct card is played and displayed for both players.
 feature "a user plays a card" do
   before do
     create_and_join_room("jnmandal", "bsheridan12")
     in_browser(:one) do
       deal_cards(5)
-      # find('div:nth-child(3) > .card').click
       click_card(3)
-      click_button("Play Card")
+      click_button("Play")
     end
   end
 
@@ -87,7 +83,7 @@ feature "a user discards a card" do
     in_browser(:one) do
       deal_cards(5)
       find('div:nth-child(3) > .card').click
-      click_button("Discard Card")
+      click_button("Discard")
     end
   end
 end
