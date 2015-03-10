@@ -13,3 +13,22 @@ ul {
 h4 {
     color: white;
 }
+
+.logo {
+  display: inline-block;
+  width: 78%;
+  text-align: center;
+  background-color: orange;
+}
+
+.hand-buttons {
+  width: 30%;
+  background-color: darkgray;
+  border-radius: .4em;
+  }
+
+.hand-buttons button {
+  width: 100%;
+  border: 1px solid black;
+  color: white;
+  }

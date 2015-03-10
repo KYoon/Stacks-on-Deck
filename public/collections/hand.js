@@ -2,18 +2,18 @@ var Hand = Backbone.Collection.extend({
   model: Card,
 
   initialize: function() {
-    this.activeCard = null;
+    this.unsetActiveCard();
   },
 
   updateCards: function(jsonCards){
-    this.activeCard = null;
+    this.unsetActiveCard();
+    console.log("in updateCards")
     newCards = [];
     for(var i=0; i< jsonCards.length; i++) {
       jsonCards[i].collection = this;
       createdCard = new Card(jsonCards[i]);
       newCards.push(createdCard);
     }
-
     this.models = newCards;
     return this.models;
   },
@@ -24,6 +24,24 @@ var Hand = Backbone.Collection.extend({
     }
     card.set({active: true});
     this.activeCard = card;
+    this.trigger("cardActivate");
   },
+
+  unsetActiveCard: function(){
+    this.activeCard = null;
+    this.trigger("cardDeactivate");
+  },
+
+  discard: function(){
+    socket.emit("userDiscardsCard", this.activeCard.id);
+  },
+
+  passCard: function(){
+
+  },
+
+  playCard: function(){
+    socket.emit("passTable", this.activeCard.id);
+  }
 
 })

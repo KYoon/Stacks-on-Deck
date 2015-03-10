@@ -290,6 +290,16 @@ __p += '<div class="player-hand">\n</div>\n';
 return __p
 };
 
+this["JST"]["templates/handButtons.tpl"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<button id="hand-discard-button" class="btn btn-block">Discard</button>\n<button id="hand-pass-button" class="btn btn-block">Pass</button>\n<button id="hand-play-button" class="btn btn-block">Play</button>\n';
+
+}
+return __p
+};
+
 this["JST"]["templates/header.tpl"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
