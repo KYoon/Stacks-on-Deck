@@ -19,7 +19,6 @@ var CardView = Backbone.View.extend({
   },
 
   activateCard: function(){
-    console.log("single click");
     this.model.setActive();
   },
 

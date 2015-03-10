@@ -1,1 +1,1 @@
-<a class="user" href="#"><%= username %></a>
+<a class="pass-to" id="<%= username %>" href="#"><%= username %></a>
