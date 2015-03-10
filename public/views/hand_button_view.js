@@ -32,7 +32,7 @@ var HandButtonView = Backbone.View.extend({
   },
 
   discard: function(){
-
+    hand.discard();
   },
 
   passCard: function(){
@@ -40,7 +40,7 @@ var HandButtonView = Backbone.View.extend({
   },
 
   playCard: function(){
-
+    hand.playCard();
   }
 
 })

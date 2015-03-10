@@ -7,6 +7,7 @@ var Hand = Backbone.Collection.extend({
 
   updateCards: function(jsonCards){
     this.unsetActiveCard();
+    console.log("in updateCards")
     newCards = [];
     for(var i=0; i< jsonCards.length; i++) {
       jsonCards[i].collection = this;
@@ -32,7 +33,7 @@ var Hand = Backbone.Collection.extend({
   },
 
   discard: function(){
-    socket.emit("userDiscardsCard", this.activeCard.toString());
+    socket.emit("userDiscardsCard", this.activeCard.id);
   },
 
   passCard: function(){
@@ -40,7 +41,7 @@ var Hand = Backbone.Collection.extend({
   },
 
   playCard: function(){
-    socket.emit("passTable", this.activeCard.toString());
+    socket.emit("passTable", this.activeCard.id);
   }
 
 })

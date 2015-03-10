@@ -7,7 +7,7 @@ var TableButtonView = Backbone.View.extend({
 	},
 
 	initialize: function() {
-		this.tableButtonTemplate = window['JST']['templates/tableButtons.tpl'];
+		this.tableButtonTemplate = JST['templates/tableButtons.tpl'];
 	},
 
 	render: function() {
@@ -15,15 +15,15 @@ var TableButtonView = Backbone.View.extend({
 	},
 
 	getCard: function() {
-		table.getCard(table.activeCard.attributes.id)
+		table.getCard(table.activeCard.attributes.id);
 	},
 
 	discardCard: function() {
-		table.discardCard(table.activeCard.attributes.id)
+		table.discardCard(table.activeCard.attributes.id);
 	},
 
 	collectCards: function(){
-		table.collectCards()
+		table.collectCards();
 	}
 
 })
