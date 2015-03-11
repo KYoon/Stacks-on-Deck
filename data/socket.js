@@ -22,11 +22,9 @@ io.on('connection', function(socket){
   // Deal cards to all users in a room
   socket.on("dealCards", function(data){
     console.log(data);
-    // need to transfer the data of faceDown card attribute to cards
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
     repo.dealUsersCards(roomKey, parseInt(data.dealingCount));
-    // should there be a callback here ? JNM
     socket.broadcast.to(roomKey).emit("cardsDealMessage", socket.username, data.dealingCount)
     updateAllUserHands(roomKey);
   });
@@ -34,8 +32,14 @@ io.on('connection', function(socket){
   // Pass a card from one user to another
   socket.on("passCard", function(data){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, socket.username, data.toUser, data.cardId);
-    updateAllUserHands(roomKey);
+    var username = socket.username
+    repo.passCard(roomKey, username, data.toUser, data.cardId, function(card){
+      var card = JSON.parse(card);
+      socket.emit("removeCardFromHand", card);
+      repo.getKey(roomKey, data.toUser, function(err, key){
+        io.to(key).emit("addCardToHand", card);
+      });
+    });
   });
 
   // Draw a card from the deck
