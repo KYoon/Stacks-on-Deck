@@ -27,7 +27,13 @@ io.on('connection', function(socket){
   socket.on("dealCards", function(data){
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
-    repo.dealUsersCards(roomKey, parseInt(data.dealingCount));
+    repo.dealUsersCards(roomKey, parseInt(data.dealingCount), function(){
+      repo.checkDeckCount(roomKey, function(err, count) {
+        if (count === 0) {
+          io.to(roomKey).emit("deckEmptyMessage");
+        }
+      })  
+    });
     socket.broadcast.to(roomKey).emit("cardsDealMessage", socket.username, data.dealingCount)
     updateAllUserHands(roomKey);
   });
@@ -50,9 +56,17 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     var username = socket.username;
     repo.dealUserCard(roomKey, username, function(card) {
+      console.log("dealuserCard callback right here.")
       var card = JSON.parse(card);
-      socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
-      socket.emit("addCardToHand", card);
+      repo.checkDeckCount(roomKey, function(err, count) {
+        console.log(count)
+        if (count === 0) {          
+          io.to(roomKey).emit("deckEmptyMessage");
+        } else {
+          socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
+          socket.emit("addCardToHand", card);
+        }
+      })  
     });
   });
 
@@ -123,19 +137,25 @@ io.on('connection', function(socket){
     var socketId = socket.id;
     repo.dealUserCard(roomKey, "Table", function(card) {
       var card = JSON.parse(card);
-      socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
-      repo.getUserKeys(roomKey, function(err, keys){
-        keys.forEach(function(key){
-          repo.getHand(roomKey, "Table", function(err, data){
-            io.to(key).emit("addCardToTable", card);
+      repo.checkDeckCount(roomKey, function(err, count) {
+        if (count === 0) {          
+          io.to(roomKey).emit("deckEmptyMessage");
+        } else {
+          socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
+          repo.getUserKeys(roomKey, function(err, keys){
+            keys.forEach(function(key){
+              repo.getHand(roomKey, "Table", function(err, data){
+                io.to(key).emit("addCardToTable", card);
+              });
+            });
           });
-        });
-      });
+        }
+      })  
+      
     });
   });
 
   socket.on("cardFlip", function(cardId){
-    console.log("sending peerCardFlip");
     var roomKey = socket.rooms[1];
     socket.broadcast.to(roomKey).emit("peerCardFlip", cardId);
   });
