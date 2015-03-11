@@ -164,14 +164,11 @@ h2 {
   font-weight: bold;
   font-size: 75px;
 }
-<<<<<<< HEAD
-=======
 
 #start-game-btn {
   width: 250px;
 }
 
->>>>>>> reposition
 @media (max-width: 768px) {
   .container {
     max-height: 600px;
