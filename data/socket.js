@@ -98,8 +98,16 @@ io.on('connection', function(socket){
   // Discard a card from the table
   socket.on("discardTableCard", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, "Table", "Discard", cardId);
-    updateTableView(roomKey);
+    repo.passCard(roomKey, "Table", "Discard", cardId, function(card){
+      var card = JSON.parse(card);
+      repo.getUserKeys(roomKey, function(err, keys){
+        keys.forEach(function(key){
+          repo.getHand(roomKey, "Table", function(err, data){
+            io.to(key).emit("removeCardFromTable", card);
+          })
+        })
+      })
+    });
   });
 
   socket.on("tableDeckDraw", function(){
