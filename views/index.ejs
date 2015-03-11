@@ -29,7 +29,20 @@
           <label>Room Key</label>
           <input type = "text" id="roomkey" name="roomkey" class="form-control" placeholder="room key ie: HGCF">
         </div>
-        <input type = "submit" value = "Join Room" class="btn btn-default">
+        <input type="submit" value="Join Room" class="btn btn-default">
+      </form>
+    </div>
+  </div>
+
+    <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+      <p> Add a table to an existing game </p>
+      <form id="table" method="POST" action="/tables">
+        <div class="form-group">
+          <label>Room Key</label>
+          <input type = "text" id="roomkey" name="roomkey" class="form-control" placeholder="room key ie: HGCF">
+        </div>
+        <input type="submit" value="Connect Table" class="btn btn-default">
       </form>
     </div>
   </div>

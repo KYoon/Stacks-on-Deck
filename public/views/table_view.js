@@ -4,6 +4,7 @@ var TableView = Backbone.View.extend({
     // this.listenTo(this.collection, "change", this.render);
     this.listenTo(this.collection, "add", this.addOne);
     this.listenTo(this.collection, "remove", this.removeOne);
+    this.listenTo(socket, "peerCardFlip", this.flipSpecificCard.bind(this));
   },
 
   events: {
@@ -12,7 +13,7 @@ var TableView = Backbone.View.extend({
   },
 
   attributes: {
-    class: "table-cards"
+    class: "table-cards playingCards simpleCards"
   },
 
   render: function(){
@@ -21,11 +22,9 @@ var TableView = Backbone.View.extend({
   },
 
   addOne: function(card){
-    // this.collection.unsetActiveCard();
     var view = new CardView({model: card});
     this.cardViews.push(view);
     view.render();
-    console.log(this.$el)
     this.$el.append(view.$el);
   },
 
@@ -36,9 +35,17 @@ var TableView = Backbone.View.extend({
     return this;
   },
 
+  flipSpecificCard: function(cardId) {
+    console.log("flipSpecificCard");
+    var cardView = _.find(this.cardViews, function(view){
+      return view.model.get("id") === cardId
+    })
+    cardView.flipCard();
+  },
+
   flipCards: function(){
     this.collection.each(function(card) {
-      card.flipCard()  
+      card.flipCard()
     })
   },
 
@@ -46,7 +53,7 @@ var TableView = Backbone.View.extend({
     var view = _.find(this.cardViews, function(view) {
       return view.model === card;
     })
-    this.cardViews = _.filter(this.cardViews, function(view) { return view.model !== card; 
+    this.cardViews = _.filter(this.cardViews, function(view) { return view.model !== card;
     });
     view.remove();
   },

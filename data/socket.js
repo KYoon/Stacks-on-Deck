@@ -129,6 +129,12 @@ io.on('connection', function(socket){
     });
   });
 
+  socket.on("cardFlip", function(cardId){
+    console.log("sending peerCardFlip");
+    var roomKey = socket.rooms[1];
+    socket.broadcast.to(roomKey).emit("peerCardFlip", cardId);
+  });
+
 });
 
 // Refactored Functions
