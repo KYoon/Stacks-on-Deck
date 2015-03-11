@@ -12,6 +12,7 @@ var MessageView = Backbone.View.extend({
     this.listenTo(socket, 'cardsDealMessage', this.cardsDeal);
     this.listenTo(socket, 'cardDealToTableMessage', this.cardDealToTable);
     this.listenTo(socket, 'cardPass', this.cardPass);
+    this.listenTo(socket, 'playerLeaveMessage', this.playerLeave);
   },
 
   playerJoin: function(username){
@@ -69,4 +70,12 @@ var MessageView = Backbone.View.extend({
       message: usernameFrom + " has passed a card to " + usernameTo + "."
     });
   },
+
+  playerLeave: function(username) {
+    $.notify({
+      icon: "glyphicon glyphicon-warning-sign",
+      title: "Player Leave:",
+      message: username + " has left the room. Their cards have been forfeited."
+    });
+  }
 })
