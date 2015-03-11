@@ -26,6 +26,7 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
     repo.dealUsersCards(roomKey, parseInt(data.dealingCount));
+    socket.broadcast.to(roomKey).emit("cardsDeal", socket.username, data.dealingCount)
     updateAllUserHands(roomKey);
   });
 
