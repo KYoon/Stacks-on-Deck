@@ -13,16 +13,29 @@ var CardView = Backbone.View.extend({
     this.listenTo(this.model, "change:active", this.setClass);
   },
 
+  attributes: {
+    class: "card"
+  },
+
   events: {
     "click": "activateCard",
     "dblclick": "flipCard",
     "doubletap": "flipCard",
+    // "mouseup": "deactivateActiveCard"
   },
 
   activateCard: function(){
     this.model.setActive();
   },
 
+  // deactivateActiveCard: function(e){
+  //    var container = $(this).find(".card");
+  //   if (!container.is(e.target) // if the target of the click isn't the container...
+  //       && container.has(e.target).length === 0) // ... nor a descendant of the container
+  //   {
+  //       this.model.setInactive()
+  //   }
+  // },
 
   setClass: function(){
     if (this.model.get('active') === true) {
@@ -33,6 +46,7 @@ var CardView = Backbone.View.extend({
   },
 
   render: function(){
+    this.$el.addClass(this.color)
     if (this.model.get('faceUp') === true) {
       this.$el.html(this.cardTemplate({color: this.color, suit: "&"+ this.suit +";"}))
     } else {

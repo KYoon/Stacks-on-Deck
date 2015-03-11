@@ -14,7 +14,6 @@ var Table = Backbone.Collection.extend({
     this.unsetActiveCard();
     this.reset();
     for(var i=0; i<jsonCards.length; i++) {
-      jsonCards[i].collection = this;
       this.add(new Card(jsonCards[i]));
     }
     return this;
@@ -26,6 +25,7 @@ var Table = Backbone.Collection.extend({
     }
     card.set({active: true});
     this.activeCard = card;
+    this.trigger("cardActivate");
   },
 
   unsetActiveCard: function(){
