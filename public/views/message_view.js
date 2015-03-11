@@ -6,14 +6,14 @@ var MessageView = Backbone.View.extend({
       placement:{from: "top",align: "center"}
     });
     // listening
-    // some of these event names are guesses and will need to be changed during integration
-    this.listenTo(socket, 'newPlayer', this.playerJoin);
-    this.listenTo(socket, 'cardDrawMessage', this.cardDraw);
-    this.listenTo(socket, 'cardsDealMessage', this.cardsDeal);
-    this.listenTo(socket, 'cardDealToTableMessage', this.cardDealToTable);
-    this.listenTo(socket, 'cardPass', this.cardPass);
-    this.listenTo(socket, 'playerLeaveMessage', this.playerLeave);
-    this.listenTo(socket, 'deckEmptyMessage', this.deckEmpty)
+    this.listenTo(socket, 'newPlayer', this.playerJoin); // done
+    this.listenTo(socket, 'cardDrawMessage', this.cardDraw); // done
+    this.listenTo(socket, 'cardDrawToTableMessage', this.cardDrawToTable); // NYI
+    this.listenTo(socket, 'cardsDealMessage', this.cardsDeal); // done
+    this.listenTo(socket, 'cardPlayToTableMessage', this.cardPlayToTable); // done
+    this.listenTo(socket, 'cardPassMessage', this.cardPass); // done
+    this.listenTo(socket, 'playerLeaveMessage', this.playerLeave); // done
+    this.listenTo(socket, 'deckEmptyMessage', this.deckEmpty); // done
   },
 
   playerJoin: function(username){
@@ -33,8 +33,7 @@ var MessageView = Backbone.View.extend({
   },
 
   cardPlay: function(username){
-    $.notify({
-      icon: "glyphicon glyphicon-plus",
+    $.notify(done     icon: "glyphicon glyphicon-plus",
       title: "Card Played:",
       message: username + " has played a card to the table."
     });
@@ -56,11 +55,11 @@ var MessageView = Backbone.View.extend({
     });
   },
 
-  cardDealToTable: function(username){
+  cardPlayToTable: function(username){
     $.notify({
       icon: "glyphicon glyphicon-plus",
-      title: "Cards Dealt:",
-      message: username + " has dealt a card to the table."
+      title: "Card Played:",
+      message: username + " has played a card to the table."
     });
   },
 
