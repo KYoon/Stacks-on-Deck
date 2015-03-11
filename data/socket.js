@@ -91,10 +91,6 @@ io.on('connection', function(socket){
       socket.emit("addCardToHand", card);
       io.to(roomKey).emit("removeCardFromTable", card);
     });
-    // // Possible to get around setTimeout?
-    // setTimeout(function(){
-    //   updateUserHandAndTable(roomKey, username, socketId);
-    // }, 105);
   });
 
   // Discard a card from the table
@@ -107,8 +103,19 @@ io.on('connection', function(socket){
   socket.on("tableDeckDraw", function(){
     var roomKey = socket.rooms[1];
     var socketId = socket.id;
-    repo.dealUserCard(roomKey, "Table");
-    updateTableView(roomKey);
+    repo.dealUserCard(roomKey, "Table", function(card) {
+      var card = JSON.parse(card);
+      socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
+      repo.getUserKeys(roomKey, function(err, keys){
+        keys.forEach(function(key){
+          repo.getHand(roomKey, "Table", function(err, data){
+            io.to(key).emit("addCardToTable", card);
+          })
+        })
+      })
+    });
+    // repo.dealUserCard(roomKey, "Table");
+    // updateTableView(roomKey);
   });
 
 });
