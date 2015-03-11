@@ -3,7 +3,7 @@ p, label {
 }
 
 .container {
-  position: fixed;
+  /*position: fixed;*/
 }
 
 #game-page-container {
