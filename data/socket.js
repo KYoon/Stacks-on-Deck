@@ -77,8 +77,10 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     var username = socket.username;
     var socketId = socket.id;
-    repo.passCard(roomKey, username, "Discard", cardId);
-    sendUserHand(roomKey, username, socketId);
+    repo.passCard(roomKey, username, "Discard", cardId, function(card){
+      var card = JSON.parse(card);
+      socket.emit("removeCardFromHand", card);
+    });
   });
 
   // User obtains a card from a table
@@ -114,8 +116,6 @@ io.on('connection', function(socket){
         })
       })
     });
-    // repo.dealUserCard(roomKey, "Table");
-    // updateTableView(roomKey);
   });
 
 });
