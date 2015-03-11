@@ -143,24 +143,6 @@ function jsonParser(data) {
   return jsonCards;
 }
 
-
-function sendUserHand(roomKey, username, socketId){
-  repo.getHand(roomKey, username, function(err, data){
-    io.to(socketId).emit("updateHand", jsonParser(data.sort()));
-  });
-}
-
-// Update Table for each client
-function updateTableView(roomKey){
-  repo.getUserKeys(roomKey, function(err, keys){
-    keys.forEach(function(key){
-      repo.getHand(roomKey, "Table", function(err, data){
-        io.to(key).emit("updateTable",  jsonParser(data.sort()));
-      })
-    })
-  })
-}
-
 // Update Hands for all users
 function updateAllUserHands(roomKey){
   repo.getUserKeys(roomKey, function(err, keys){
@@ -172,12 +154,4 @@ function updateAllUserHands(roomKey){
       })
     })
   })
-}
-
-// Update the user's hand that activated the event and update the table
-function updateUserHandAndTable(roomKey, username, socketId){
-  repo.getHand(roomKey, username, function(err, data){
-    io.to(socketId).emit("updateHand", jsonParser(data.sort()));
-    updateTableView(roomKey);
-  });
 }
