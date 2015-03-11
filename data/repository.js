@@ -23,7 +23,6 @@ module.exports.getHand = getHand;
 module.exports.passCard = passCard;
 module.exports.getTable = getTable;
 module.exports.createDeck = createDeck;
-module.exports.dealUsersCards = dealUsersCards;
 module.exports.getUser = getUser;
 module.exports.checkDeckCount = checkDeckCount;
 
