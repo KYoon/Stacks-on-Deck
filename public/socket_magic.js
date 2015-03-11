@@ -30,6 +30,11 @@ $(document).ready(function(){
     socket.emit("drawCard")
   });
 
+  $("#table-draw-card").click(function(){
+      socket.emit("tableDeckDraw")
+  })
+
+
   $("#down-arrow").on("click", function(){
     var count = parseInt($("#count").text())
     if (count > 0) {
@@ -46,6 +51,10 @@ $(document).ready(function(){
     var dealingCount = parseInt($("#count").text())
     // var faceDown = $("#facedown").is(':checked');
     dealCards({dealingCount: dealingCount});
+  })
+
+  $(".table-buttons").on("click", function(){
+    $(".table-buttons div").hide();
   })
 });
 
@@ -98,7 +107,7 @@ function updateClients(clients){
 }
 function updateHand(data){
   $(".dealing-cards").hide();
-  $('#draw-card').show();
+  $('.draw-card-buttons').show();
   $(".waiting-room").remove();
   $(".active-game").show();
   $(".table-container").css( "height", "280px")

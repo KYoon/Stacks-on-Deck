@@ -363,7 +363,7 @@ this["JST"]["templates/tableButtons.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<button class="btn btn-default" id="table-draw-card">Draw Card to Table</button>\n<button class="btn btn-default" id="table-get-card">Get Card</button>\n<button class="btn btn-default" id="table-discard-card">Discard Card</button>\n<button class="btn btn-default" id="collect-table-cards">Take All Cards</button>';
+__p += '<button class="btn btn-default" id="table-get-card">Get Card</button>\n<button class="btn btn-default" id="table-discard-card">Discard Card</button>\n<button class="btn btn-default" id="collect-table-cards">Take All Cards</button>';
 
 }
 return __p

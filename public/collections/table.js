@@ -52,7 +52,8 @@ var Table = Backbone.Collection.extend({
     socket.emit("userCollectsTable");
   },
 
-  deckDraw: function(){
-    socket.emit("tableDeckDraw");
-  }
+  // moved to jQuery
+  // deckDraw: function(){
+  //   socket.emit("tableDeckDraw");
+  // }
 });

@@ -156,7 +156,6 @@ body {
   linear-gradient(75deg, rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.0) 60%);
 }
 
-
 .card-overlap{
   position: relative;
   width: 60%;
@@ -164,7 +163,7 @@ body {
 }
 
 .card-overlap .card {
-  margin-right: -113px;
+  margin-right: -108px;
 }
 
 .navbar-roomkey {
@@ -184,7 +183,7 @@ body {
     padding: 14.5px 15px;
     font-size: 30px;
     line-height: 21px;
-     height: 50px;
+    height: 50px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -193,38 +192,3 @@ body {
     height: 350px;
   }
 }
-
-/*@media screen and (max-width: 768px) {
-  .card {
-    width: 115px;
-    height: 125px;
-  }
-}*/
-
-
-  /*.up-arrow {
-    color: #8D1B0F;
-    position: absolute;
-    left: 106px;
-    top: 20px;
-  }
-
-  .down-arrow {
-    color: #8D1B0F;
-    position: absolute;
-    left: 106px;
-    bottom: 20px;
-  }
-
-
-  #count {
-    position: relative;
-    top: 120px;
-    text-align: center;
-    left: 106px;
-    width: 43px;
-    font-weight: bold;
-    font-size: 75px;
-  }
-}
-*/

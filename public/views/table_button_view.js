@@ -4,7 +4,8 @@ var TableButtonView = Backbone.View.extend({
 		'click #table-get-card' : 'getCard',
 		'click #table-discard-card' : 'discardCard',
 		'click #collect-table-cards' : 'collectCards',
-		'click #table-draw-card' : 'deckDraw'
+		// moved to jQuery
+		// 'click #table-draw-card' : 'deckDraw'
 	},
 
 	initialize: function() {

@@ -1,5 +1,6 @@
- <div class = "container">
+ <div class = "container" id="game-page-container">
 
+<!-- Waiting room -->
   <div class="row">
    <div class="waiting-room col-xs-12">
     <h2>Welcome <span id="username"><%= username %></span></h2>
@@ -25,9 +26,12 @@
 </div>
 
 
-<div class="active-game" style="display: none">
+<!-- Active Game -->
 
-  <div class="row table-container">
+<div class="row">
+
+<div class="active-game col-xs-12" style="display: none">
+  <div class="table-container">
     <div class= "col-xs-12">
       <div class="table-buttons"></div>
       <div class = "tableclass"></div>
@@ -36,8 +40,10 @@
 
   <div class="row">
     <div class="col-md-8 offset-col-md-2 hand-buttons-view">
-      <h4>Hand options:</h4>
-      <button id="draw-card" style="display: none" class="btn btn-default">Draw Card</button>
+      <div class="draw-card-buttons" style="display: none">
+        <button class="btn btn-default" id="table-draw-card">Draw Card to Table</button>
+        <button class="btn btn-default" id="draw-card">Draw Card</button>
+      </div>
     </div>
   </div>
 
@@ -49,7 +55,7 @@
 
   <div class="row">
     <div class="col-md-10 player-hand">
-      <p>Your cards are:</p>
+      <p>Your Hand:</p>
     </div>
   </div>
 </div>

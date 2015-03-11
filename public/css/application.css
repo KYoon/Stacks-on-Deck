@@ -2,12 +2,25 @@ p, label {
     color: white;
 }
 
-#splash-page-container {
-  max-width: 480px;
+.container {
+  position: fixed;
 }
 
-.container {
-  margin-left: 3%
+#game-page-container {
+  margin-left: 1%;
+  margin-right: 1%
+}
+
+.active-game {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 0;
+}
+
+.table-container {
+  overflow-y: scroll;
 }
 
 .splash {
@@ -46,9 +59,30 @@ h2 {
   background-color: orange;
 }
 
+.draw-card-buttons {
+  border-radius: .4em;
+  margin: 10px 0 10px 0;
+}
+.draw-card-buttons button{
+  float: left;
+  width: 50%;
+  border: 1px solid black;
+  color: white;
+}
+.table-buttons {
+  border-radius: .4em;
+  margin: 10px 0 10px 0;
+}
+
+.table-buttons button {
+  width: 100%;
+  border: 1px solid black;
+  color: white;
+}
+
 .hand-buttons {
   border-radius: .4em;
-  margin: 20px 0 75px 0;
+  margin: 10px 0 10px 0;
   }
 
 .single-hand-button {
@@ -135,7 +169,6 @@ h2 {
 
 #start-game-btn {
   width: 250px;
-  margin-top: 5%;
 }
 
 >>>>>>> reposition
@@ -146,6 +179,9 @@ h2 {
   #hand-count {
     height: 295px;
     width: 190.5px;
+  }
+  .table-cards {
+    width: 300px;
   }
 }
 
