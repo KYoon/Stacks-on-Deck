@@ -4,31 +4,11 @@ this["JST"]["templates/10.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">10 ' +
+__p += ' <div class="card rank-10 ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="two nine">' +
+'">\n    <span class="rank">10</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'<br>' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="two nine rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'<br>' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="tenth">' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="ten rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">10 ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>';
+';</span>\n</div>';
 
 }
 return __p
@@ -38,15 +18,11 @@ this["JST"]["templates/2.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">2 ' +
+__p += ' <div class="card rank-2 ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="two">' +
+'">\n    <span class="rank">2</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="two rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">2 ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n\n';
+';</span>\n</div>';
 
 }
 return __p
@@ -56,17 +32,11 @@ this["JST"]["templates/3.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">3 ' +
+__p += ' <div class="card rank-3 ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="three">' +
+'">\n    <span class="rank">3</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'<br>' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="three rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">3 ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n';
+';</span>\n</div>';
 
 }
 return __p
@@ -76,19 +46,11 @@ this["JST"]["templates/4.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">4 ' +
+__p += ' <div class="card rank-4 ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="two">' +
+'">\n    <span class="rank">4</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="two rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">4 ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>';
+';</span>\n</div>';
 
 }
 return __p
@@ -98,21 +60,11 @@ this["JST"]["templates/5.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">5 ' +
+__p += ' <div class="card rank-5 ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="two">' +
+'">\n    <span class="rank">5</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-' ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="two rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">5 ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n';
+';</span>\n</div>';
 
 }
 return __p
@@ -122,23 +74,11 @@ this["JST"]["templates/6.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">6 ' +
+__p += ' <div class="card rank-6 ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="two">' +
+'">\n    <span class="rank">6</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-' ' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="two rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">6 ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n';
+';</span>\n</div>';
 
 }
 return __p
@@ -148,25 +88,11 @@ this["JST"]["templates/7.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">7 ' +
+__p += ' <div class="card rank-7 ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="two">' +
+'">\n    <span class="rank">7</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-' ' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="two rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="seven">' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">7 ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>';
+';</span>\n</div>';
 
 }
 return __p
@@ -176,27 +102,11 @@ this["JST"]["templates/8.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">8 ' +
+__p += ' <div class="card rank-8 ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="two">' +
+'">\n    <span class="rank">8</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-' ' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="two rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="seven">' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="eight rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">8 ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>';
+';</span>\n</div>';
 
 }
 return __p
@@ -206,29 +116,11 @@ this["JST"]["templates/9.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">9 ' +
+__p += ' <div class="card rank-9 ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="two nine">' +
+'">\n    <span class="rank">9</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'<br>' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="two nine rtt">' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'<br>' +
-((__t = ( suit )) == null ? '' : __t) +
-'&nbsp;&nbsp;' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n  <div class="nineth">' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">9 ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>';
+';</span>\n</div>';
 
 }
 return __p
@@ -238,13 +130,11 @@ this["JST"]["templates/ace.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">A ' +
+__p += '<div class="card rank-a clubs ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="ajqk">' +
+'">\n    <span class="rank">A</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">A ' +
-((__t = ( suit )) == null ? '' : __t) +
-'</div>\n\n';
+';</span>\n</div>';
 
 }
 return __p
@@ -254,7 +144,7 @@ this["JST"]["templates/cardDown.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="inner bg-pattern"></div>\n';
+__p += '<div class="card back">*</div>\n';
 
 }
 return __p
@@ -296,11 +186,11 @@ this["JST"]["templates/jack.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">J ' +
+__p += ' <div class="card rank-j ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="ajqk">J</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">J ' +
+'">\n    <span class="rank">J</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n\n';
+';</span>\n</div>';
 
 }
 return __p
@@ -310,11 +200,11 @@ this["JST"]["templates/king.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">K ' +
+__p += ' <div class="card rank-k ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="ajqk">K</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">K ' +
+'">\n    <span class="rank">K</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n\n';
+';</span>\n</div>';
 
 }
 return __p
@@ -349,11 +239,11 @@ this["JST"]["templates/queen.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="rank-color">Q ' +
+__p += ' <div class="card rank-q ' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n<div class="inner fg-container">\n  <div class="ajqk">Q</div>\n</div>\n<div class="rank-color rotated-rank-color rtt">Q ' +
+'">\n    <span class="rank">Q</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
-'</div>\n\n';
+';</span>\n</div>';
 
 }
 return __p

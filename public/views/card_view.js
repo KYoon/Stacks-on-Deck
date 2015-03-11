@@ -12,7 +12,7 @@ var CardView = Backbone.View.extend({
   },
 
   attributes: {
-    class: "card"
+    class: "single-card"
   },
 
   events: {
@@ -34,9 +34,9 @@ var CardView = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.addClass(this.color)
+    // this.$el.addClass(this.color)
     if (this.model.get('faceUp') === true) {
-      this.$el.html(this.cardTemplate({color: this.color, suit: "&"+ this.suit +";"}))
+      this.$el.html(this.cardTemplate({color: this.color, suit: this.suit}))
     } else {
       this.$el.html(this.cardDownTemplate)
     }

@@ -5,12 +5,12 @@
    <div class="waiting-room col-xs-12">
     <h2>Welcome <span id="username"><%= username %></span></h2>
     <div class="row">
-      <div class="player-list col-xs-3">
-        <p>Players:</p>
+      <div class="player-list col-xs-5">
+        <h3>Players:</h3>
       </div>
 
 
-      <div id="hand-count" class="card">
+      <div id="hand-count" class="col-xs-7">
         <div class="second-hand-count">
           <i id="up-arrow" class="fa fa-sort-asc fa-5x"></i>
           <h1 id="count">5</h1>
@@ -34,9 +34,10 @@
   <div class="table-container">
     <div class= "col-xs-12">
       <div class="table-buttons"></div>
-      <div class = "tableclass"></div>
+      <div class = "tableclass playingCards simpleCards"></div>
     </div>
   </div>
+
 
   <div class="row">
     <div class="col-md-8 offset-col-md-2 hand-buttons-view">
@@ -54,7 +55,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-10 player-hand">
+    <div class="col-md-10 player-hand playingCards simpleCards">
       <p>Your Hand:</p>
     </div>
   </div>
