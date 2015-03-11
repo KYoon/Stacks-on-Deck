@@ -6,6 +6,10 @@ p, label {
   max-width: 480px;
 }
 
+.container {
+  margin-left: 3%
+}
+
 .splash {
   margin-top: 1em;
 }
@@ -30,9 +34,9 @@ ul {
 h4 {
     color: white;
 }
-h3 {
+h2 {
     color: white;
-    text-align:
+    margin-bottom: 5%;
 }
 
 .logo {
@@ -90,17 +94,15 @@ h3 {
 .player-list {
   position: relative;
 }
+
 .player-list ul {
   float: left;
+  padding: 0;
 }
 .player-list li {
-  background-color: darkgrey;
+  background-color: #4F4F4F;
   list-style-type: none;
-
-}
-
-.card-count-container {
-  position: relative;
+  width: 50px;
 }
 
 #hand-count {
@@ -128,11 +130,22 @@ h3 {
   font-weight: bold;
   font-size: 75px;
 }
+<<<<<<< HEAD
+=======
+
+#start-game-btn {
+  width: 250px;
+  margin-top: 5%;
+}
+
+>>>>>>> reposition
 @media (max-width: 768px) {
+  .container {
+    max-height: 600px;
+  }
   #hand-count {
     height: 295px;
     width: 190.5px;
-    display:;
   }
 }
 
