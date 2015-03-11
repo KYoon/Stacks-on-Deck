@@ -1,5 +1,7 @@
 var HandView = Backbone.View.extend({
   initialize: function() {
+    this.cardViews = [];
+
     this.listenTo(this.collection, "add", this.addOne);
     this.listenTo(this.collection, "remove", this.removeOne);
   },
@@ -19,6 +21,7 @@ var HandView = Backbone.View.extend({
 
   addOne: function(card){
     var view = new CardView({model: card});
+    this.cardViews.push(view);
     view.render();
     this.$el.append(view.$el);
   },
@@ -36,8 +39,17 @@ var HandView = Backbone.View.extend({
     })
   },
 
-  removeOne: function(card){
-    $(".active").remove();
+  removeOne: function(card) {
+    var view = _.find(this.cardViews, function(view) {
+      console.log(view.model)
+      console.log(card)
+      return view.model === card;
+    })
+
+    view.remove();
+
+    //this.$el.find(".active").remove();
+
   }
 
 })
