@@ -384,7 +384,7 @@
 .playingCards .card.joker .rank:after {
     font-family: Georgia, serif;
     position: absolute;
-    font-size: 3em;
+    font-size: 5rem;
     right: .1em;
     bottom: .25em;
     word-spacing: normal;
