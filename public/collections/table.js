@@ -11,8 +11,8 @@ var Table = Backbone.Collection.extend({
   },
 
   updateCards: function(jsonCards){
-    this.activeCard = null;
-    this.reset()
+    this.unsetActiveCard();
+    this.reset();
     for(var i=0; i<jsonCards.length; i++) {
       jsonCards[i].collection = this;
       this.add(new Card(jsonCards[i]));
@@ -26,6 +26,11 @@ var Table = Backbone.Collection.extend({
     }
     card.set({active: true});
     this.activeCard = card;
+  },
+
+  unsetActiveCard: function(){
+    console.log("HI FLORI")
+    this.activeCard = null;
   },
 
   getCard: function(cardId) {

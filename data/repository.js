@@ -86,18 +86,6 @@ function dealUserCard(gameId, user, callback) {
   });
 }
 
-//////////////////
-function passCard(gameId, from, to, cardId, callback) {
-  client.hget(gameId+"deck", cardId, function(err, card) {
-    client.smove(userHand(gameId, from), userHand(gameId, to), card, function(err) {
-      if(callback) {
-        callback(card);
-      }
-    })
-  })
-}
-//////////////////
-
 function dealUsersCards(gameId, handSize, callback) {
   getUsers(gameId, function(err, users){
     var count = 0;
@@ -134,11 +122,15 @@ function getHand(gameId, user, callback) {
   }, 200)
 }
 
-// function passCard(gameId, from, to, cardId) {
-//   client.hget(gameId+"deck", cardId, function(err, card) {
-//     client.smove(userHand(gameId, from), userHand(gameId, to), card)
-//   })
-// }
+function passCard(gameId, from, to, cardId, callback) {
+  client.hget(gameId+"deck", cardId, function(err, card) {
+    client.smove(userHand(gameId, from), userHand(gameId, to), card, function(err) {
+      if(callback) {
+        callback(card);
+      }
+    })
+  })
+}
 
 function getTable(gameId, to) {
   getHand(gameId, "Table", function(err, cards){

@@ -5,7 +5,8 @@ var TableView = Backbone.View.extend({
   },
 
   events: {
-    'click .card' : 'buttonDisplay'
+    'click .card' : 'buttonDisplay',
+    "drag": "flipCards"
   },
 
   attributes: {
@@ -18,9 +19,11 @@ var TableView = Backbone.View.extend({
   },
 
   addOne: function(card){
+    // this.collection.unsetActiveCard();
     var view = new CardView({model: card});
     view.render();
-    this.$el.append(view.$el)
+    console.log(this.$el)
+    this.$el.append(view.$el);
   },
 
   addAll: function(){
@@ -29,6 +32,13 @@ var TableView = Backbone.View.extend({
     }, this);
     return this;
   },
+
+  flipCards: function(){
+    this.collection.each(function(card) {
+      card.flipCard()  
+    })
+  },
+
 
   buttonDisplay: function() {
     $('.table-buttons').empty();

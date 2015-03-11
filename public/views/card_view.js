@@ -16,12 +16,13 @@ var CardView = Backbone.View.extend({
   events: {
     "click": "activateCard",
     "dblclick": "flipCard",
-    "doubletap": "flipCard"
+    "doubletap": "flipCard",
   },
 
   activateCard: function(){
     this.model.setActive();
   },
+
 
   setClass: function(){
     if (this.model.get('active') === true) {
