@@ -48,3 +48,27 @@ h4 {
   border: 1px solid black;
   color: white;
   }
+
+/*alerts!*/
+.alert-yoonify {
+  background-color: #E0E0E0;
+  border-color: #6A0D0C;
+  color: #6A0D0C;
+}
+.alert-yoonify > [data-notify="title"] {
+  color: #6A0D0C;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.alert-yoonify > [data-notify="icon"] {
+  color: #6A0D0C;
+}
+.alert-yoonify > [data-notify="progressbar"] {
+  display: none;
+}
+.alert-yoonify [data-notify="dismiss"] {
+  color: #6A0D0C;
+}
+.alert-yoonify > [data-notify="message"] {
+  color: #6A0D0C;
+}

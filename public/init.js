@@ -29,4 +29,7 @@ $(document).ready(function() {
   // add hand buttons to table
   handButtonView = new HandButtonView({collection: hand});
   $(".hand-buttons-view").append(handButtonView.$el);
+
+  // instantiate message view
+  messageView = new MessageView();
 })
