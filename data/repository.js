@@ -131,10 +131,14 @@ function passCard(gameId, from, to, cardId, callback) {
   })
 }
 
-function getTable(gameId, to) {
+function getTable(gameId, to, callback) {
   getHand(gameId, "Table", function(err, cards){
     cards.forEach(function(card){
-      client.smove(userHand(gameId, "Table"), userHand(gameId, to), card)
+      client.smove(userHand(gameId, "Table"), userHand(gameId, to), card, function(err) {
+        if(callback) {
+          callback(card);
+        }
+      })
     });
   });
 }
