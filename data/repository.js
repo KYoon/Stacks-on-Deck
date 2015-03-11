@@ -101,6 +101,7 @@ function dealUsersCards(gameId, handSize, callback) {
       });
       count++;
     }
+    callback.call(this);
   })
 }
 
@@ -151,7 +152,7 @@ function getTable(gameId, to, callback) {
 }
 
 function checkDeckCount(gameId, callback) {
-  client.scard(deckName(gameId), callback)
+  client.scard(deckName(gameId),callback)
 }
 
 function discardAllCards(gameId, from, callback) {

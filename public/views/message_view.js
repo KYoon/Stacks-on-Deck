@@ -13,6 +13,7 @@ var MessageView = Backbone.View.extend({
     this.listenTo(socket, 'cardDealToTableMessage', this.cardDealToTable);
     this.listenTo(socket, 'cardPass', this.cardPass);
     this.listenTo(socket, 'playerLeaveMessage', this.playerLeave);
+    this.listenTo(socket, 'deckEmptyMessage', this.deckEmpty)
   },
 
   playerJoin: function(username){
@@ -76,6 +77,14 @@ var MessageView = Backbone.View.extend({
       icon: "glyphicon glyphicon-warning-sign",
       title: "Player Leave:",
       message: username + " has left the room. Their cards have been forfeited."
+    });
+  },
+
+  deckEmpty: function() {
+    $.notify({
+      icon: "glyphicon glyphicon-warning-sign",
+      title: "Deck Empty:",
+      message: " There are no more cards in the deck."
     });
   }
 })

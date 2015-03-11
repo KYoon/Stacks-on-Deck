@@ -130,7 +130,7 @@ this["JST"]["templates/ace.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="card rank-a clubs ' +
+__p += '<div class="card rank-a ' +
 ((__t = ( suit )) == null ? '' : __t) +
 '">\n    <span class="rank">A</span>\n    <span class="suit">&' +
 ((__t = ( suit )) == null ? '' : __t) +
