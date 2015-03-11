@@ -9,7 +9,7 @@ var HandView = Backbone.View.extend({
   },
 
   events: {
-    "drag": "flipCards"
+    "flick": "flipCards"
   },
 
   render: function(){

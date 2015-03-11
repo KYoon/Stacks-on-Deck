@@ -6,7 +6,7 @@ var TableView = Backbone.View.extend({
 
   events: {
     'click .card' : 'buttonDisplay',
-    "drag": "flipCards"
+    "flick": "flipCards"
   },
 
   attributes: {
