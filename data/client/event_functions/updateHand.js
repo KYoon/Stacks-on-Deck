@@ -4,5 +4,4 @@ function updateHand(data){
   $(".waiting-room").remove();
   $(".table-container").css( "height", "280px")
   hand.updateCards(data)
-  // handView.render();
 }

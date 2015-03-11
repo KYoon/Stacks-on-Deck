@@ -21,7 +21,6 @@ io.on('connection', function(socket){
 
   // Deal cards to all users in a room
   socket.on("dealCards", function(data){
-    console.log(data);
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
     repo.dealUsersCards(roomKey, parseInt(data.dealingCount));

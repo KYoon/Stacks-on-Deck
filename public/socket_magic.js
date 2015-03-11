@@ -5,8 +5,6 @@ $(document).ready(function(){
 
   // listen for card event
   socket.on("updateHand", updateHand);
-  socket.on("updateTable", updateTable);
-  // socket.on("addCardToHand", addCardToHand)
   
 });
 
@@ -86,21 +84,4 @@ function updateHand(data){
   $(".waiting-room").remove();
   $(".table-container").css( "height", "280px")
   hand.updateCards(data)
-  // handView.render();
-}
-
-function updateTable(tableCards){
-  console.log(tableCards)
-  // var formattedTable = formatHand(tableCards);
-  table.updateCards(tableCards)
-  // tableView.render();
-
-  if (tableCards.length > 0){
-    $("#collect-table-cards").show();
-  }
-  else {
-    $("#collect-table-cards").hide();
-  }
-  $("#pass-card").hide();
-  $("#pass-table").hide();
 }

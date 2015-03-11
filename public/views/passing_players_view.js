@@ -12,7 +12,6 @@ var PassingPlayersView = Backbone.View.extend({
   },
 
   addOne: function(player){
-    console.log("foo")
     var view = new PassingPlayerView({model: player});
     view.render();
     this.$el.append(view.$el);
