@@ -1,5 +1,54 @@
+body {
+  /*background-color: #222;*/
+  /*  background-color: #27ae60;*/
+  background: url("/public/images/tablebackground.jpg");
+  background-position: center;
+/*  font-family: "Times New Roman", Times, serif;*/
+}
+
+.navbar-roomkey {
+  left: 0;
+  color: white;
+  text-align: left;
+}
+
+.nav-center {
+    margin:0;
+    float:none;
+}
+
+.navbar-inner{
+  color: white;
+    text-align:center;
+    padding: 14.5px 15px;
+    font-size: 30px;
+    line-height: 21px;
+     height: 50px;
+}
+
 p, label {
     color: white;
+}
+
+.container {
+  /*position: fixed;*/
+}
+
+#game-page-container {
+  margin-left: 1%;
+  margin-right: 1%
+}
+
+.active-game {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 0;
+}
+
+.table-container {
+  overflow-y: scroll;
 }
 
 .splash {
@@ -26,6 +75,10 @@ ul {
 h4 {
     color: white;
 }
+h2 {
+    color: white;
+    margin-bottom: 5%;
+}
 
 .logo {
   display: inline-block;
@@ -34,20 +87,43 @@ h4 {
   background-color: orange;
 }
 
+.draw-card-buttons {
+  border-radius: .4em;
+  margin: 10px 0 10px 0;
+}
+.draw-card-buttons button{
+  float: left;
+  width: 50%;
+  border: 1px solid black;
+  color: white;
+}
+.table-buttons {
+  border-radius: .4em;
+  margin: 10px 0 10px 0;
+}
+
+.table-buttons button {
+  width: 100%;
+  border: 1px solid black;
+  color: white;
+}
+
 .hand-buttons {
   border-radius: .4em;
+  margin: 10px 0 10px 0;
   }
 
-  .single-hand-button {
-    width: 30%;
-    float: left;
-  }
+.single-hand-button {
+  width: 30%;
+  float: left;
+}
 
 .hand-buttons button {
   width: 100%;
   border: 1px solid black;
   color: white;
   }
+
 
 /*alerts!*/
 .alert-yoonify {
@@ -72,3 +148,84 @@ h4 {
 .alert-yoonify > [data-notify="message"] {
   color: #6A0D0C;
 }
+
+.waiting-room div{
+/*  text-align: center;
+*/}
+
+.player-list {
+  position: relative;
+}
+
+.player-list ul {
+  float: left;
+  padding: 0;
+}
+.player-list li {
+  font-size: 20px;
+  list-style-type: none;
+  padding: 4%;
+  margin-left: 8%
+}
+
+h3 {
+  color: white;
+  font-weight: bold;
+}
+
+#hand-count {
+  height: 392px;
+  width: 254px;
+
+  border-radius: 12px;
+  background-color: white;
+  padding: 0;
+  margin-bottom: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+}
+
+.second-hand-count {
+  width: auto;
+}
+
+#up-arrow {
+  color: #8D1B0F;
+}
+
+#down-arrow {
+  color: #8D1B0F;
+}
+
+#count {
+  font-weight: bold;
+  font-size: 75px;
+}
+
+#start-game-btn {
+  width: 250px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-height: 600px;
+  }
+  #hand-count {
+    height: 295px;
+    width: 190.5px;
+  }
+  .table-cards {
+    width: 300px;
+  }
+}
+
