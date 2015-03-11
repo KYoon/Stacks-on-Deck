@@ -6,22 +6,34 @@ var MessageView = Backbone.View.extend({
       placement:{from: "top",align: "center"}
     });
     // listening
-    this.listenTo(socket, 'newPlayer', this.playerJoin); // done
-    this.listenTo(socket, 'cardDrawMessage', this.cardDraw); // done
-    this.listenTo(socket, 'cardDrawToTableMessage', this.cardDrawToTable); // done
-    this.listenTo(socket, 'cardsDealMessage', this.cardsDeal); // done
-    this.listenTo(socket, 'cardPlayToTableMessage', this.cardPlayToTable); // done
-    this.listenTo(socket, 'cardPassMessage', this.cardPass); // done
-    this.listenTo(socket, 'playerLeaveMessage', this.playerLeave); // done
-    this.listenTo(socket, 'deckEmptyMessage', this.deckEmpty); // done
+    this.listenTo(socket, 'newPlayer', this.playerJoin.bind(this));
+    this.listenTo(socket, 'cardDrawMessage', this.cardDraw);
+    this.listenTo(socket, 'cardDrawToTableMessage', this.cardDrawToTable);
+    this.listenTo(socket, 'cardsDealMessage', this.cardsDeal);
+    this.listenTo(socket, 'cardPlayToTableMessage', this.cardPlayToTable);
+    this.listenTo(socket, 'cardPassMessage', this.cardPass);
+    this.listenTo(socket, 'playerLeaveMessage', this.playerLeave);
+    this.listenTo(socket, 'deckEmptyMessage', this.deckEmpty);
   },
 
   playerJoin: function(username){
+    if (username === "table") {
+      this.tableJoin();
+    } else {
+      $.notify({
+        icon: "glyphicon glyphicon-user",
+        title: "Player Join:",
+        message: username + " has entered the room."
+      });
+    }
+  },
+
+  tableJoin: function() {
     $.notify({
-      icon: "glyphicon glyphicon-user",
-      title: "Player Join:",
-      message: username + " has entered the room."
-    });
+        icon: "glyphicon glyphicon-phone",
+        title: "Device Connect: ",
+        message: "A device has connected to the game to serve as a table."
+      });
   },
 
   cardDraw: function(username){
