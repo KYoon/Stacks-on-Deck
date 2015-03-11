@@ -20,14 +20,14 @@ $(document).ready(function(){
     socket.emit("drawCard")
   });
 
-  $(".down-arrow").on("click", function(){
+  $("#down-arrow").on("click", function(){
     var count = parseInt($("#count").text())
     if (count > 0) {
       $("#count" ).html(count - 1)
     }
   })
 
-  $(".up-arrow").on("click", function(){
+  $("#up-arrow").on("click", function(){
     var count = parseInt($("#count").text())
     $("#count").html(count + 1)
   })

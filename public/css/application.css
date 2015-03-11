@@ -32,6 +32,7 @@ h4 {
 }
 h3 {
     color: white;
+    text-align:
 }
 
 .logo {
@@ -56,6 +57,7 @@ h3 {
   border: 1px solid black;
   color: white;
   }
+
 
 /*alerts!*/
 .alert-yoonify {
@@ -85,42 +87,52 @@ h3 {
 /*  text-align: center;
 */}
 
-li {
+.player-list {
+  position: relative;
+}
+.player-list ul {
+  float: left;
+}
+.player-list li {
+  background-color: darkgrey;
   list-style-type: none;
+
 }
 
 .card-count-container {
   position: relative;
 }
 
-.up-arrow {
-  color: #8D1B0F;
-  position: absolute;
-  left: 106px;
-  top: 20px;
-}
-
-.down-arrow {
-  color: #8D1B0F;
-  position: absolute;
-  left: 106px;
-  bottom: 20px;
-}
-
 #hand-count {
   height: 392px;
   width: 254px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hand-count-number {
-  position: relative;
-  top: 120px;
-  text-align: center;
-  left: 106px;
-  width: 43px;
+.second-hand-count {
+  width: auto;
 }
 
-.hand-count-number h1 {
+#up-arrow {
+  color: #8D1B0F;
+}
+
+#down-arrow {
+  color: #8D1B0F;
+}
+
+#count {
   font-weight: bold;
   font-size: 75px;
 }
+@media (max-width: 768px) {
+  #hand-count {
+    height: 295px;
+    width: 190.5px;
+    display:;
+  }
+}
+

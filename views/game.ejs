@@ -1,36 +1,28 @@
  <div class = "container">
 
-   <div class="waiting-room">
+  <div class="row">
+   <div class="waiting-room col-xs-12">
+    <h3>Welcome <span id="username"><%= username %></span></h3>
     <div class="row">
-     <div class= "col-xs-12">
-      <h3>Welcome <span id="username"><%= username %></span></h3>
+      <div class="player-list col-xs-4">
+        <p>Players:</p>
+      </div>
+
+
+      <div id="hand-count" class="card">
+        <div class="second-hand-count">
+          <i id="up-arrow" class="fa fa-sort-asc fa-5x"></i>
+          <h1 id="count">5</h1>
+          <i id="down-arrow" class="fa fa-sort-desc fa-5x"></i>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-xs-12 player-list">
-      <p>Players in the game:</p>
-    </div>
-  </div>
+<div>
 
-
-  <div class="row">
-  <div class="card-count-container col-xs-12">
-  <div class="card" id="hand-count">
-  <div class="up-arrow">
-      <i class="fa fa-sort-asc fa-5x"></i>
-  </div>
-
-  <div class="hand-count-number">
-    <h1 id="count">5</h1>
-  </div>
-
-    <div class="down-arrow">
-      <i class="fa fa-sort-desc fa-5x"></i>
-    </div>
-  </div>
-
-  </div>
   <div class="start-game">
     <button class="btn btn-default" id="start-game-btn">Start Game</button>
   </div>
@@ -38,10 +30,16 @@
 </div>
 
 
+
+</div>
+</div>
+</div>
+
+
 <div class="active-game" style="display: none">
 
-    <div class="row table-container">
-      <div class= "col-xs-12">
+  <div class="row table-container">
+    <div class= "col-xs-12">
       <div class="table-buttons"></div>
       <div class = "tableclass"></div>
     </div>
