@@ -17,8 +17,8 @@ var CardView = Backbone.View.extend({
 
   events: {
     "click": "activateCard",
-    "dblclick": "flipCard",
-    "doubletap": "flipCard",
+    "dblclick": "playerFlipCard",
+    "doubletap": "playerFlipCard",
   },
 
   activateCard: function(){
@@ -40,6 +40,13 @@ var CardView = Backbone.View.extend({
     } else {
       this.$el.html(this.cardDownTemplate)
     }
+  },
+
+  playerFlipCard: function(){
+    if (this.model.collection === table){
+      socket.emit("cardFlip", this.model.get("id"));
+    }
+    this.flipCard();
   },
 
   flipCard: function() {

@@ -17,9 +17,9 @@ var PlayerList = Backbone.Collection.extend({
     return this;
   },
 
-  playersMinusCurrent: function(){
+  playersMinusCurrentandTable: function(){
     return this.reject(function(player) {
-      return player.get('username') === userData.username;
+      return (player.get('username') === userData.username | player.get('username') === "table");
     })
   }
 });

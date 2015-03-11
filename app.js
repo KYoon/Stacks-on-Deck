@@ -68,7 +68,7 @@ app.post('/tables', function(req, res){
 
 app.get('/tables/:key', function(req, res){
   // validate key is legit
-  res.render('table.ejs', {username: "table", roomkey: req.params.key})
+  res.render('table.ejs', {roomkey: req.params.key})
   return;
 })
 

@@ -8,7 +8,7 @@ var PassingPlayersView = Backbone.View.extend({
   render: function() {
     console.log("render called")
     this.$el.empty();
-    this.addAll();    
+    this.addAll();
   },
 
   addOne: function(player){
@@ -19,7 +19,7 @@ var PassingPlayersView = Backbone.View.extend({
 
   addAll: function(){
     this.$el.empty();
-    this.collection.playersMinusCurrent().forEach(function(player) {
+    this.collection.playersMinusCurrentandTable().forEach(function(player) {
       this.addOne(player);
     }, this);
     return this;
