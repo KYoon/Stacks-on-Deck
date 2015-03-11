@@ -8,7 +8,7 @@ var MessageView = Backbone.View.extend({
     // listening
     this.listenTo(socket, 'newPlayer', this.playerJoin); // done
     this.listenTo(socket, 'cardDrawMessage', this.cardDraw); // done
-    this.listenTo(socket, 'cardDrawToTableMessage', this.cardDrawToTable); // NYI
+    this.listenTo(socket, 'cardDrawToTableMessage', this.cardDrawToTable); // done
     this.listenTo(socket, 'cardsDealMessage', this.cardsDeal); // done
     this.listenTo(socket, 'cardPlayToTableMessage', this.cardPlayToTable); // done
     this.listenTo(socket, 'cardPassMessage', this.cardPass); // done
@@ -32,8 +32,17 @@ var MessageView = Backbone.View.extend({
     });
   },
 
+  cardDrawToTable: function(username){
+    $.notify({
+      icon: "glyphicon glyphicon-plus",
+      title: "Card Draw:",
+      message: username + " has drawn a card to the table."
+    });
+  },
+
   cardPlay: function(username){
-    $.notify(done     icon: "glyphicon glyphicon-plus",
+    $.notify({
+      icon: "glyphicon glyphicon-plus",
       title: "Card Played:",
       message: username + " has played a card to the table."
     });

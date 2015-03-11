@@ -144,7 +144,7 @@ io.on('connection', function(socket){
         if (count === 0) {
           io.to(roomKey).emit("deckEmptyMessage");
         } else {
-          socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
+          socket.broadcast.to(roomKey).emit("cardDrawToTableMessage", socket.username);
           repo.getUserKeys(roomKey, function(err, keys){
             keys.forEach(function(key){
               repo.getHand(roomKey, "Table", function(err, data){
