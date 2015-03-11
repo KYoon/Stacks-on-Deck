@@ -86,11 +86,15 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     var username = socket.username;
     var socketId = socket.id;
-    repo.passCard(roomKey, "Table", username, cardId);
-    // Possible to get around setTimeout?
-    setTimeout(function(){
-      updateUserHandAndTable(roomKey, username, socketId);
-    }, 105);
+    repo.passCard(roomKey, "Table", username, cardId, function(card){
+      var card = JSON.parse(card);
+      socket.emit("addCardToHand", card);
+      io.to(roomKey).emit("removeCardFromTable", card);
+    });
+    // // Possible to get around setTimeout?
+    // setTimeout(function(){
+    //   updateUserHandAndTable(roomKey, username, socketId);
+    // }, 105);
   });
 
   // Discard a card from the table
