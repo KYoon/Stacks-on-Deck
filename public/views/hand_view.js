@@ -43,6 +43,8 @@ var HandView = Backbone.View.extend({
     var view = _.find(this.cardViews, function(view) {
       return view.model === card;
     })
+    this.cardViews = _.filter(this.cardViews, function(view) { return view.model !== card; 
+    });
     view.remove();
   }
 

@@ -1,7 +1,9 @@
 var TableView = Backbone.View.extend({
   initialize: function() {
+    this.cardViews = [];
     // this.listenTo(this.collection, "change", this.render);
-    this.listenTo(this.collection, "add", this.addOne)
+    this.listenTo(this.collection, "add", this.addOne);
+    this.listenTo(this.collection, "remove", this.removeOne);
   },
 
   events: {
@@ -21,6 +23,7 @@ var TableView = Backbone.View.extend({
   addOne: function(card){
     // this.collection.unsetActiveCard();
     var view = new CardView({model: card});
+    this.cardViews.push(view);
     view.render();
     console.log(this.$el)
     this.$el.append(view.$el);
@@ -39,6 +42,14 @@ var TableView = Backbone.View.extend({
     })
   },
 
+  removeOne: function(card){
+    var view = _.find(this.cardViews, function(view) {
+      return view.model === card;
+    })
+    this.cardViews = _.filter(this.cardViews, function(view) { return view.model !== card; 
+    });
+    view.remove();
+  },
 
   buttonDisplay: function() {
     $('.table-buttons').empty();
