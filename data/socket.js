@@ -5,11 +5,15 @@ var repo = require('./repository');
 
 // Sockets!
 io.on('connection', function(socket){
+  var userjoined;
+  var roomid;
 
   // User enters room
   socket.on("joinRoom", function(data){
     socket.join(data.roomkey, function(error){
       socket.username = data.username;
+      userjoined = data.username;
+      roomid = data.roomkey
       repo.createUser(data.roomkey, data.username, socket.id);
       repo.getUsers(data.roomkey, function(err, users){
         socket.emit("joinedGame", users);
@@ -107,12 +111,13 @@ io.on('connection', function(socket){
         keys.forEach(function(key){
           repo.getHand(roomKey, "Table", function(err, data){
             io.to(key).emit("removeCardFromTable", card);
-          })
-        })
-      })
+          });
+        });
+      });
     });
   });
 
+  // Draw a card from the deck directly to the table
   socket.on("tableDeckDraw", function(){
     var roomKey = socket.rooms[1];
     var socketId = socket.id;
@@ -123,9 +128,9 @@ io.on('connection', function(socket){
         keys.forEach(function(key){
           repo.getHand(roomKey, "Table", function(err, data){
             io.to(key).emit("addCardToTable", card);
-          })
-        })
-      })
+          });
+        });
+      });
     });
   });
 
@@ -134,6 +139,11 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     socket.broadcast.to(roomKey).emit("peerCardFlip", cardId);
   });
+
+  socket.on("disconnect", function(socket){
+    repo.discardAllCards(roomid, userjoined);
+    io.to(roomid).emit("playerLeaveMessage", userjoined);
+  })
 
 });
 

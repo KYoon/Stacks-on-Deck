@@ -26,6 +26,7 @@ module.exports.createDeck = createDeck;
 module.exports.getUser = getUser;
 module.exports.checkDeckCount = checkDeckCount;
 module.exports.getKey = getKey;
+module.exports.discardAllCards = discardAllCards;
 
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
@@ -153,4 +154,14 @@ function checkDeckCount(gameId, callback) {
   client.scard(deckName(gameId), callback)
 }
 
-
+function discardAllCards(gameId, from, callback) {
+  getHand(gameId, from, function(err, cards){
+    cards.forEach(function(card){
+      client.smove(userHand(gameId, from), userHand(gameId, "Discard"), card, function(err) {
+        if(callback) {
+          callback(card);
+        }
+      })
+    });
+  });
+}
