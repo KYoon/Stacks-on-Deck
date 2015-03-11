@@ -5,10 +5,6 @@ var Card = Backbone.Model.extend({
             faceUp: false
             },
 
-  initialize: function(){
-    this.on("setInactive", this.setInactive);
-  },
-
   setActive: function(){
       //REFACTOR
     if (this.collection) {
@@ -26,11 +22,5 @@ var Card = Backbone.Model.extend({
     } else {
       this.set({faceUp: false})
     }
-  },
-
-  setInactive: function(){
-    console.log("EXECUTION");
-    console.log(this.collection);
-    this.collection.unsetActiveCard();
-  } 
+  }
 })

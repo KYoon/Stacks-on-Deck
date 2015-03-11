@@ -2,7 +2,7 @@ var CardView = Backbone.View.extend({
   cardDownTemplate: JST['templates/cardDown.jst'],
 
   initialize: function() {
-    //Refactoring IMMINENT
+    //Refactoring IMMINENT??
     this.suit = this.model.get('suit');
     this.value = this.model.get('value').toLowerCase();
 
@@ -21,21 +21,11 @@ var CardView = Backbone.View.extend({
     "click": "activateCard",
     "dblclick": "flipCard",
     "doubletap": "flipCard",
-    // "mouseup": "deactivateActiveCard"
   },
 
   activateCard: function(){
     this.model.setActive();
   },
-
-  // deactivateActiveCard: function(e){
-  //    var container = $(this).find(".card");
-  //   if (!container.is(e.target) // if the target of the click isn't the container...
-  //       && container.has(e.target).length === 0) // ... nor a descendant of the container
-  //   {
-  //       this.model.setInactive()
-  //   }
-  // },
 
   setClass: function(){
     if (this.model.get('active') === true) {

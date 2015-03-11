@@ -4,10 +4,17 @@ var Table = Backbone.Collection.extend({
   initialize: function() {
     this.activeCard = null;
     this.listenTo(socket, 'addCardToTable', this.addNewCard.bind(this));
+    this.listenTo(socket, 'removeCardFromTable', this.removeCard.bind(this));
   },
 
   addNewCard: function(card) {
     this.add(new Card(card));
+  },
+
+  removeCard: function(card) {
+    var cardId = card.id;
+    var cardModel = this.find(function(model) { return model.get('id') === cardId});
+    this.remove(cardModel);
   },
 
   updateCards: function(jsonCards){

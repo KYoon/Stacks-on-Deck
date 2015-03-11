@@ -32,12 +32,10 @@ var Hand = Backbone.Collection.extend({
     }
     card.set({active: true});
     this.activeCard = card;
-    console.log("active card set");
     this.trigger("cardActivate");
   },
 
   unsetActiveCard: function(){
-    console.log("active card unset")
     this.activeCard = null;
     this.trigger("cardDeactivate");
   },
@@ -45,10 +43,6 @@ var Hand = Backbone.Collection.extend({
   discard: function(){
     socket.emit("userDiscardsCard", this.activeCard.id);
     this.unsetActiveCard()
-  },
-
-  passCard: function(){
-
   },
 
   playCard: function(){

@@ -21,12 +21,9 @@ io.on('connection', function(socket){
 
   // Deal cards to all users in a room
   socket.on("dealCards", function(data){
-    console.log(data);
-    // need to transfer the data of faceDown card attribute to cards
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
     repo.dealUsersCards(roomKey, parseInt(data.dealingCount));
-    // should there be a callback here ? JNM
     socket.broadcast.to(roomKey).emit("cardsDealMessage", socket.username, data.dealingCount)
     updateAllUserHands(roomKey);
   });
@@ -34,8 +31,14 @@ io.on('connection', function(socket){
   // Pass a card from one user to another
   socket.on("passCard", function(data){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, socket.username, data.toUser, data.cardId);
-    updateAllUserHands(roomKey);
+    var username = socket.username
+    repo.passCard(roomKey, username, data.toUser, data.cardId, function(card){
+      var card = JSON.parse(card);
+      socket.emit("removeCardFromHand", card);
+      repo.getKey(roomKey, data.toUser, function(err, key){
+        io.to(key).emit("addCardToHand", card);
+      });
+    });
   });
 
   // Draw a card from the deck
@@ -65,11 +68,11 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     var username = socket.username;
     var socketId = socket.id;
-    repo.getTable(roomKey, username);
-    // Possible to get around setTimeout?
-    setTimeout(function(){
-      updateUserHandAndTable(roomKey, username, socketId);
-    }, 105);
+    repo.getTable(roomKey, username, function(card){
+      var card = JSON.parse(card);
+      socket.emit("addCardToHand", card);
+      io.to(roomKey).emit("removeCardFromTable", card);
+    });
   });
 
   // User discards a card from his/her hand
@@ -77,8 +80,10 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     var username = socket.username;
     var socketId = socket.id;
-    repo.passCard(roomKey, username, "Discard", cardId);
-    sendUserHand(roomKey, username, socketId);
+    repo.passCard(roomKey, username, "Discard", cardId, function(card){
+      var card = JSON.parse(card);
+      socket.emit("removeCardFromHand", card);
+    });
   });
 
   // User obtains a card from a table
@@ -86,25 +91,42 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     var username = socket.username;
     var socketId = socket.id;
-    repo.passCard(roomKey, "Table", username, cardId);
-    // Possible to get around setTimeout?
-    setTimeout(function(){
-      updateUserHandAndTable(roomKey, username, socketId);
-    }, 105);
+    repo.passCard(roomKey, "Table", username, cardId, function(card){
+      var card = JSON.parse(card);
+      socket.emit("addCardToHand", card);
+      io.to(roomKey).emit("removeCardFromTable", card);
+    });
   });
 
   // Discard a card from the table
   socket.on("discardTableCard", function(cardId){
     var roomKey = socket.rooms[1];
-    repo.passCard(roomKey, "Table", "Discard", cardId);
-    updateTableView(roomKey);
+    repo.passCard(roomKey, "Table", "Discard", cardId, function(card){
+      var card = JSON.parse(card);
+      repo.getUserKeys(roomKey, function(err, keys){
+        keys.forEach(function(key){
+          repo.getHand(roomKey, "Table", function(err, data){
+            io.to(key).emit("removeCardFromTable", card);
+          })
+        })
+      })
+    });
   });
 
   socket.on("tableDeckDraw", function(){
     var roomKey = socket.rooms[1];
     var socketId = socket.id;
-    repo.dealUserCard(roomKey, "Table");
-    updateTableView(roomKey);
+    repo.dealUserCard(roomKey, "Table", function(card) {
+      var card = JSON.parse(card);
+      socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
+      repo.getUserKeys(roomKey, function(err, keys){
+        keys.forEach(function(key){
+          repo.getHand(roomKey, "Table", function(err, data){
+            io.to(key).emit("addCardToTable", card);
+          })
+        })
+      })
+    });
   });
 
 });
@@ -120,24 +142,6 @@ function jsonParser(data) {
   return jsonCards;
 }
 
-
-function sendUserHand(roomKey, username, socketId){
-  repo.getHand(roomKey, username, function(err, data){
-    io.to(socketId).emit("updateHand", jsonParser(data.sort()));
-  });
-}
-
-// Update Table for each client
-function updateTableView(roomKey){
-  repo.getUserKeys(roomKey, function(err, keys){
-    keys.forEach(function(key){
-      repo.getHand(roomKey, "Table", function(err, data){
-        io.to(key).emit("updateTable",  jsonParser(data.sort()));
-      })
-    })
-  })
-}
-
 // Update Hands for all users
 function updateAllUserHands(roomKey){
   repo.getUserKeys(roomKey, function(err, keys){
@@ -149,12 +153,4 @@ function updateAllUserHands(roomKey){
       })
     })
   })
-}
-
-// Update the user's hand that activated the event and update the table
-function updateUserHandAndTable(roomKey, username, socketId){
-  repo.getHand(roomKey, username, function(err, data){
-    io.to(socketId).emit("updateHand", jsonParser(data.sort()));
-    updateTableView(roomKey);
-  });
 }
