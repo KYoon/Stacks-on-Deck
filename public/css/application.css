@@ -6,6 +6,7 @@ body {
 /*  font-family: "Times New Roman", Times, serif;*/
 }
 
+
 .navbar-roomkey {
   left: 0;
   color: white;
@@ -28,10 +29,6 @@ body {
 
 p, label {
     color: white;
-}
-
-.container {
-  padding: 0px;
 }
 
 #game-page-container {
@@ -146,23 +143,19 @@ h2 {
   color: #6A0D0C;
 }
 
-.waiting-room div{
-/*  text-align: center;
-*/}
 
 .player-list {
   position: relative;
 }
 
 .player-list ul {
-  float: left;
   padding: 0;
 }
 .player-list li {
   font-size: 20px;
   list-style-type: none;
-  padding: 4%;
-  margin-left: 8%
+  padding: 10px;
+  margin-left: 8%;
 }
 
 h3 {
@@ -196,35 +189,100 @@ h3 {
   width: auto;
 }
 
+
 #up-arrow {
   color: #8D1B0F;
+  cursor: pointer;
 }
 
 #down-arrow {
   color: #8D1B0F;
+  cursor: pointer;
 }
 
 #count {
   font-weight: bold;
   font-size: 75px;
+  float: auto;
+}
+
+.start-game {
+  text-align: center;
 }
 
 #start-game-btn {
+  margin-top: 15px;
   width: 250px;
 }
-
-
-
 .btn-table-group {
   background-color: #222222;
 }
 
-@media (max-width: 667px) {
-  #hand-count {
-    height: 295px;
-    width: 190.5px;
+.hand-size-label {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+    h2, h3 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 10px;
   }
 
+.player-card-count {
+  text-align: center;
+}
+
+  #hand-count {
+    height: 196px;
+    width: 127px;
+    float: left;
+    margin-left: 30%;
+    margin-right: 0;
+    border-radius: 12px;
+    background-color: white;
+    padding: 0;
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+  }
+  .second-hand-count {
+    width: auto;
+    height: 190px;
+  }
+
+  #up-arrow {
+    color: #8D1B0F;
+    margin: 0;
+    font-size: 4em;
+  }
+
+  #down-arrow {
+  color: #8D1B0F;
+  margin: 0;
+  height: 60px;
+  font-size: 4em;
+  float
+  }
+
+  #count {
+    font-weight: bold;
+    font-size: 60px;
+    margin: 0;
+    width: 0;
+    text-align: center;
+    height: 70px;
+  }
   #sidebar-wrapper {
   margin-left: -250px;
   width: 75px;
@@ -236,11 +294,13 @@ h3 {
 
   .overlap{
     margin-right: -30px;
-  }
-
 }
-
-
+  .player-list li {
+    font-size: 15px;
+    list-style-type: none;
+    margin-left: 2%;
+    padding: 2px;
+  }
 .btn-table {
   white-space: normal;
 }
