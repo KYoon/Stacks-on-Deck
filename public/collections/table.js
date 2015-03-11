@@ -3,19 +3,21 @@ var Table = Backbone.Collection.extend({
 
   initialize: function() {
     this.activeCard = null;
+    this.listenTo(socket, 'addCardToTable', this.addNewCard.bind(this));
+  },
+
+  addNewCard: function(card) {
+    this.add(new Card(card));
   },
 
   updateCards: function(jsonCards){
-    this.activeCard = null;
-    tableOfCards = [];
+    this.unsetActiveCard();
+    this.reset();
     for(var i=0; i<jsonCards.length; i++) {
       jsonCards[i].collection = this;
-      createdCard = new Card(jsonCards[i]);
-      console.log(createdCard)
-      tableOfCards.push(createdCard);
+      this.add(new Card(jsonCards[i]));
     }
-    this.models = tableOfCards;
-    return this.models;
+    return this;
   },
 
   setActiveCard: function(card){
@@ -24,6 +26,11 @@ var Table = Backbone.Collection.extend({
     }
     card.set({active: true});
     this.activeCard = card;
+  },
+
+  unsetActiveCard: function(){
+    console.log("HI FLORI")
+    this.activeCard = null;
   },
 
   getCard: function(cardId) {

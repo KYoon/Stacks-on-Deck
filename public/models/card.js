@@ -5,9 +5,19 @@ var Card = Backbone.Model.extend({
             faceUp: false
             },
 
+  // initialize: function(){
+  //   this.listenTo(this.collection, "cardActivate", this.setInactive);
+  // },
+
   setActive: function(){
-    console.log("this.collection: " + this)
-    this.attributes.collection.setActiveCard(this);
+      //REFACTOR
+    if (this.collection) {
+      //when you draw a card it's like this:
+      this.collection.setActiveCard(this);
+    } else {
+      //when you deal cards it's like this:
+      this.attributes.collection.setActiveCard(this);
+    }
   },
 
   flipCard: function(){
@@ -16,5 +26,10 @@ var Card = Backbone.Model.extend({
     } else {
       this.set({faceUp: false})
     }
-  }
+  },
+
+  setInactive: function(){
+    console.log("EXECUTION")
+    this.collection.unsetActiveCard();
+  } 
 })

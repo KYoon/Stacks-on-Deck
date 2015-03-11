@@ -41,17 +41,22 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     var username = socket.username;
     var socketId = socket.id;
-    repo.dealUserCard(roomKey, username);
-    updateUserHand(roomKey, username, socketId);
+
+    repo.dealUserCard(roomKey, username, function(card) {
+      var card = JSON.parse(card);
+      socket.emit("addCardToHand", card);
+    });
   });
 
   // Pass a card to the table from the user's hand
   socket.on("passTable", function(cardId){
     var roomKey = socket.rooms[1];
     var username = socket.username;
-    var socketId = socket.id;
-    repo.passCard(roomKey, username, "Table", cardId);
-    updateUserHandAndTable(roomKey, username, socketId);
+    repo.passCard(roomKey, username, "Table", cardId, function(card){
+      var card = JSON.parse(card);
+      socket.emit("removeCardFromHand", card);
+      io.to(roomKey).emit("addCardToTable", card);
+    });
   });
 
   // User collects all the cards on the table
@@ -72,7 +77,7 @@ io.on('connection', function(socket){
     var username = socket.username;
     var socketId = socket.id;
     repo.passCard(roomKey, username, "Discard", cardId);
-    updateUserHand(roomKey, username, socketId);
+    sendUserHand(roomKey, username, socketId);
   });
 
   // User obtains a card from a table
@@ -114,8 +119,8 @@ function jsonParser(data) {
   return jsonCards;
 }
 
-// Update User's Hand
-function updateUserHand(roomKey, username, socketId){
+
+function sendUserHand(roomKey, username, socketId){
   repo.getHand(roomKey, username, function(err, data){
     io.to(socketId).emit("updateHand", jsonParser(data.sort()));
   });

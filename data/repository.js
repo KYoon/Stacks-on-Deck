@@ -74,10 +74,13 @@ function getUser(gameId, userKey, callback) {
   client.hget(gameId+":users:keys", userKey, callback)
 }
 
-function dealUserCard(gameId, user) {
+function dealUserCard(gameId, user, callback) {
   oneRandCard(gameId, function(err, id) {
       client.hget(gameId+"deck", id, function(err, card){
         client.sadd(userHand(gameId, user), card, function(err) {
+          if(callback) {
+            callback(card);
+          }
       })
     });
   });
@@ -119,9 +122,13 @@ function getHand(gameId, user, callback) {
   }, 200)
 }
 
-function passCard(gameId, from, to, id) {
-  client.hget(gameId+"deck", id, function(err, card) {
-    client.smove(userHand(gameId, from), userHand(gameId, to), card)
+function passCard(gameId, from, to, cardId, callback) {
+  client.hget(gameId+"deck", cardId, function(err, card) {
+    client.smove(userHand(gameId, from), userHand(gameId, to), card, function(err) {
+      if(callback) {
+        callback(card);
+      }
+    })
   })
 }
 

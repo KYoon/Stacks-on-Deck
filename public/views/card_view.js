@@ -10,16 +10,26 @@ var CardView = Backbone.View.extend({
     this.cardTemplate = JST['templates/'+ this.value +'.jst'];
 
     this.listenTo(this.model, "change:faceUp", this.render);
+    this.listenTo(this.model, "change:active", this.setClass);
   },
 
   events: {
     "click": "activateCard",
     "dblclick": "flipCard",
-    "doubletap": "flipCard"
+    "doubletap": "flipCard",
   },
 
   activateCard: function(){
     this.model.setActive();
+  },
+
+
+  setClass: function(){
+    if (this.model.get('active') === true) {
+      this.$el.addClass("active");
+    } else {
+      this.$el.removeClass("active")
+    }
   },
 
   render: function(){
@@ -28,18 +38,13 @@ var CardView = Backbone.View.extend({
     } else {
       this.$el.html(this.cardDownTemplate)
     }
-    if (this.model.active) {
-      this.$el.addClass("active");
-    }
   },
 
   flipCard: function() {
-    console.log("dblclick")
     if (this.model.get('faceUp') === false) {
       this.model.set({faceUp: true})
     } else {
       this.model.set({faceUp: false})
     }
-    this.render();
   }
 })
