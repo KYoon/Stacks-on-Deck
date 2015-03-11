@@ -26,7 +26,8 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     repo.createDeck(roomKey);
     repo.dealUsersCards(roomKey, parseInt(data.dealingCount));
-    socket.broadcast.to(roomKey).emit("cardsDeal", socket.username, data.dealingCount)
+    // should there be a callback here ? JNM
+    socket.broadcast.to(roomKey).emit("cardsDealMessage", socket.username, data.dealingCount)
     updateAllUserHands(roomKey);
   });
 
@@ -41,10 +42,9 @@ io.on('connection', function(socket){
   socket.on("drawCard", function(){
     var roomKey = socket.rooms[1];
     var username = socket.username;
-    var socketId = socket.id;
-
     repo.dealUserCard(roomKey, username, function(card) {
       var card = JSON.parse(card);
+      socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
       socket.emit("addCardToHand", card);
     });
   });

@@ -8,10 +8,10 @@ var MessageView = Backbone.View.extend({
     // listening
     // some of these event names are guesses and will need to be changed during integration
     this.listenTo(socket, 'newPlayer', this.playerJoin);
-    this.listenTo(socket, 'cardDraw', this.cardDraw); // waiting on flip-functionality merge
-    this.listenTo(socket, 'cardsDeal', this.cardsDeal);
-    this.listenTo(socket, 'cardDealToTable', this.cardDealToTable); // waiting on flip-functionality merge
-    this.listenTo(socket, 'cardPass', this.cardPass); // waiting on flip-functionality merge
+    this.listenTo(socket, 'cardDrawMessage', this.cardDraw);
+    this.listenTo(socket, 'cardsDealMessage', this.cardsDeal);
+    this.listenTo(socket, 'cardDealToTableMessage', this.cardDealToTable);
+    this.listenTo(socket, 'cardPass', this.cardPass);
   },
 
   playerJoin: function(username){
@@ -25,7 +25,7 @@ var MessageView = Backbone.View.extend({
   cardDraw: function(username){
     $.notify({
       icon: "glyphicon glyphicon-plus",
-      title: "Card Drawn:",
+      title: "Card Draw:",
       message: username + " has drawn a card."
     });
   },
