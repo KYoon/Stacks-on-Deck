@@ -1,0 +1,39 @@
+<div class="container table-view">
+  <div class="vcenter-helper"></div>
+  <div class="row table-container tableclass">
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/public/socket_magic.js"></script>
+<script>
+var userData = {
+  username: "<%= username %>",
+  roomkey: "<%= roomkey %>"
+}
+</script>
+<style>
+.table-view {
+  width: 95%;
+  height: 85%;
+}
+/*.vcenter-helper {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}*/
+</style>
+/*function updateTable(tableCards){
+-  console.log(tableCards)
+-  // var formattedTable = formatHand(tableCards);
+-  table.updateCards(tableCards)
+-  tableView.render();
+-
+-  if (tableCards.length > 0){
+-    $("#collect-table-cards").show();
+-  }
+-  else {
+-    $("#collect-table-cards").hide();
+-  }
+-  $("#pass-card").hide();
+-  $("#pass-table").hide();
+ }*/

@@ -1,7 +1,7 @@
 var express = require('express');
 var layouts = require('express-ejs-layouts');
 var app = express();
-server = require('http').Server(app); // Should this be global?
+server = require('http').Server(app);
 var socketio = require('./data/socket')
 
 // templates
@@ -22,7 +22,6 @@ app.use(bodyParser.json());
 
 // static files
 app.use("/public", express.static(__dirname + '/public'));
-// app.use('/static', express.static('/public'));
 app.use("/socket.io", express.static(__dirname + '/node_modules/socket.io'));
 app.use("/underscore", express.static(__dirname + '/node_modules/underscore'));
 app.use("/jquery.finger", express.static(__dirname + '/node_modules/jquery.finger'));
@@ -54,12 +53,22 @@ app.post('/join', function(req, res) {
   req.session["roomkey"] = roomkey;
   res.redirect('/games/'+ roomkey);
   return;
-})
-
+});
 
 app.get('/games/:key', function(req, res) {
   // validate key is legit
   res.render('game.ejs', {username: req.session["username"], roomkey: req.session["roomkey"]})
+  return;
+});
+
+app.post('/tables', function(req, res){
+  var roomkey = req.body.roomkey.toUpperCase();
+  res.redirect('/tables/'+roomkey);
+});
+
+app.get('/tables/:key', function(req, res){
+  // validate key is legit
+  res.render('table.ejs', {username: "table", roomkey: req.params.key})
   return;
 })
 
