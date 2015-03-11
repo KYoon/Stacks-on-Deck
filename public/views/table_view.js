@@ -13,7 +13,7 @@ var TableView = Backbone.View.extend({
   },
 
   attributes: {
-    class: "table-cards"
+    class: "table-cards playingCards simpleCards"
   },
 
   render: function(){
