@@ -36,9 +36,11 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
 
+.active .card{
 
-
+    box-shadow: 0 0 4px 4px yellow;
 }
 
 .single-card {
@@ -641,3 +643,10 @@
 .playingCards ul.deck li:nth-child(30) { left: 58px; bottom: 29px; }
 .playingCards ul.deck li:nth-child(31) { left: 60px; bottom: 30px; }
 .playingCards ul.deck li:nth-child(32) { left: 62px; bottom: 31px; }
+
+@media only screen and (max-width: 768px) {
+  .player-hand {
+    overflow: scroll;
+    height: 350px;
+  }
+}

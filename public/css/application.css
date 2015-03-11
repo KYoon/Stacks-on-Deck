@@ -6,6 +6,25 @@ body {
 /*  font-family: "Times New Roman", Times, serif;*/
 }
 
+.navbar-roomkey {
+  left: 0;
+  color: white;
+  text-align: left;
+}
+
+.nav-center {
+    margin:0;
+    float:none;
+}
+
+.navbar-inner{
+  color: white;
+    text-align:center;
+    padding: 14.5px 15px;
+    font-size: 30px;
+    line-height: 21px;
+     height: 50px;
+}
 
 p, label {
     color: white;

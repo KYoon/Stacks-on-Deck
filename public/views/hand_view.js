@@ -47,6 +47,4 @@ var HandView = Backbone.View.extend({
     });
     view.remove();
   }
-
-
 })
