@@ -81,7 +81,12 @@ $(document).ready(function(){
 
   $(document).on("click", "#up-arrow", function(){
     var count = parseInt($("#count").text())
-    $("#count").html(count + 1)
+    var numPlayers = playerList.length
+    var maxNum = (52/numPlayers)
+
+    if (count < maxNum) {
+      $("#count").html(count + 1)
+    }
   });
 
   $(document).on("click", "#start-game-btn", function() {
