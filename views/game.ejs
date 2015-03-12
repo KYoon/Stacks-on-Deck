@@ -1,6 +1,15 @@
- <div class = "container" id="game-page-container">
+  <!-- Waiting room -->
+    <div class="container-fluid">
+      <div class="room-key-div">
+        <div><p class="navbar-brand">Room: <%= roomkey %></p></div>
+        <div class="navbar-inner">
+          <div class="navbar-center inline">
+            <p>Stacks on Deck</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!-- Waiting room -->
   <div class="row">
    <div class="waiting-room col-xs-12">
     <h2>Welcome <span id="username"><%= username %></span></h2>
@@ -16,18 +25,63 @@
           <i id="down-arrow" class="fa fa-sort-desc fa-5x"></i>
         </div>
       </div>
-
     </div>
-  <div class="start-game">
-    <button class="btn btn-default" id="start-game-btn">Start Game</button>
-  </div>
+    <div class="start-game">
+      <button class="btn btn-default" id="start-game-btn">Start Game</button>
+    </div>
   </div>
 </div>
 
 
+<!-- navbar -->
+    <nav class="game-nav">
+      <ul id="card-options">
+        <li class="sidebar-brand">Table Options</li>
+        <li><a id="table-discard-card" href="#">Discard</a></li>
+        <li><a id="table-get-card" href="#">Take Card</a></li>
+        <li><a id="collect-table-cards" href="#">Take All</a></li>
+        <li li style="margin-bottom:0.5em"><a id="table-draw-card" href="#">Draw Card to Table</a></li>
+
+        <li class="sidebar-brand">Hand Options</li>
+        <li><a id="hand-pass-button" href="#">Pass to Player</a></li>
+        <li><a id="hand-discard-button" href="#">Discard</a></li>
+        <li><a id="hand-play-button" href="#">Play</a></li>
+        <li><a id="draw-card" href="#">Draw Card</a></li>
+      </ul>
+    </nav>
+
+  <div class="column">
+    <section>
+      <div class = "tableclass playingCards simpleCards">
+      </div>
+    </section>
+    <section>
+      <div class="player-hand playingCards simpleCards">
+      </div>
+    </section>
+  </div>
+
+
+
+
 <!-- Active Game -->
 
-<div class="row">
+         
+<!-- function addClass(){
+  if ($(".player-hand").children().children().length>6){
+    $(".player-hand").children().children().addClass("overlap");
+  }
+}
+ -->
+
+
+
+<!-- </div> -->
+
+
+
+
+<!-- <div class="row">
 
 <div class="active-game col-xs-12" style="display: none">
   <div class="table-container">
@@ -35,31 +89,29 @@
       <div class="table-buttons"></div>
       <div class="tableclass"></div>
     </div>
-  </div>
+  </div> -->
 
 
-  <div class="row">
+<!--   <div class="row">
     <div class="col-md-8 offset-col-md-2 hand-buttons-view">
       <div class="draw-card-buttons" style="display: none">
-        <button class="btn btn-default" id="table-draw-card">Draw Card to Table</button>
-        <button class="btn btn-default" id="draw-card">Draw Card</button>
+
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <div class="row">
+<!--   <div class="row">
     <div class="table col-md-8 offset-col-md-2 passing-player-list" style="display: none">
       <p>Pass card to player: </p>
     </div>
-  </div>
+  </div> -->
 
-  <div class="row">
+<!--   <div class="row">
     <div class="col-md-10 player-hand playingCards simpleCards">
       <p>Your Hand:</p>
     </div>
-  </div>
-</div>
-</div>
+  </div> -->
+
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/public/socket_magic.js"></script>

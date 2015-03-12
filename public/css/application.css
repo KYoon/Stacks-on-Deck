@@ -31,7 +31,7 @@ p, label {
 }
 
 .container {
-  /*position: fixed;*/
+  padding: 0px;
 }
 
 #game-page-container {
@@ -39,13 +39,13 @@ p, label {
   margin-right: 1%
 }
 
-.active-game {
+/*.active-game {
   margin-left: 0;
   margin-right: 0;
   margin-bottom: 5px;
   margin-top: 5px;
-  padding: 0;
-}
+  padding-bottom: 5px;
+}*/
 
 .table-container {
   overflow-y: scroll;
@@ -216,16 +216,109 @@ h3 {
   width: 250px;
 }
 
-@media (max-width: 768px) {
-  .container {
-    max-height: 600px;
-  }
+
+
+.btn-table-group {
+  background-color: #222222;
+}
+
+@media (max-width: 667px) {
   #hand-count {
     height: 295px;
     width: 190.5px;
   }
-  .table-cards {
-    width: 300px;
+
+  #sidebar-wrapper {
+  margin-left: -250px;
+  width: 75px;
   }
+
+  .game-nav {
+    width: 25%;
+  }
+
+  .overlap{
+    margin-right: -30px;
+  }
+
 }
+
+
+.btn-table {
+  white-space: normal;
+}
+
+.btn-last {
+  margin-bottom: 30px;
+}
+
+.game-container {
+  width: 100%;
+  height: 100%;
+}
+
+.game-nav {
+  display: inline-block;
+  vertical-align: top;
+  background-color: #333333;
+  height: 100%;
+}
+
+.column {
+  display: inline-block;
+  vertical-align: top;
+  width: 74%;
+}
+
+.table-cards {
+  overflow-x: scroll;
+}
+
+li {
+  list-style: none;
+}
+
+#card-options {
+  padding: 5px;
+}
+
+.player-hand {
+  position: absolute;
+  top: 70%;
+  height: 30%;
+  width: 74%;
+  padding-top: 3px;
+  padding-left: 3px;
+  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+}
+
+.container-fluid {
+  background-color: #222222;
+}
+
+.tableclass {
+  height: 59%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding-bottom: 5px;
+}
+
+.table-cards {
+  height: 100%;
+  overflow: scroll;
+  padding-top: 3px;
+  padding-left: 3px;
+}
+/*
+.your-hand{
+  text-align: center;
+  background-color: #333333;
+}*/
+
 
