@@ -35,19 +35,11 @@ app.get('/', function(req, res){
   return;
 });
 
-app.post('/games', function(req, res) {
-  var roomkey = keyGenerator();
-  var username = req.body.username;
-  req.session["username"] = username;
-  req.session["roomkey"] = roomkey;
-  // check if gameKey currently exists in redis
-  // create new game
-  res.redirect('/games/' + roomkey);
-  return;
-});
-
 app.post('/join', function(req, res) {
   var roomkey = req.body.roomkey.toUpperCase();
+  if (roomkey === ""){
+    roomkey = keyGenerator();
+  }
   var username = req.body.username;
   req.session["username"] = username;
   req.session["roomkey"] = roomkey;
@@ -56,7 +48,6 @@ app.post('/join', function(req, res) {
 });
 
 app.get('/games/:key', function(req, res) {
-  // validate key is legit
   res.render('game.ejs', {username: req.session["username"], roomkey: req.session["roomkey"]})
   return;
 });

@@ -51,17 +51,14 @@ p, label {
   overflow-y: scroll;
 }
 
-.splash {
-  margin-top: 1em;
-}
-
 .splash h1 {
-  color: white;
   font-weight: bold;
+  font-size: 35px;
+  color: white;
 }
 
-.jumbotron p {
-  color: #6A0D0C;
+#splash-page-container input[type="submit"]{
+  width: 100%;
 }
 
 span {
