@@ -324,6 +324,21 @@ background-image: url("/public/images/stacksondeck-table-view.svg");
   padding-left: 3px;
 }
 
+.container-table-view {
+  height: 85%;
+}
+
+.tableclass.table-device-container {
+  margin: 5%;
+  height: 100%;
+  text-align: center;
+}
+
+.tableclass.table-device-container .single-card {
+  display: inline-block;
+}
+
+
 
 @media (max-width: 768px) {
   h2, h3 {
@@ -398,7 +413,7 @@ background-image: url("/public/images/stacksondeck-table-view.svg");
    list-style: none;
    padding-left: 0;
  }
- 
+
  #card-options li {
    padding: 4px;
    border-top: 1px solid #3c3c3c;
