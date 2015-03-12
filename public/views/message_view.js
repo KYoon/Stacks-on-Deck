@@ -6,22 +6,34 @@ var MessageView = Backbone.View.extend({
       placement:{from: "top",align: "center"}
     });
     // listening
-    // some of these event names are guesses and will need to be changed during integration
-    this.listenTo(socket, 'newPlayer', this.playerJoin);
+    this.listenTo(socket, 'newPlayer', this.playerJoin.bind(this));
     this.listenTo(socket, 'cardDrawMessage', this.cardDraw);
+    this.listenTo(socket, 'cardDrawToTableMessage', this.cardDrawToTable);
     this.listenTo(socket, 'cardsDealMessage', this.cardsDeal);
-    this.listenTo(socket, 'cardDealToTableMessage', this.cardDealToTable);
-    this.listenTo(socket, 'cardPass', this.cardPass);
+    this.listenTo(socket, 'cardPlayToTableMessage', this.cardPlayToTable);
+    this.listenTo(socket, 'cardPassMessage', this.cardPass);
     this.listenTo(socket, 'playerLeaveMessage', this.playerLeave);
-    this.listenTo(socket, 'deckEmptyMessage', this.deckEmpty)
+    this.listenTo(socket, 'deckEmptyMessage', this.deckEmpty);
   },
 
   playerJoin: function(username){
+    if (username === "table") {
+      this.tableJoin();
+    } else {
+      $.notify({
+        icon: "glyphicon glyphicon-user",
+        title: "Player Join:",
+        message: username + " has entered the room."
+      });
+    }
+  },
+
+  tableJoin: function() {
     $.notify({
-      icon: "glyphicon glyphicon-user",
-      title: "Player Join:",
-      message: username + " has entered the room."
-    });
+        icon: "glyphicon glyphicon-phone",
+        title: "Device Connect: ",
+        message: "A device has connected to the game to serve as a table."
+      });
   },
 
   cardDraw: function(username){
@@ -29,6 +41,14 @@ var MessageView = Backbone.View.extend({
       icon: "glyphicon glyphicon-plus",
       title: "Card Draw:",
       message: username + " has drawn a card."
+    });
+  },
+
+  cardDrawToTable: function(username){
+    $.notify({
+      icon: "glyphicon glyphicon-plus",
+      title: "Card Draw:",
+      message: username + " has drawn a card to the table."
     });
   },
 
@@ -56,11 +76,11 @@ var MessageView = Backbone.View.extend({
     });
   },
 
-  cardDealToTable: function(username){
+  cardPlayToTable: function(username){
     $.notify({
       icon: "glyphicon glyphicon-plus",
-      title: "Cards Dealt:",
-      message: username + " has dealt a card to the table."
+      title: "Card Played:",
+      message: username + " has played a card to the table."
     });
   },
 

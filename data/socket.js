@@ -32,7 +32,7 @@ io.on('connection', function(socket){
         if (count === 0) {
           io.to(roomKey).emit("deckEmptyMessage");
         }
-      })  
+      })
     });
     socket.broadcast.to(roomKey).emit("cardsDealMessage", socket.username, data.dealingCount)
     updateAllUserHands(roomKey);
@@ -48,6 +48,7 @@ io.on('connection', function(socket){
       repo.getKey(roomKey, data.toUser, function(err, key){
         io.to(key).emit("addCardToHand", card);
       });
+      socket.broadcast.to(roomKey).emit("cardPassMessage", username, data.toUser);
     });
   });
 
@@ -60,13 +61,13 @@ io.on('connection', function(socket){
       var card = JSON.parse(card);
       repo.checkDeckCount(roomKey, function(err, count) {
         console.log(count)
-        if (count === 0) {          
+        if (count === 0) {
           io.to(roomKey).emit("deckEmptyMessage");
         } else {
           socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
           socket.emit("addCardToHand", card);
         }
-      })  
+      })
     });
   });
 
@@ -78,6 +79,8 @@ io.on('connection', function(socket){
       var card = JSON.parse(card);
       socket.emit("removeCardFromHand", card);
       io.to(roomKey).emit("addCardToTable", card);
+      socket.broadcast.to(roomKey).emit("cardPlayToTableMessage", username
+        )
     });
   });
 
@@ -138,10 +141,10 @@ io.on('connection', function(socket){
     repo.dealUserCard(roomKey, "Table", function(card) {
       var card = JSON.parse(card);
       repo.checkDeckCount(roomKey, function(err, count) {
-        if (count === 0) {          
+        if (count === 0) {
           io.to(roomKey).emit("deckEmptyMessage");
         } else {
-          socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
+          socket.broadcast.to(roomKey).emit("cardDrawToTableMessage", socket.username);
           repo.getUserKeys(roomKey, function(err, keys){
             keys.forEach(function(key){
               repo.getHand(roomKey, "Table", function(err, data){
@@ -150,8 +153,8 @@ io.on('connection', function(socket){
             });
           });
         }
-      })  
-      
+      })
+
     });
   });
 
