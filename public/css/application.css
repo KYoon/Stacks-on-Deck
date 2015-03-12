@@ -399,3 +399,13 @@ li {
    padding: 4px;
    border-top: 1px solid #3c3c3c;
  }
+
+.passing-player-list {
+  position: absolute;
+  right: 25%;
+  top: 0;
+  text-align: center;
+  z-index: 99;
+ }
+
+}

@@ -3,7 +3,7 @@ $(document).ready(function(){
 
  $(document).on("click", ".show-passing-player-list", function(e){
     e.preventDefault();
-    $(".pass-list").show();
+    $(".pass-list").slideDown(300);
   });
 
   //Table Buttons
