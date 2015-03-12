@@ -4,6 +4,9 @@ $(document).ready(function() {
     headerView.render();
     $(".sweet-container").prepend(headerView.$el);
   }
+
+  waitingRoomView = new WaitingRoomView();
+  waitingRoomView.render();
   // add the hand view
   hand = new Hand();
   handView = new HandView({collection: hand});
