@@ -1,29 +1,29 @@
 $(document).ready(function(){
   var toUser = "";
 
- $(document).on("click", ".show-passing-player-list", function(e){
+  $(document).on("click", ".show-passing-player-list", function(e){
     e.preventDefault();
     $(".pass-list").slideDown(300);
   });
 
   //Table Buttons
-   $(document).on("click", "#table-draw-card", function(){
-      socket.emit("tableDeckDraw")
+  $(document).on("click", "#table-draw-card", function(){
+    socket.emit("tableDeckDraw")
   });
 
- $(document).on("click", "#table-discard-card", function(e){
+  $(document).on("click", "#table-discard-card", function(e){
     e.preventDefault;
     cardId = table.activeCard.attributes.id
-      socket.emit("discardTableCard", cardId);
+    socket.emit("discardTableCard", cardId);
   });
 
- $(document).on("click", "#table-get-card", function(e){
+  $(document).on("click", "#table-get-card", function(e){
     e.preventDefault;
     cardId = table.activeCard.attributes.id
     socket.emit("getTableCard", cardId);
   });
 
- $(document).on("click", "#collect-table-cards", function(e){
+  $(document).on("click", "#collect-table-cards", function(e){
     e.preventDefault;
     socket.emit("userCollectsTable");
   });
@@ -33,15 +33,15 @@ $(document).ready(function(){
     socket.emit("drawCard")
   });
 
- $(document).on("click", "#hand-discard-button", function(){
+  $(document).on("click", "#hand-discard-button", function(){
     hand.discard();
   });
 
- $(document).on("click", "#hand-play-button", function(){
+  $(document).on("click", "#hand-play-button", function(){
     hand.playCard();
   });
 
- $(document).on("click", ".pass-to", function(e){
+  $(document).on("click", ".pass-to", function(e){
     e.preventDefault();
     var id = hand.activeCard.id;
     hand.unsetActiveCard();
@@ -72,8 +72,14 @@ $(document).ready(function(){
     dealCards({dealingCount: dealingCount});
   });
 
- $(document).on("click", ".table-buttons", function(){
+  $(document).on("click", ".table-buttons", function(){
     $(".table-buttons div").hide();
   });
+
+  // Help button
+  $(document).on("click", ".help-button", function(e) {
+    e.preventDefault();
+    $(".help-menu-container").toggle();
+  })
 
 });
