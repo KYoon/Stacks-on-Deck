@@ -57,12 +57,5 @@ var TableView = Backbone.View.extend({
     this.cardViews = _.filter(this.cardViews, function(view) { return view.model !== card;
     });
     view.remove();
-  },
-
-  buttonDisplay: function() {
-    $('.table-buttons').empty();
-    tableButtons = new TableButtonView();
-    tableButtons.render();
-    $('.table-buttons').append(tableButtons.$el);
   }
 })

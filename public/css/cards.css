@@ -14,7 +14,7 @@
     display: inline-block;
     width: 3.3em;
     height: 4.6em;
-    border: 1px solid #666;
+    border: 1px solid;
     border-radius: .3em;
     -moz-border-radius: .3em;
     -webkit-border-radius: .3em;
@@ -27,15 +27,17 @@
     font-family: Arial, sans-serif;
     position: relative;
     background-color: #fff;
-    -moz-box-shadow: .2em .2em .5em #333;
-    -webkit-box-shadow: .2em .2em .5em #333;
-    box-shadow: .2em .2em .5em #333;
+
+/*    -moz-box-shadow: .2em .2em .5em   border-color: #222222;
+    -webkit-box-shadow: .2em .2em .5em   border-color: #222222;
+    box-shadow: .2em .2em .5em   border-color: #222222;*/
+    box-shadow: 1px 1px 4px #fff;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-    user-select: none;
+        user-select: none;
 }
 
 .active .card{
@@ -62,13 +64,18 @@
 
 .playingCards .card.back {
     text-indent: -4000px;
-    background-color: #ccc;
+    background-color: #0B394C;
+
+
+
     background-repeat: repeat;
-    background-image: url(data:image/gif;base64,R0lGODlhJAAkAJEAAOjFsezdztOKbL5QKCH5BAAAAAAALAAAAAAkACQAAAL/HC4RAqm/mmLHyHmAbczB11Ea8ombJKSgKo6Z17pXFznmS1JptiX0z3vVhpEKDoUIkoa0olGIUeZUk1RI6Yn2mh/FDAt6frOrRRTqXPpsVLYugzxaVy+YcBdnoWPZOT0E4eckQtZFZBjWoHixQFWl6Nhol6R2p1Okt5TGaEWZA6fjiMdhZgPHeWrTWGVq+jTZg1HYyAEWKLYzmyiGKoUimilz+YYryyTlg5RcDJSAbNx0Q7lMcbIGEyzTK8zVdfVaImzs/QV+prYqWWW2ObkoOApM/Em/rUlIm7fijs8a2EEKEaZ3AsMUgneEU6RcpJbZ27aGHkAO2Ors8xQH1IR0Bn5YnOtVAAA7); /* image is "Pattern 069" from http://www.squidfingers.com/patterns/ */
-    background-image: -moz-repeating-linear-gradient(34% 6% 135deg,#0F1E59, #75A1BF, #3E3E63 50%);
-    background-image: -webkit-gradient(radial, center center, 20, center center, 80, from(#3c3), color-stop(0.4, #363), to(#030));
+
+    background-image: url(data:image/gif;base64,R0lGODlhJAAkAJEAAOjFsezdztOKbL5QKCH5BAAAAAAALAAAAAAkACQAAAL/HC4RAqm/mmLHyHmAbczB11Ea8ombJKSgKo6Z17pXFznmS1JptiX0z3vVhpEKDoUIkoa0olGIUeZUk1RI6Yn2mh/FDAt6frOrRRTqXPpsVLYugzxaVy+YcBdnoWPZOT0E4eckQtZFZBjWoHixQFWl6Nhol6R2p1Okt5TGaEWZA6fjiMdhZgPHeWrTWGVq+jTZg1HYyAEWKLYzmyiGKoUimilz+YYryyTlg5RcDJSAbNx0Q7lMcbIGEyzTK8zVdfVaImzs/QV+prYqWWW2ObkoOApM/Em/rUlIm7fijs8a2EEKEaZ3AsMUgneEU6RcpJbZ27aGHkAO2Ors8xQH1IR0Bn5YnOtVAAA7); /* image is "Pattern 069" from http://www.squidfingers.com/patterns/
+    /*background-image: -moz-repeating-linear-gradient(34% 6% 135deg,#0F1E59, #75A1BF, #3E3E63 50%);*/
+    /*background-image: -webkit-gradient(radial, center center, 20, center center, 80, from(#3c3), color-stop(0.4, #363), to(#222222));*/
     /* yes, it's intentional that Mozilla, Webkit, Opera and IE all will get different backgrounds ... why not? :) */
 }
+
 
 /* suit colours
 ********************************************************************/
@@ -384,7 +391,7 @@
 .playingCards .card.joker .rank:after {
     font-family: Georgia, serif;
     position: absolute;
-    font-size: 3em;
+    font-size: 5rem;
     right: .1em;
     bottom: .25em;
     word-spacing: normal;
@@ -422,22 +429,22 @@
 .playingCards.simpleCards .card.diams .suit:after,
 .playingCards .card.rank-a.diams .suit:after {
     content: "\2666";
-    right: .30em;
+    right: .18em;
 }
 .playingCards.simpleCards .card.hearts .suit:after,
 .playingCards .card.rank-a.hearts .suit:after {
     content: "\2665";
-    right: .20em;
+    right: .08em;
 }
 .playingCards.simpleCards .card.spades .suit:after,
 .playingCards .card.rank-a.spades .suit:after {
     content: "\2660";
-    right: .27em;
+    right: .14em;
 }
 .playingCards.simpleCards .card.clubs .suit:after,
 .playingCards .card.rank-a.clubs .suit:after {
     content: "\2663";
-    right: .18em;
+    right: .04em;
 }
 
 /*____________ smaller cards for use inside text ____________*/
@@ -644,9 +651,38 @@
 .playingCards ul.deck li:nth-child(31) { left: 60px; bottom: 30px; }
 .playingCards ul.deck li:nth-child(32) { left: 62px; bottom: 31px; }
 
+
 @media only screen and (max-width: 768px) {
   .player-hand {
     overflow: scroll;
     height: 350px;
   }
 }
+
+.card-overlap{
+  position: fixed;
+  width: 60%;
+  left:20%;
+  bottom: 0;
+}
+
+.card-overlap .card {
+  margin-right: -90px;
+}
+
+.playingCards.simpleCards .card .suit:after,
+.playingCards .card.rank-j .suit:after,
+.playingCards .card.rank-q .suit:after,
+.playingCards .card.rank-k .suit:after,
+.playingCards .card.rank-a .suit:after,
+.playingCards .card.joker .rank:after {
+    font-family: Georgia, serif;
+    position: absolute;
+    font-size: 6rem;
+    right: .1em;
+    bottom: .25em;
+    word-spacing: normal;
+    letter-spacing: normal;
+    line-height: 1;
+}
+

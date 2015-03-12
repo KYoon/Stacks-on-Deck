@@ -2,8 +2,17 @@ $(document).ready(function() {
   if (userData) {
     headerView = new HeaderView();
     headerView.render();
-    $("body").prepend(headerView.$el);
+    $(".sweet-container").prepend(headerView.$el);
   }
+  //Wait room
+  waitingRoomView = new WaitingRoomView();
+  $(".all-game-container").append(waitingRoomView.$el);
+  
+
+  //Game room 
+  gameRoomView = new GameRoomView();
+  $(".all-game-container").append(gameRoomView.$el);
+  
   // add the hand view
   hand = new Hand();
   handView = new HandView({collection: hand});
@@ -32,4 +41,5 @@ $(document).ready(function() {
 
   // instantiate message view
   messageView = new MessageView();
+
 })

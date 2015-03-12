@@ -150,6 +150,16 @@ __p += '<div class="card back">*</div>\n';
 return __p
 };
 
+this["JST"]["templates/gameRoom.jst"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<nav class="game-nav">\n      <ul id="card-options">\n        <li class="sidebar-brand">Table Options</li>\n        <li><a id="table-discard-card" href="#">Discard</a></li>\n        <li><a id="table-get-card" href="#">Take Card</a></li>\n        <li><a id="collect-table-cards" href="#">Take All</a></li>\n        <li li style="margin-bottom:0.5em"><a id="table-draw-card" href="#">Draw Card to Table</a></li>\n\n        <li class="sidebar-brand">Hand Options</li>\n        <li><a class="passing-player-list" id="hand-pass-button" href="#">Pass to Player</a></li>\n\n        <li><a id="hand-discard-button" href="#">Discard</a></li>\n        <li><a id="hand-play-button" href="#">Play</a></li>\n        <li><a id="draw-card" href="#">Draw Card</a></li>\n      </ul>\n    </nav>\n\n  <div class="column">\n    <section>\n      <div class = "tableclass playingCards simpleCards">\n      </div>\n    </section>\n    <section>\n      <div class="player-hand playingCards simpleCards">\n      </div>\n    </section>\n  </div>';
+
+}
+return __p
+};
+
 this["JST"]["templates/hand.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -174,9 +184,7 @@ this["JST"]["templates/header.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<nav class="navbar navbar-default">\n  <div class="container-fluid">\n    <div class="room-key-div">\n    <div><p class="navbar-brand">Room: ' +
-((__t = ( userData.roomkey )) == null ? '' : __t) +
-'</p></div>\n\n      <div class="navbar-inner">\n        <div class="navbar-center inline">\n      <p>Stacks on Deck</p>\n    </div>\n  </div>\n  </div>\n</nav>';
+__p += '';
 
 }
 return __p
@@ -254,6 +262,20 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<button class="btn btn-default" id="table-get-card">Get Card</button>\n<button class="btn btn-default" id="table-discard-card">Discard Card</button>\n<button class="btn btn-default" id="collect-table-cards">Take All Cards</button>';
+
+}
+return __p
+};
+
+this["JST"]["templates/waitingRoom.jst"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<!-- Waiting room -->\n    <div class="container-fluid">\n      <div class="room-key-div">\n        <div><p class="navbar-brand">Room: ' +
+((__t = ( userData.roomkey )) == null ? '' : __t) +
+'</p></div>\n        <div class="navbar-inner">\n          <div class="navbar-center inline">\n            <p>Stacks on Deck</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n\n <div class="container" id="game-page-container">\n\n\n<div class="row waiting-room">\n   <div class="col-xs-12 welcome">\n    <h2>Welcome <span id="username">' +
+((__t = ( userData.username )) == null ? '' : __t) +
+'</span></h2>\n  </div>\n\n\n  <div class="player-card-count row">\n    <div class="col-sm-6">\n      <div class="player-list col-xs-12">\n        <h3>Players:</h3>\n      </div>\n    </div>\n\n\n    <div id="test" class="col-sm-6">\n      <div id="hand-count">\n        <div class="second-hand-count">\n          <i id="up-arrow" class="fa fa-sort-asc fa-5x"></i>\n          <h1 id="count">5</h1>\n          <i id="down-arrow" class="fa fa-sort-desc fa-5x"></i>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n\n<h3 class="hand-size-label waiting-room">Starting Hand Size</h3>\n<div class="start-game waiting-room">\n  <button class="btn btn-default" id="start-game-btn">Start Game</button>\n</div>\n\n</div>';
 
 }
 return __p
