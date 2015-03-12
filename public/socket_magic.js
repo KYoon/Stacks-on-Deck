@@ -30,36 +30,43 @@ $(document).ready(function(){
 
   //Table Buttons
   $(document).on("click", "#table-draw-card", function(){
+    $(".pass-list").hide();
     socket.emit("tableDeckDraw")
   });
 
   $(document).on("click", "#table-discard-card", function(e){
     e.preventDefault;
     cardId = table.activeCard.attributes.id
+    $(".pass-list").hide();
     socket.emit("discardTableCard", cardId);
   });
 
   $(document).on("click", "#table-get-card", function(e){
     e.preventDefault;
     cardId = table.activeCard.attributes.id
+    $(".pass-list").hide();
     socket.emit("getTableCard", cardId);
   });
 
   $(document).on("click", "#collect-table-cards", function(e){
     e.preventDefault;
+    $(".pass-list").hide();
     socket.emit("userCollectsTable");
   });
 
   //Hand Buttons
   $(document).on("click", "#draw-card", function(){
+    $(".pass-list").hide();
     socket.emit("drawCard")
   });
 
   $(document).on("click", "#hand-discard-button", function(){
+    $(".pass-list").hide();
     hand.discard();
   });
 
   $(document).on("click", "#hand-play-button", function(){
+    $(".pass-list").hide();
     hand.playCard();
   });
 
