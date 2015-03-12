@@ -10,16 +10,21 @@ io.on('connection', function(socket){
 
   // User enters room
   socket.on("joinRoom", function(data){
-    socket.join(data.roomkey, function(error){
-      socket.username = data.username;
-      userjoined = data.username;
-      roomid = data.roomkey
-      repo.createUser(data.roomkey, data.username, socket.id);
-      repo.getUsers(data.roomkey, function(err, users){
-        socket.emit("joinedGame", users);
-      });
-      socket.broadcast.to(data.roomkey).emit('newPlayer', data.username);
-      if(error){console.log("error:" + error);}
+    repo.checkDeckCount(data.roomkey, function(err, count) {
+      if (count === 0) {
+        socket.join(data.roomkey, function(error){
+          socket.username = data.username;
+          userjoined = data.username;
+          roomid = data.roomkey
+          repo.createUser(data.roomkey, data.username, socket.id);
+          repo.getUsers(data.roomkey, function(err, users){
+            socket.emit("joinedGame", users);
+          });
+          socket.broadcast.to(data.roomkey).emit('newPlayer', data.username);
+        });
+      } else {
+        socket.emit("gameInProgress");
+      }
     });
   });
 
