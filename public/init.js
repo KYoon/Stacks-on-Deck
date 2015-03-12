@@ -2,7 +2,7 @@ $(document).ready(function() {
   if (userData) {
     headerView = new HeaderView();
     headerView.render();
-    $("body").prepend(headerView.$el);
+    $(".sweet-container").prepend(headerView.$el);
   }
   // add the hand view
   hand = new Hand();

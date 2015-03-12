@@ -1,4 +1,15 @@
   <!-- Waiting room -->
+    <div class="container-fluid">
+      <div class="room-key-div">
+        <div><p class="navbar-brand">Room: <%= roomkey %></p></div>
+        <div class="navbar-inner">
+          <div class="navbar-center inline">
+            <p>Stacks on Deck</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <div class="row">
    <div class="waiting-room col-xs-12">
     <h2>Welcome <span id="username"><%= username %></span></h2>
@@ -14,7 +25,6 @@
           <i id="down-arrow" class="fa fa-sort-desc fa-5x"></i>
         </div>
       </div>
-
     </div>
     <div class="start-game">
       <button class="btn btn-default" id="start-game-btn">Start Game</button>
@@ -24,55 +34,48 @@
 
 
 <!-- navbar -->
+    <nav class="game-nav">
+      <ul id="card-options">
+        <li class="sidebar-brand">Table Options</li>
+        <li><a id="table-discard-card" href="#">Discard</a></li>
+        <li><a id="table-get-card" href="#">Take Card</a></li>
+        <li><a id="collect-table-cards" href="#">Take All</a></li>
+        <li li style="margin-bottom:0.5em"><a id="table-draw-card" href="#">Draw Card to Table</a></li>
 
-<div id="sidebar-wrapper">
-  <ul class="sidebar-nav">
-    <li class="sidebar-brand">Table Options</li>
-      <li><a href="#">Discard</a></li>
-      <li><a href="#">Take Card</a></li>
-      <li><a href="#">Take All</a></li>
-      <li li style="margin-bottom:0.5em"><a href="#">Draw Card to Table</a></li>
+        <li class="sidebar-brand">Hand Options</li>
+        <li><a id="hand-pass-button" href="#">Pass to Player</a></li>
+        <li><a id="hand-discard-button" href="#">Discard</a></li>
+        <li><a id="hand-play-button" href="#">Play</a></li>
+        <li><a id="draw-card" href="#">Draw Card</a></li>
+      </ul>
+    </nav>
 
-      <li class="sidebar-brand">Hand Options</li>
-      <li><a href="#">Pass to Player</a></li>
-      <li><a href="#">Discard</a></li>
-      <li><a href="#">Play</a></li>
-      <li><a href="#">Draw Card</a></li>
-    </li>
-  </ul>
-</div>
+  <div class="column">
+    <section>
+      <div class = "tableclass playingCards simpleCards">
+      </div>
+    </section>
+    <section>
+      <div class="player-hand playingCards simpleCards">
+      </div>
+    </section>
+  </div>
+
+
 
 
 <!-- Active Game -->
-<div id="page-content-wrapper">
-  <div class="row">
-  <!--   <div class="col-xs-4 btn-table-group">
-      <button class="btn btn-default btn-xs btn-block btn-table" id="table-get-card">Get Card</button>
-      <button class="btn btn-default btn-xs btn-block btn-table" id="table-discard-card">Discard Card</button>
-      <button class="btn btn-default btn-xs btn-block btn-table" id="collect-table-cards">Take All Cards</button>
-      <button class="btn btn-default btn-xs btn-block btn-table btn-last" id="table-draw-card">Draw Card to Table</button>
-    </div> -->
-    <div class="col-xs-12 table-view">
-      <div class="active-game">
-        <div class = "tableclass playingCards simpleCards"></div>
-      </div>
-    </div>
-  </div>
 
-  <div class="row">
-<!--   <div class="col-xs-4 btn-hand-group">
-    <button class="btn btn-default btn-xs btn-block btn-table" id="hand-discard-button" >Discard</button>
-    <button class="btn btn-default btn-xs btn-block btn-table" id="hand-pass-button" >Pass</button>
-    <button class="btn btn-default btn-xs btn-block btn-table" id="hand-play-button">Play</button>
-    <button class="btn btn-default btn-xs btn-block btn-table" id="draw-card">Draw Card</button>
-  </div> -->
-  <div class="col-xs-12 hand-view">
-   <div class="player-hand playingCards simpleCards">
-    <p>Your Hand:</p>
-  </div>
-</div>
-</div>
-</div>
+         
+<!-- function addClass(){
+  if ($(".player-hand").children().children().length>6){
+    $(".player-hand").children().children().addClass("overlap");
+  }
+}
+ -->
+
+
+
 <!-- </div> -->
 
 

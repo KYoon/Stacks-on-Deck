@@ -644,9 +644,3 @@
 .playingCards ul.deck li:nth-child(31) { left: 60px; bottom: 30px; }
 .playingCards ul.deck li:nth-child(32) { left: 62px; bottom: 31px; }
 
-@media only screen and (max-width: 768px) {
-  .player-hand {
-    overflow: scroll;
-    height: 350px;
-  }
-}
