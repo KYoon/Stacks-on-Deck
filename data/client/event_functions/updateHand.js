@@ -4,6 +4,6 @@ function updateHand(data){
   $('.draw-card-buttons').show();
   $(".waiting-room").remove();
   $(".active-game").show();
-  $(".table-container").css( "height", "280px")
+  $(".player-hand").show();
   hand.updateCards(data)
 }

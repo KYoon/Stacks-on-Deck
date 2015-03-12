@@ -229,71 +229,6 @@ h3 {
   text-align: center;
 }
 
-@media (max-width: 768px) {
-    h2, h3 {
-      text-align: center;
-      margin-top: 0;
-      margin-bottom: 10px;
-  }
-
-  .welcome {
-    border-bottom: 3px solid #222222;
-  }
-
-.player-card-count {
-  text-align: center;
-}
-
-  #hand-count {
-    height: 196px;
-    width: 127px;
-    float: left;
-    margin-left: 33%;
-    margin-right: 0;
-    border-radius: 12px;
-    background-color: white;
-    padding: 0;
-    margin-bottom: 10px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-  }
-  .second-hand-count {
-    width: auto;
-    height: 190px;
-  }
-
-  #up-arrow {
-    color: #8D1B0F;
-    margin: 0;
-    font-size: 4em;
-  }
-
-  #down-arrow {
-  color: #8D1B0F;
-  margin: 0;
-  height: 60px;
-  font-size: 4em;
-  float
-  }
-
-  #count {
-    font-weight: bold;
-    font-size: 60px;
-    margin: 0;
-    width: 0;
-    text-align: center;
-    height: 70px;
-  }
   #sidebar-wrapper {
   margin-left: -250px;
   width: 75px;
@@ -383,10 +318,70 @@ li {
   padding-top: 3px;
   padding-left: 3px;
 }
-/*
-.your-hand{
+
+
+@media (max-width: 768px) {
+    h2, h3 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 10px;
+  }
+
+  .welcome {
+    border-bottom: 3px solid #222222;
+  }
+
+.player-card-count {
   text-align: center;
-  background-color: #333333;
-}*/
+}
 
+  #hand-count {
+    height: 196px;
+    width: 127px;
+    float: left;
+    margin-left: 33%;
+    margin-right: 0;
+    border-radius: 12px;
+    background-color: white;
+    padding: 0;
+    margin-bottom: 10px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+  }
+  .second-hand-count {
+    width: auto;
+    height: 190px;
+  }
+
+  #up-arrow {
+    color: #8D1B0F;
+    margin: 0;
+    font-size: 4em;
+  }
+
+  #down-arrow {
+  color: #8D1B0F;
+  margin: 0;
+  height: 60px;
+  font-size: 4em;
+  float
+  }
+
+  #count {
+    font-weight: bold;
+    font-size: 60px;
+    margin: 0;
+    width: 0;
+    text-align: center;
+    height: 70px;
+  }

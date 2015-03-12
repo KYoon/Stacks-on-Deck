@@ -12,13 +12,14 @@
     </div>
 
 
+ <div class="container" id="game-page-container">
 
 
-  <!-- Waiting room -->
-  <div class="row waiting-room">
+<div class="row waiting-room">
    <div class="col-xs-12 welcome">
     <h2>Welcome <span id="username"><%= username %></span></h2>
   </div>
+
 
   <div class="player-card-count row">
     <div class="col-sm-6">
@@ -27,11 +28,6 @@
       </div>
     </div>
 
-      <div id="hand-count" class="col-xs-7">
-        <div class="second-hand-count">
-          <i id="up-arrow" class="fa fa-sort-asc fa-5x"></i>
-          <h1 id="count">5</h1>
-          <i id="down-arrow" class="fa fa-sort-desc fa-5x"></i>
 
     <div id="test" class="col-sm-6">
       <div id="hand-count">
@@ -51,7 +47,7 @@
   <button class="btn btn-default" id="start-game-btn">Start Game</button>
 </div>
 
-
+</div>
 
 <!-- navbar -->
     <nav class="game-nav">
@@ -76,7 +72,7 @@
       </div>
     </section>
     <section>
-      <div class="player-hand playingCards simpleCards">
+      <div class="player-hand playingCards simpleCards" style="display: none">
       </div>
     </section>
   </div>
