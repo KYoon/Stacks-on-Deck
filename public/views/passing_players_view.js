@@ -5,6 +5,10 @@ var PassingPlayersView = Backbone.View.extend({
     this.listenTo(this.collection, 'add', this.addAll);
   },
 
+  attributes: {
+    class: "pass-list"
+  },
+
   render: function() {
     console.log("render called")
     this.$el.empty();

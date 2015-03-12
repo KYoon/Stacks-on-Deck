@@ -40,17 +40,17 @@ var Table = Backbone.Collection.extend({
     this.activeCard = null;
   },
 
-  getCard: function(cardId) {
-    socket.emit("getTableCard", cardId);
-  },
+  // getCard: function(cardId) {
+  //   socket.emit("getTableCard", cardId);
+  // },
 
-  discardCard: function(cardId){
-    socket.emit("discardTableCard", cardId);
-  },
+  // discardCard: function(cardId){
+  //   socket.emit("discardTableCard", cardId);
+  // },
 
-  collectCards: function(){
-    socket.emit("userCollectsTable");
-  },
+  // collectCards: function(){
+  //   socket.emit("userCollectsTable");
+  // },
 
   // moved to jQuery
   // deckDraw: function(){
