@@ -11,7 +11,7 @@ var PlayerList = Backbone.Collection.extend({
     this.add(new Player({username: username}));
   },
 
-  removeCard: function(username) {
+  removePlayer: function(username) {
     var playerModel = this.find(function(model) { return model.get('username') === username});
     this.remove(playerModel);
   },

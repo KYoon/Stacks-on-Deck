@@ -172,7 +172,7 @@ io.on('connection', function(socket){
   socket.on("disconnect", function(socket){
     repo.discardAllCards(roomid, userjoined);
     io.to(roomid).emit("playerLeaveMessage", userjoined);
-    socket.emit("userLeft", userjoined);
+    io.to(roomid).emit("userLeft", userjoined)
   })
 
 });
