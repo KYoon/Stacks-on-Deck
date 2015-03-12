@@ -68,4 +68,5 @@ $(document).ready(function(){
  $(document).on("click", ".table-buttons", function(){
     $(".table-buttons div").hide();
   });
+
 });
