@@ -111,7 +111,7 @@ var MessageView = Backbone.View.extend({
         title: "Device Disconnect:",
         message: "The table device has disconnected from the game."
       });
-  }
+  },
 
   deckEmpty: function() {
     $.notify({
