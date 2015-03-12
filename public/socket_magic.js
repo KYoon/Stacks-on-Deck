@@ -54,6 +54,7 @@ $(document).ready(function(){
   $(document).on("click", "#draw-card", function(){
     socket.emit("drawCard")
   });
+
  $(document).on("click", "#hand-discard-button", function(){
     hand.discard();
   });
@@ -65,6 +66,7 @@ $(document).ready(function(){
  $(document).on("click", ".pass-to", function(e){
     e.preventDefault();
     var id = hand.activeCard.id;
+    hand.unsetActiveCard();
     toUser = $(this).attr("id")
     $(".pass-list").hide();
     socket.emit("passCard", {toUser: toUser, cardId: id})
