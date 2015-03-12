@@ -5,5 +5,17 @@ $(document).ready(function(){
 
   // listen for card event
   socket.on("updateHand", updateHand);
-  
+
+  // if game in progress, notify and redirect after 3 seconds
+  socket.on("gameInProgress", function(){
+    console.log("ERROR: received gameInProgess response")
+    $.notify({
+      icon: "glyphicon glyphicon-minus-sign",
+      title: "Game in Progress: ",
+      message: "The game has already started, you will now be redirected to the home page."
+    });
+    setTimeout(function(){
+      window.location.replace("/");
+    }, 3000)
+  });
 });
