@@ -1,47 +1,54 @@
 $(document).ready(function(){
   var toUser = "";
 
- $(document).on("click", ".show-passing-player-list", function(e){
+  $(document).on("click", ".show-passing-player-list", function(e){
     e.preventDefault();
     $(".pass-list").slideDown(300);
   });
 
   //Table Buttons
-   $(document).on("click", "#table-draw-card", function(){
-      socket.emit("tableDeckDraw")
+  $(document).on("click", "#table-draw-card", function(){
+    $(".pass-list").hide();
+    socket.emit("tableDeckDraw")
   });
 
- $(document).on("click", "#table-discard-card", function(e){
+  $(document).on("click", "#table-discard-card", function(e){
     e.preventDefault;
     cardId = table.activeCard.attributes.id
-      socket.emit("discardTableCard", cardId);
+    $(".pass-list").hide();
+    socket.emit("discardTableCard", cardId);
   });
 
- $(document).on("click", "#table-get-card", function(e){
+  $(document).on("click", "#table-get-card", function(e){
     e.preventDefault;
     cardId = table.activeCard.attributes.id
+    $(".pass-list").hide();
     socket.emit("getTableCard", cardId);
   });
 
- $(document).on("click", "#collect-table-cards", function(e){
+  $(document).on("click", "#collect-table-cards", function(e){
     e.preventDefault;
+    $(".pass-list").hide();
     socket.emit("userCollectsTable");
   });
 
   //Hand Buttons
   $(document).on("click", "#draw-card", function(){
+    $(".pass-list").hide();
     socket.emit("drawCard")
   });
 
- $(document).on("click", "#hand-discard-button", function(){
+  $(document).on("click", "#hand-discard-button", function(){
+    $(".pass-list").hide();
     hand.discard();
   });
 
- $(document).on("click", "#hand-play-button", function(){
+  $(document).on("click", "#hand-play-button", function(){
+    $(".pass-list").hide();
     hand.playCard();
   });
 
- $(document).on("click", ".pass-to", function(e){
+  $(document).on("click", ".pass-to", function(e){
     e.preventDefault();
     var id = hand.activeCard.id;
     hand.unsetActiveCard();
@@ -72,8 +79,14 @@ $(document).ready(function(){
     dealCards({dealingCount: dealingCount});
   });
 
- $(document).on("click", ".table-buttons", function(){
+  $(document).on("click", ".table-buttons", function(){
     $(".table-buttons div").hide();
   });
+
+  // Help button
+  $(document).on("click", ".help-button", function(e) {
+    e.preventDefault();
+    $("body").find(".help-menu").slideToggle("fast");
+  })
 
 });
