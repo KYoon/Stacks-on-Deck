@@ -2,7 +2,9 @@ var CurrentPlayersView = Backbone.View.extend({
   tagName: "ul",
 
   initialize: function() {
+    this.playerViews = [];
     this.listenTo(this.collection, 'add', this.addAll);
+    this.listenTo(this.collection, 'remove', this.removeOne);
   },
 
   render: function() {
@@ -12,6 +14,7 @@ var CurrentPlayersView = Backbone.View.extend({
 
   addOne: function(player){
     var view = new CurrentPlayerView({model: player});
+    this.playerViews.push(view);
     view.render();
     this.$el.append(view.$el);
   },
@@ -22,5 +25,14 @@ var CurrentPlayersView = Backbone.View.extend({
       this.addOne(player);
     }, this);
     return this;
+  },
+
+  removeOne: function(player){
+    var view = _.find(this.playerViews, function(view) {
+      return view.model === player;
+    })
+    this.playerViews = _.filter(this.playerViews, function(view) { return view.model !== player;
+    });
+    view.remove();
   }
 });

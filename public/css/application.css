@@ -385,3 +385,7 @@ li {
     text-align: center;
     height: 70px;
   }
+
+  .pass-list {
+    display: none;
+  }

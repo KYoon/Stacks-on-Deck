@@ -1,5 +1,5 @@
 function updateHand(data){
-  
+
   gameRoomView.render();
 
   hand = new Hand();
@@ -12,16 +12,12 @@ function updateHand(data){
   $(".tableclass").append(tableView.$el);
 
 
-  // add the pass to player list view
-  playerListForPassing = new PlayerList();
-  playerListViewForPassing = new PassingPlayersView({collection: playerListForPassing});
-  $(".passing-player-list").append(playerListViewForPassing.$el);
 
   // add table buttons to table view
 
   // add hand buttons to table
   handButtonView = new HandButtonView({collection: hand});
-  $(".hand-buttons-view").append(handButtonView.$el);
+  // $(".hand-buttons-view").append(handButtonView.$el);
 
   
   // $(".active-game").show();

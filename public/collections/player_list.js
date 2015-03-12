@@ -4,10 +4,16 @@ var PlayerList = Backbone.Collection.extend({
   initialize: function() {
     this.listenTo(socket, 'newPlayer', this.addPlayer.bind(this));
     this.listenTo(socket, 'joinedGame', this.addPlayers.bind(this));
+    this.listenTo(socket, 'userLeft', this.removePlayer.bind(this));
   },
 
   addPlayer: function(username) {
     this.add(new Player({username: username}));
+  },
+
+  removePlayer: function(username) {
+    var playerModel = this.find(function(model) { return model.get('username') === username});
+    this.remove(playerModel);
   },
 
   addPlayers: function(usernames){
