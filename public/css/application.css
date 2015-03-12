@@ -305,6 +305,10 @@ li {
 }
 
 .tableclass {
+  background-size: 75%;
+background-repeat: no-repeat;
+background-position: center;
+background-image: url("/public/images/stacksondeck-table-view.svg");
   height: 59%;
   margin-left: 0;
   margin-right: 0;
@@ -407,5 +411,6 @@ li {
   text-align: center;
   z-index: 99;
  }
+
 
 }
