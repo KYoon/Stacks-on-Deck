@@ -79,7 +79,7 @@ $(document).ready(function(){
   // Help button
   $(document).on("click", ".help-button", function(e) {
     e.preventDefault();
-    $(".help-menu-container").toggle();
+    $("body").find(".help-menu").slideToggle("fast");
   })
 
 });

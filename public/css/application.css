@@ -350,10 +350,11 @@ li {
   position: fixed;
   top: 0;
   margin-left: 50%;
+  display: none;
+  border-radius: 10px;
 }
 
 .help-button-container {
-  display: none;
   position: fixed;
   margin-left: 98%;
   top: 0;
@@ -390,15 +391,15 @@ li {
     padding: 0;
     margin-bottom: 10px;
 
-  display: -webkit-box;
-  display: -moz-box;
-  display: -webkit-flexbox;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
     align-items: center;
-   -webkit-justify-content: center;
-   justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -456,7 +457,11 @@ li {
   top: 0;
   text-align: center;
   z-index: 99;
-}
+  }
+
+  .pass-list {
+    border-radius: 10px;
+  }
 
 
 }
