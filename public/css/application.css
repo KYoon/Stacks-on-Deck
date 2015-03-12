@@ -44,8 +44,8 @@ p, label {
 }
 
 #game-page-container {
-  margin-left: 1%;
-  margin-right: 1%
+  margin: auto;
+  padding: 0;
 }
 
 .table-container {
@@ -181,7 +181,7 @@ h3 {
   height: 392px;
   width: 254px;
   border-radius: 12px;
-  background-color: white;
+  background-image: url(data:image/gif;base64,R0lGODlhJAAkAJEAAOjFsezdztOKbL5QKCH5BAAAAAAALAAAAAAkACQAAAL/HC4RAqm/mmLHyHmAbczB11Ea8ombJKSgKo6Z17pXFznmS1JptiX0z3vVhpEKDoUIkoa0olGIUeZUk1RI6Yn2mh/FDAt6frOrRRTqXPpsVLYugzxaVy+YcBdnoWPZOT0E4eckQtZFZBjWoHixQFWl6Nhol6R2p1Okt5TGaEWZA6fjiMdhZgPHeWrTWGVq+jTZg1HYyAEWKLYzmyiGKoUimilz+YYryyTlg5RcDJSAbNx0Q7lMcbIGEyzTK8zVdfVaImzs/QV+prYqWWW2ObkoOApM/Em/rUlIm7fijs8a2EEKEaZ3AsMUgneEU6RcpJbZ27aGHkAO2Ors8xQH1IR0Bn5YnOtVAAA7);
   padding: 0;
   margin: auto;
   display: flex;
@@ -203,12 +203,12 @@ h3 {
 
 
 #up-arrow {
-  color: black;
+  color: #5C0D0E;
   cursor: pointer;
 }
 
 #down-arrow {
-  color: black;
+  color: #5C0D0E;
   cursor: pointer;
 }
 
@@ -216,7 +216,7 @@ h3 {
   font-weight: bold;
   font-size: 75px;
   float: auto;
-  color: black;
+  color: #222222;
 }
 
 .start-game {
@@ -379,15 +379,15 @@ li {
     text-align: center;
   }
 
-  .outer {
+/*  .outer {
     border: 5px solid white;
-  }
+  }*/
   #hand-count {
     height: 196px;
     width: 127px;
     margin: auto;
     border-radius: 12px;
-    background-color: white;
+    background-image: url(data:image/gif;base64,R0lGODlhJAAkAJEAAOjFsezdztOKbL5QKCH5BAAAAAAALAAAAAAkACQAAAL/HC4RAqm/mmLHyHmAbczB11Ea8ombJKSgKo6Z17pXFznmS1JptiX0z3vVhpEKDoUIkoa0olGIUeZUk1RI6Yn2mh/FDAt6frOrRRTqXPpsVLYugzxaVy+YcBdnoWPZOT0E4eckQtZFZBjWoHixQFWl6Nhol6R2p1Okt5TGaEWZA6fjiMdhZgPHeWrTWGVq+jTZg1HYyAEWKLYzmyiGKoUimilz+YYryyTlg5RcDJSAbNx0Q7lMcbIGEyzTK8zVdfVaImzs/QV+prYqWWW2ObkoOApM/Em/rUlIm7fijs8a2EEKEaZ3AsMUgneEU6RcpJbZ27aGHkAO2Ors8xQH1IR0Bn5YnOtVAAA7);
     padding: 0;
     margin-bottom: 10px;
 
@@ -415,13 +415,13 @@ li {
   }
 
   #up-arrow {
-    color: black;
+    color: #5C0D0E;
     margin: 0;
     font-size: 4em;
   }
 
   #down-arrow {
-    color: black;
+    color: #5C0D0E;
     margin: 0;
     height: 60px;
     font-size: 4em;
@@ -435,7 +435,7 @@ li {
     width: 0;
     text-align: center;
     height: 70px;
-    color: black;
+    color: #222222;
   }
 
   #card-options ul {
