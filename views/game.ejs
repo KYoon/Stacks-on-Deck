@@ -14,18 +14,18 @@
 
 
 
-<!-- Waiting room -->
+  <!-- Waiting room -->
   <div class="row waiting-room">
-   <div class="col-xs-12">
+   <div class="col-xs-12 welcome">
     <h2>Welcome <span id="username"><%= username %></span></h2>
   </div>
 
-    <div class="player-card-count row">
-      <div class="col-sm-6">
-        <div class="player-list col-xs-12">
-          <h3>Players:</h3>
-        </div>
+  <div class="player-card-count row">
+    <div class="col-sm-6">
+      <div class="player-list col-xs-12">
+        <h3>Players:</h3>
       </div>
+    </div>
 
       <div id="hand-count" class="col-xs-7">
         <div class="second-hand-count">
@@ -33,18 +33,24 @@
           <h1 id="count">5</h1>
           <i id="down-arrow" class="fa fa-sort-desc fa-5x"></i>
 
+    <div id="test" class="col-sm-6">
+      <div id="hand-count">
+        <div class="second-hand-count">
+          <i id="up-arrow" class="fa fa-sort-asc fa-5x"></i>
+          <h1 id="count">5</h1>
+          <i id="down-arrow" class="fa fa-sort-desc fa-5x"></i>
         </div>
       </div>
     </div>
-
-
-    </div>
-      <h3 class="hand-size-label waiting-room">Starting Hand Size</h3>
-      <div class="start-game waiting-room">
-    <button class="btn btn-default" id="start-game-btn">Start Game</button>
-  </div>
   </div>
 </div>
+
+
+<h3 class="hand-size-label waiting-room">Starting Hand Size</h3>
+<div class="start-game waiting-room">
+  <button class="btn btn-default" id="start-game-btn">Start Game</button>
+</div>
+
 
 
 <!-- navbar -->
@@ -74,58 +80,6 @@
       </div>
     </section>
   </div>
-
-
-
-
-<!-- Active Game -->
-
-
-<!-- function addClass(){
-  if ($(".player-hand").children().children().length>6){
-    $(".player-hand").children().children().addClass("overlap");
-  }
-}
- -->
-
-
-
-<!-- </div> -->
-
-
-
-
-<!-- <div class="row">
-
-<div class="active-game col-xs-12" style="display: none">
-  <div class="table-container">
-    <div class= "col-xs-12">
-      <div class="table-buttons"></div>
-      <div class="tableclass"></div>
-    </div>
-  </div> -->
-
-
-<!--   <div class="row">
-    <div class="col-md-8 offset-col-md-2 hand-buttons-view">
-      <div class="draw-card-buttons" style="display: none">
-
-      </div>
-    </div>
-  </div> -->
-
-<!--   <div class="row">
-    <div class="table col-md-8 offset-col-md-2 passing-player-list" style="display: none">
-      <p>Pass card to player: </p>
-    </div>
-  </div> -->
-
-<!--   <div class="row">
-    <div class="col-md-10 player-hand playingCards simpleCards">
-      <p>Your Hand:</p>
-    </div>
-  </div> -->
-
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/public/socket_magic.js"></script>

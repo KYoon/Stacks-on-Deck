@@ -4,6 +4,7 @@ body {
   background: url("/public/images/tablebackground.jpg");
   background-position: center;
 /*  font-family: "Times New Roman", Times, serif;*/
+overflow-x: no-scroll;
 }
 
 
@@ -29,6 +30,10 @@ body {
 
 p, label {
     color: white;
+}
+
+.welcome {
+  margin-bottom: 3px;
 }
 
 #game-page-container {
@@ -156,11 +161,13 @@ h2 {
   list-style-type: none;
   padding: 10px;
   margin-left: 8%;
+  border-right: ;
 }
 
 h3 {
   color: white;
   font-weight: bold;
+  margin-top: 3px;
 }
 
 #hand-count {
@@ -171,7 +178,7 @@ h3 {
   background-color: white;
   padding: 0;
   margin-bottom: 10px;
-
+  margin-top: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -227,6 +234,10 @@ h3 {
       text-align: center;
       margin-top: 0;
       margin-bottom: 10px;
+  }
+
+  .welcome {
+    border-bottom: 3px solid #222222;
   }
 
 .player-card-count {
