@@ -17,7 +17,7 @@ var HandView = Backbone.View.extend({
   render: function(){
     this.$el.empty();
     this.addAll();
-    console.log("HIHI")
+    this.addActiveClass();
   },
 
   addOne: function(card){
@@ -25,6 +25,7 @@ var HandView = Backbone.View.extend({
     this.cardViews.push(view);
     view.render();
     this.$el.append(view.$el);
+    this.addActiveClass();
   },
 
   addAll: function(){
@@ -47,5 +48,13 @@ var HandView = Backbone.View.extend({
     this.cardViews = _.filter(this.cardViews, function(view) { return view.model !== card;
     });
     view.remove();
+    this.addActiveClass();
+  },
+
+   addActiveClass: function(){
+   if ($(".player-hand").children().children().length > 6){
+    $(".player-hand").children().children().addClass("overlap")
+   } else
+   $(".player-hand").children().children().removeClass("overlap")
   }
 })
