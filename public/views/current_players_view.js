@@ -6,6 +6,7 @@ var CurrentPlayersView = Backbone.View.extend({
   },
 
   render: function() {
+    console.log("GETTING HERERERER")
     this.$el.empty();
     this.addAll();
   },

@@ -6,7 +6,9 @@ var WaitingRoomView = Backbone.View.extend({
   },
 
   render: function(){
+    playerListView.render();
     this.$el.append(this.template);
+    $(".player-list").append(playerListView.$el);
   }
       
 })
