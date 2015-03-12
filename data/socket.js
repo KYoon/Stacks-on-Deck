@@ -110,6 +110,7 @@ io.on('connection', function(socket){
     repo.passCard(roomKey, username, "Discard", cardId, function(card){
       var card = JSON.parse(card);
       socket.emit("removeCardFromHand", card);
+      socket.broadcast.to(roomKey).emit("cardDiscardMessage", username)
     });
   });
 

@@ -14,6 +14,7 @@ var MessageView = Backbone.View.extend({
     this.listenTo(socket, 'cardPassMessage', this.cardPass);
     this.listenTo(socket, 'playerLeaveMessage', this.playerLeave);
     this.listenTo(socket, 'deckEmptyMessage', this.deckEmpty);
+    this.listenTo(socket, 'cardDiscardMessage', this.cardDiscard);
   },
 
   playerJoin: function(username){
@@ -86,18 +87,30 @@ var MessageView = Backbone.View.extend({
 
   cardPass: function(usernameFrom, usernameTo){
     $.notify({
-      icon: "glyphicon glyphicon-plus",
-      title: "Cards Dealt:",
+      icon: "glyphicon glyphicon-share-alt",
+      title: "Card Pass:",
       message: usernameFrom + " has passed a card to " + usernameTo + "."
     });
   },
 
   playerLeave: function(username) {
+    if (username === "table") {
+      this.tableLeave();
+    } else {
+      $.notify({
+        icon: "glyphicon glyphicon-warning-sign",
+        title: "Player Leave:",
+        message: username + " has left the room. Their cards have been forfeited."
+      });
+    }
+  },
+
+  tableLeave: function() {
     $.notify({
-      icon: "glyphicon glyphicon-warning-sign",
-      title: "Player Leave:",
-      message: username + " has left the room. Their cards have been forfeited."
-    });
+        icon: "glyphicon glyphicon-phone",
+        title: "Device Disconnect:",
+        message: "The table device has disconnected from the game."
+      });
   },
 
   deckEmpty: function() {
@@ -106,5 +119,13 @@ var MessageView = Backbone.View.extend({
       title: "Deck Empty:",
       message: " There are no more cards in the deck."
     });
+  },
+
+  cardDiscard: function(username) {
+    $.notify({
+      icon: "glyphicon glyphicon-warning-sign",
+      title: "Discard:",
+      message: username + " has discarded a card."
+    });    
   }
 })
