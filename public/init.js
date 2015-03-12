@@ -17,6 +17,9 @@ $(document).ready(function() {
   playerList = new PlayerList();
   playerListView = new CurrentPlayersView({collection: playerList});
   
+  // add the pass to player list view
+  playerListForPassing = new PlayerList();
+  playerListViewForPassing = new PassingPlayersView({collection: playerListForPassing});
 
   // instantiate message view
   messageView = new MessageView();
