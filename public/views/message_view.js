@@ -2,10 +2,11 @@ var MessageView = Backbone.View.extend({
   initialize: function(){
     $.notifyDefaults({
       type: "yoonify",
-      delay: 1500,
+      delay: 1000,
       placement:{from: "top",align: "center"}
     });
     // listening
+    this.listenTo(socket, 'gameStartMessage', this.rotate)
     this.listenTo(socket, 'newPlayer', this.playerJoin.bind(this));
     this.listenTo(socket, 'cardDrawMessage', this.cardDraw);
     this.listenTo(socket, 'cardDrawToTableMessage', this.cardDrawToTable);
@@ -15,6 +16,14 @@ var MessageView = Backbone.View.extend({
     this.listenTo(socket, 'playerLeaveMessage', this.playerLeave);
     this.listenTo(socket, 'deckEmptyMessage', this.deckEmpty);
     this.listenTo(socket, 'cardDiscardMessage', this.cardDiscard);
+  },
+
+  rotate: function(){
+    $.notify({
+        icon: "glyphicon glyphicon-refresh",
+        title: "Game Starting: ",
+        message: "Please rotate device to landscape for optimal experience."
+      });
   },
 
   playerJoin: function(username){
@@ -126,6 +135,6 @@ var MessageView = Backbone.View.extend({
       icon: "glyphicon glyphicon-warning-sign",
       title: "Discard:",
       message: username + " has discarded a card."
-    });    
+    });
   }
 })

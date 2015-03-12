@@ -30,18 +30,20 @@ io.on('connection', function(socket){
 
   // Deal cards to all users in a room
   socket.on("dealCards", function(data){
-    console.log("test")
     var roomKey = socket.rooms[1];
-    repo.createDeck(roomKey);
-    repo.dealUsersCards(roomKey, parseInt(data.dealingCount), function(){
-      repo.checkDeckCount(roomKey, function(err, count) {
-        if (count === 0) {
-          io.to(roomKey).emit("deckEmptyMessage");
-        }
-      })
-    });
-    socket.broadcast.to(roomKey).emit("cardsDealMessage", socket.username, data.dealingCount)
-    updateAllUserHands(roomKey);
+    io.to(roomKey).emit("gameStartMessage");
+    setTimeout(function(){
+      repo.createDeck(roomKey);
+      repo.dealUsersCards(roomKey, parseInt(data.dealingCount), function(){
+        repo.checkDeckCount(roomKey, function(err, count) {
+          if (count === 0) {
+            io.to(roomKey).emit("deckEmptyMessage");
+          }
+        })
+      });
+      socket.broadcast.to(roomKey).emit("cardsDealMessage", socket.username, data.dealingCount)
+      updateAllUserHands(roomKey);
+    },1000);
   });
 
   // Pass a card from one user to another
