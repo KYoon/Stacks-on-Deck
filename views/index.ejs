@@ -1,49 +1,58 @@
 <div class = "container" id="splash-page-container">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 splash">
+    <div class="col-xs-10 col-xs-offset-1 splash text-center">
       <h1>Stacks on Deck</h1>
-      <p>a simple card game brought to you by the chicago squirrels!</p>
+      <p>a versatile virtual card deck brought to you by the DBC Chicago Squirrels</p>
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
-      <form id="create" method="POST" action="/games">
-        <div class="form-group">
-          <label>Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="username">
-        </div>
-        <input type="submit" value = "Create Room" class="btn btn-default">
-      </form>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
-      <form id="join" method="POST" action="/join">
+      <form id="join-create" method="POST" action="/join">
         <div class="form-group">
           <label>Username</label>
           <input type = "text" id="username" name="username" class="form-control" placeholder="username">
         </div>
         <div class="form-group">
           <label>Room Key</label>
-          <input type = "text" id="roomkey" name="roomkey" class="form-control" placeholder="room key ie: HGCF">
+          <input type = "text" id="roomkey" name="roomkey" class="form-control" placeholder="unique identifier for your room">
         </div>
-        <input type="submit" value="Join Room" class="btn btn-default">
+        <input type="submit" value="Enter Room" class="btn btn-default">
       </form>
     </div>
   </div>
 
     <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
-      <p> Add a table to an existing game </p>
+      <p> add a table to an existing game </p>
       <form id="table" method="POST" action="/tables">
         <div class="form-group">
           <label>Room Key</label>
-          <input type = "text" id="roomkey" name="roomkey" class="form-control" placeholder="room key ie: HGCF">
+          <input type = "text" id="roomkey-table" name="roomkey" class="form-control" placeholder="room key of existing room">
         </div>
         <input type="submit" value="Connect Table" class="btn btn-default">
       </form>
     </div>
   </div>
 </div>
+<script>
+  var roomkeyField = document.getElementById('roomkey');
+  var roomkeyTableField = document.getElementById('roomkey-table');
+
+  formatRoomKey = function (){
+    this.value = this.value.toUpperCase().split(" ").join("-");
+    if (this.value.length > 10) {
+      this.value = this.value.slice(0,9);
+    }
+  }
+
+  roomkeyField.onkeyup = formatRoomKey;
+  roomkeyTableField.onkeyup = formatRoomKey;
+
+  var form = document.getElementById("join-create")
+  form.onsubmit = function () {
+    if (roomkeyField.value.slice(-1) === "-"){
+      roomkeyField.value = roomkeyField.value.slice(0,-1);
+    }
+  }
+</script>
