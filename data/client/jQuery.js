@@ -3,9 +3,7 @@ $(document).ready(function(){
 
  $(document).on("click", ".passing-player-list", function(e){
     e.preventDefault();
-    var id = hand.activeCard.id;
-    toUser = $(this).attr("id")
-    socket.emit("passCard", {toUser: toUser, cardId: id})
+    $(".pass-list").show();
   });
 
   //Table Buttons
@@ -44,6 +42,9 @@ $(document).ready(function(){
 
  $(document).on("click", ".user", function(e){
     e.preventDefault();
+    var id = hand.activeCard.id;
+    toUser = $(this).attr("id")
+    socket.emit("passCard", {toUser: toUser, cardId: id})
     $(".pass-list").hide();
   });
 
