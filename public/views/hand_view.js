@@ -17,6 +17,7 @@ var HandView = Backbone.View.extend({
   render: function(){
     this.$el.empty();
     this.addAll();
+    console.log("HIHI")
   },
 
   addOne: function(card){

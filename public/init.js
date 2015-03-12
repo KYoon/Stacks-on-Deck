@@ -4,9 +4,15 @@ $(document).ready(function() {
     headerView.render();
     $(".sweet-container").prepend(headerView.$el);
   }
-
+  //Wait room
   waitingRoomView = new WaitingRoomView();
-  waitingRoomView.render();
+  $(".all-game-container").append(waitingRoomView.$el);
+  
+
+  //Game room 
+  gameRoomView = new GameRoomView();
+  $(".all-game-container").append(gameRoomView.$el);
+  
   // add the hand view
   hand = new Hand();
   handView = new HandView({collection: hand});
@@ -35,4 +41,5 @@ $(document).ready(function() {
 
   // instantiate message view
   messageView = new MessageView();
+
 })

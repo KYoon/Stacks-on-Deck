@@ -10,7 +10,6 @@ var PassingPlayersView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log("render called")
     this.$el.empty();
     this.addAll();
   },

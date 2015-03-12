@@ -1,7 +1,7 @@
 <!-- Waiting room -->
     <div class="container-fluid">
       <div class="room-key-div">
-        <div><p class="navbar-brand">Room: <%= roomkey %></p></div>
+        <div><p class="navbar-brand">Room: <%= userData.roomkey %></p></div>
         <div class="navbar-inner">
           <div class="navbar-center inline">
             <p>Stacks on Deck</p>
@@ -16,7 +16,7 @@
 
 <div class="row waiting-room">
    <div class="col-xs-12 welcome">
-    <h2>Welcome <span id="username"><%= username %></span></h2>
+    <h2>Welcome <span id="username"><%= userData.username %></span></h2>
   </div>
 
 

@@ -8,8 +8,7 @@ $(document).ready(function(){
   //   var faceDown = $("#facedown").is(':checked');
   //   dealCards({dealingCount: dealingCount, cardAppearance: faceDown});
   // });
-
-  $(".passing-player-list").on("click", ".pass-to", function(e){
+ $(document).on("click", "#passing-player-list", function(e){
     e.preventDefault();
     var id = hand.activeCard.id;
     toUser = $(this).attr("id")
@@ -17,73 +16,70 @@ $(document).ready(function(){
   });
 
   //Table Buttons
-  $("#table-draw-card").click(function(){
+   $(document).on("click", "#table-draw-card", function(){
       socket.emit("tableDeckDraw")
   });
 
-  $("#table-discard-card").click(function(e){
+ $(document).on("click", "#table-discard-card", function(e){
     e.preventDefault;
     cardId = table.activeCard.attributes.id
       socket.emit("discardTableCard", cardId);
   });
 
-  $("#table-get-card").click(function(e){
+ $(document).on("click", "#table-get-card", function(e){
     e.preventDefault;
     cardId = table.activeCard.attributes.id
     socket.emit("getTableCard", cardId);
   });
 
-  $("#collect-table-cards").click(function(e){
+ $(document).on("click", "#collect-table-cards", function(e){
     e.preventDefault;
     socket.emit("userCollectsTable");
   });
 
   //Hand Buttons
-  $("#draw-card").click(function(){
+  $(document).on("click", "#draw-card", function(){
     socket.emit("drawCard")
   });
-
-  $("#hand-discard-button").click(function(){
+ $(document).on("click", "#hand-discard-button", function(){
     hand.discard();
   });
 
-  $("#hand-play-button").click(function(){
+ $(document).on("click", "#hand-play-button", function(){
     hand.playCard();
   });
 
-  // $("#hand-pass-button").click(function(){
+  // $("#hand-pass-button")."click"(function(){
   //   $(".passing-player-list").show();
   // });
 
-  $(".user").click(function(e){
+ $(document).on("click", ".user", function(e){
     e.preventDefault();
-    console.log("i got clicked")
     $(".pass-list").hide();
   });
 
-  $(".passing-player-list").click(function(e){
-    console.log("fuck you, i got clicked")
-  })
+  // $(".passing-player-list")."click"(function(e){
+  // })
 
-  $("#down-arrow").on("click", function(){
+  $(document).on("click", "#down-arrow", function(){
     var count = parseInt($("#count").text())
     if (count > 0) {
       $("#count" ).html(count - 1)
     }
   });
 
-  $("#up-arrow").on("click", function(){
+  $(document).on("click", "#up-arrow", function(){
     var count = parseInt($("#count").text())
     $("#count").html(count + 1)
   });
 
-  $("#start-game-btn").on("click", function() {
+  $(document).on("click", "#start-game-btn", function() {
     var dealingCount = parseInt($("#count").text())
     // var faceDown = $("#facedown").is(':checked');
     dealCards({dealingCount: dealingCount});
   });
 
-  $(".table-buttons").on("click", function(){
+ $(document).on("click", ".table-buttons", function(){
     $(".table-buttons div").hide();
   });
 });
