@@ -345,6 +345,7 @@ li {
   display: inline-block;
 }
 
+
 .help-menu {
   background-color: #222222;
   position: fixed;
@@ -359,6 +360,27 @@ li {
   margin-left: 98%;
   top: 0;
 }
+
+ #card-options ul {
+  width: 200px;
+  background: #292929;
+  color: white;
+  list-style: none;
+  padding-left: 0;
+}
+
+#card-options li {
+  padding: 5%;
+  border-top: 1px solid #3c3c3c;
+}
+
+.sidebar-brand {
+  font-size: 140%;
+}
+#card-options li a {
+  font-size: 120%;
+}
+
 
 
 @media (max-width: 768px) {
