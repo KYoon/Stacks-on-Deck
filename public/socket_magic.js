@@ -23,9 +23,9 @@ $(document).ready(function(){
 $(document).ready(function(){
   var toUser = "";
 
- $(document).on("click", ".passing-player-list", function(e){
+ $(document).on("click", ".show-passing-player-list", function(e){
     e.preventDefault();
-    $(".pass-list").show();
+    $(".pass-list").slideDown(300);
   });
 
   //Table Buttons
@@ -62,12 +62,12 @@ $(document).ready(function(){
     hand.playCard();
   });
 
- $(document).on("click", ".user", function(e){
+ $(document).on("click", ".pass-to", function(e){
     e.preventDefault();
     var id = hand.activeCard.id;
     toUser = $(this).attr("id")
-    socket.emit("passCard", {toUser: toUser, cardId: id})
     $(".pass-list").hide();
+    socket.emit("passCard", {toUser: toUser, cardId: id})
   });
 
   $(document).on("click", "#down-arrow", function(){

@@ -6,6 +6,7 @@ var GameRoomView = Backbone.View.extend({
     this.$el.append(this.template);
     playerListViewForPassing.render();
     $(".passing-player-list").append(playerListViewForPassing.$el);
+    $(".pass-list").hide();
   }
       
 })

@@ -236,6 +236,7 @@ h3 {
 
   .game-nav {
     width: 25%;
+    max-width: 250px;
   }
 
   .overlap{
@@ -321,19 +322,19 @@ li {
 
 
 @media (max-width: 768px) {
-    h2, h3 {
-      text-align: center;
-      margin-top: 0;
-      margin-bottom: 10px;
+  h2, h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
   }
 
   .welcome {
     border-bottom: 3px solid #222222;
   }
 
-.player-card-count {
-  text-align: center;
-}
+  .player-card-count {
+    text-align: center;
+  }
 
   #hand-count {
     height: 196px;
@@ -370,11 +371,11 @@ li {
   }
 
   #down-arrow {
-  color: #8D1B0F;
-  margin: 0;
-  height: 60px;
-  font-size: 4em;
-  float
+    color: #8D1B0F;
+    margin: 0;
+    height: 60px;
+    font-size: 4em;
+    float
   }
 
   #count {
@@ -386,7 +387,25 @@ li {
     height: 70px;
   }
 
-  .pass-list {
-    display: none;
-  }
+  #card-options ul {
+   width: 200px;
+   background: #292929;
+   color: white;
+   list-style: none;
+   padding-left: 0;
+ }
+ 
+ #card-options li {
+   padding: 4px;
+   border-top: 1px solid #3c3c3c;
+ }
 
+.passing-player-list {
+  position: absolute;
+  right: 25%;
+  top: 0;
+  text-align: center;
+  z-index: 99;
+ }
+
+}
