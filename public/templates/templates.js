@@ -144,7 +144,7 @@ this["JST"]["templates/cardDown.jst"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="card back">*</div>\n';
+__p += '<div class="card back"><div class="inner">*<div></div>\n';
 
 }
 return __p
