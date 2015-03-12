@@ -46,6 +46,7 @@ var TableView = Backbone.View.extend({
   flipCards: function(){
     this.collection.each(function(card) {
       card.flipCard()
+      socket.emit("cardFlip", card.get("id"));
     })
   },
 
