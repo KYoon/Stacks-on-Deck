@@ -485,5 +485,12 @@ li {
     border-radius: 10px;
   }
 
+  .sidebar-brand {
+    font-size: 100%;
+  }
+  #card-options li a {
+    font-size: 100%;
+  }
+
 
 }
