@@ -98,7 +98,32 @@
       -webkit-linear-gradient(255deg, rgba(184, 155, 155, 0.3), rgba(255, 255, 255, 0.0) 60%);
 }
 
-
+.inner-big {
+    margin: 0%;
+    height: 100%;
+    border-radius: 5px;
+    border: solid 5px white;
+    background-image:
+      repeating-linear-gradient(45deg,
+          transparent 2px, transparent 2px, transparent 6px, transparent 8px,
+          red 2px, red 10px, transparent 6px, transparent 16px,
+          red 2px, red 18px, transparent 6px, transparent 24px,
+          red 2px, red 26px, transparent 6px, transparent 32px,
+          red 2px, red 34px, transparent 6px, transparent 40px,
+          red 2px, red 42px, transparent 6px, transparent 48px,
+          red 2px, red 50px, transparent 48px, transparent 74px
+        ),
+       repeating-linear-gradient(135deg,
+          transparent 2px, transparent 2px, transparent 6px, transparent 8px,
+          red 2px, red 10px, transparent 6px, transparent 16px,
+          red 2px, red 18px, transparent 6px, transparent 24px,
+          red 2px, red 26px, transparent 6px, transparent 32px,
+          red 2px, red 34px, transparent 6px, transparent 40px,
+          red 2px, red 42px, transparent 6px, transparent 48px,
+          red 2px, red 50px, transparent 48px, transparent 74px
+      ),
+      -webkit-linear-gradient(255deg, rgba(184, 155, 155, 0.3), rgba(255, 255, 255, 0.0) 60%);
+}
 /* suit colours
 ********************************************************************/
 
