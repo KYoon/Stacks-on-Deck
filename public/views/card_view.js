@@ -34,7 +34,6 @@ var CardView = Backbone.View.extend({
   },
 
   render: function(){
-    // this.$el.addClass(this.color)
     if (this.model.get('faceUp') === true) {
       this.$el.html(this.cardTemplate({color: this.color, suit: this.suit}))
     } else {

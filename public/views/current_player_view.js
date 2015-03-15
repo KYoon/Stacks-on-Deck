@@ -7,10 +7,6 @@ var CurrentPlayerView = Backbone.View.extend({
     class: "user"
   },
 
-  // events: {
-  //   'click': "moveCard",
-  // },
-
   render: function(){
     this.$el.append(this.template(this.model.attributes))
   }
