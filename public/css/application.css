@@ -16,6 +16,12 @@ a:hover {
   text-decoration: none;
 }
 
+/* Fixes weird extra right side spacing on the holding page */
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 
 .navbar-roomkey {
   left: 0;
@@ -359,7 +365,7 @@ li {
 
 .help-button-container {
   position: fixed;
-  margin-left: 92%;
+  margin-left: 94%;
   top: 0;
 }
 
