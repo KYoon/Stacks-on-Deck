@@ -6,10 +6,6 @@ var HandView = Backbone.View.extend({
     this.listenTo(this.collection, "remove", this.removeOne);
   },
 
-  // attributes: {
-  //   class: "card-overlap"
-  // },
-
   events: {
     "flick": "flipCards"
   },

@@ -29,9 +29,3 @@ var PlayerList = Backbone.Collection.extend({
     })
   }
 });
-
-// 1. Move socket binding to models & collections (make sure can verify things are wired by console.log)
-// 2. Check all new instantiation for args (model: foo)
-// 3. Check views for template setting (maybe nate broke things)
-// 4. Update views to listen for collection.add & collection.reset -- they should update DOM
-// 5. Split the PlayerView into two views, for for the list of players and another for the passing of a card

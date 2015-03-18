@@ -1,17 +1,25 @@
 html {
   box-sizing: border-box;
 }
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
 body {
-  /*background-color: #222;*/
-  /*  background-color: #27ae60;*/
   background: url("/public/images/tablebackground.jpg");
   background-position: center;
-  /*  font-family: "Times New Roman", Times, serif;*/
   overflow-x: no-scroll;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Fixes weird extra right side spacing on the holding page */
+.row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 
@@ -357,7 +365,7 @@ li {
 
 .help-button-container {
   position: fixed;
-  margin-left: 98%;
+  margin-left: 94%;
   top: 0;
 }
 
@@ -383,6 +391,8 @@ li {
 
 
 
+/*For Mobile Views*/
+
 @media (max-width: 768px) {
   body {
     vertical-align: top;
@@ -401,9 +411,6 @@ li {
     text-align: center;
   }
 
-/*  .outer {
-    border: 5px solid white;
-  }*/
   #hand-count {
     height: 196px;
     width: 127px;

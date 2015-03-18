@@ -65,10 +65,8 @@ io.on('connection', function(socket){
     var roomKey = socket.rooms[1];
     var username = socket.username;
     repo.dealUserCard(roomKey, username, function(card) {
-      console.log("dealuserCard callback right here.")
       var card = JSON.parse(card);
       repo.checkDeckCount(roomKey, function(err, count) {
-        console.log(count)
         if (count === 0) {
           io.to(roomKey).emit("deckEmptyMessage");
         } else {
