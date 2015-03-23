@@ -89,6 +89,11 @@ $(document).ready(function(){
   $(document).on("click", "#up-arrow", function(){
     var count = parseInt($("#count").text())
     var numPlayers = playerList.length
+    for(var i = 0; i < playerList.length; i++) {
+      if (playerList.models[i].get('username') === 'table') {
+        numPlayers = numPlayers-1;
+      }
+    }
     var maxNum = (52/numPlayers)
 
     if (count < maxNum) {
