@@ -6,6 +6,9 @@ Our vision for Stacks on Deck is that we wanted to not make just a card game, bu
 
 We also have the option to have a dedicated virtual table which allows users that have access to the table to move the cards around and flip them over. The app can be played on all personal machines, mobile devices, and browsers. The cards' look may vary.
 
+## Original App Website
+https://stacksondeck.herokuapp.com
+
 ## Run locally
 Install all the dependencies:
 
