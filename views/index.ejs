@@ -1,12 +1,18 @@
 <div class = "container" id="splash-page-container">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1 splash text-center">
-      <h1>Stacks on Deck</h1>
-      <p>a versatile virtual card deck brought to you by the DBC Chicago Squirrels</p>
+      <div class = "logo">
+      </div>
+    </div>
+  </div>
+  <div class = "row instructions">
+    <div class="col-xs-10 col-xs-offset-1 text-center">
+      <p>To join a room, enter a username and an existing room key, or make your own to create a room.</p>
+      <p>To connect a separate device as a virtual table, click "connect table."</p>
     </div>
   </div>
 
-  <div class="row">
+  <div class="row user-signin">
     <div class="col-xs-10 col-xs-offset-1">
       <form id="join-create" method="POST" action="/join">
         <div class="form-group">
@@ -17,42 +23,31 @@
           <label>Room Key</label>
           <input type = "text" id="roomkey" name="roomkey" class="form-control" placeholder="unique identifier for your room">
         </div>
-        <input type="submit" value="Enter Room" class="btn btn-default">
+        <div class = "form-group">
+          <input type="submit" value="Enter Room" id = "enter-room" class="btn btn-default">
+        </div>
+        <div class = "form-group">
+          <input type ="submit" value = "Connect Table" id = "connect-table" class= "btn btn-default">
+        </div>
       </form>
     </div>
   </div>
 
-    <div class="row">
+    <div class="row table-signin">
     <div class="col-xs-10 col-xs-offset-1">
-      <p> add a table to an existing game </p>
       <form id="table" method="POST" action="/tables">
         <div class="form-group">
           <label>Room Key</label>
           <input type = "text" id="roomkey-table" name="roomkey" class="form-control" placeholder="room key of existing room">
         </div>
-        <input type="submit" value="Connect Table" class="btn btn-default">
+        <div class = "form-group">
+          <input type="submit" value="Connect Table" class="btn btn-default">
+        </div>
+        <div class = "form-group">
+          <input type="submit" value="Return to User Sign In" id = "return-user-signin" class="btn btn-default">
+        </div>
       </form>
     </div>
   </div>
 </div>
-<script>
-  var roomkeyField = document.getElementById('roomkey');
-  var roomkeyTableField = document.getElementById('roomkey-table');
-
-  formatRoomKey = function (){
-    this.value = this.value.toUpperCase().split(" ").join("-");
-    if (this.value.length > 10) {
-      this.value = this.value.slice(0,9);
-    }
-  }
-
-  roomkeyField.onkeyup = formatRoomKey;
-  roomkeyTableField.onkeyup = formatRoomKey;
-
-  var form = document.getElementById("join-create")
-  form.onsubmit = function () {
-    if (roomkeyField.value.slice(-1) === "-"){
-      roomkeyField.value = roomkeyField.value.slice(0,-1);
-    }
-  }
-</script>
+<script src = "/public/index_script.js"></script>
