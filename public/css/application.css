@@ -383,13 +383,12 @@ li {
 }
 
 .logo {
-  background-size: 120%;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-image: url("/public/images/stacksondeck-table-view.svg");
   background-position: center;
-  height: 20%;
+  height: 30%;
   margin-top: 3%;
-  margin-bottom:-8%;
 }
 
 .table-signin {
@@ -398,6 +397,7 @@ li {
 
 .instructions {
   margin-bottom: 5%;
+  font-weight: bold;
 }
 
 
@@ -509,5 +509,18 @@ li {
     font-size: 100%;
   }
 
+.instructions {
+  margin-bottom: 5%;
+}
+
+.logo {
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-image: url("/public/images/stacksondeck-table-view.svg");
+  background-position: center;
+  height: 20%;
+  margin-top: 3%;
+  margin-bottom:-8%;
+}
 
 }
