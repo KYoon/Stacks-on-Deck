@@ -68,6 +68,7 @@ stacks.cards@gmail.com
 * Implement customization of table and deck
 * Make preset games
 * Allow players to make rules
+* Allow players to join game already in progress
 
 ## How to contribute
 Make a pull request and then wait for a response! Please make commits often and be as descriptive as you can if you are to make a pull request. Also, to reference the original team, include @KYoon @aamharris @Bsheridan12 @fgv02009 @jnmandal within the pull request.
