@@ -27,7 +27,7 @@ io.on('connection', function(socket){
         socket.join(data.roomId, function(error){
           socket.username = data.username;
           userjoined = data.username;
-          roomId = data.roomId
+          roomId = data.roomId;
           repo.createUser(data.roomId, data.username, socket.id);
           repo.getUser(roomId, socket.id, function(err, username){
             repo.getHand(roomId, username, function(err, data){
@@ -37,7 +37,7 @@ io.on('connection', function(socket){
         });
       }
     });
-  });
+});
 
   // Deal cards to all users in a room
   socket.on("dealCards", function(data){
@@ -223,3 +223,10 @@ function updateAllUserHands(roomId){
     })
   })
 }
+
+// Render/Update table for the people who join in late
+// function getTable(roomId, userId){
+//   repo.getHand(roomId, "Table", function(err, data){
+//     io.to(userId).emit("updateHand", jsonParser(data.sort()));
+//   })
+// }
