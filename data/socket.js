@@ -24,11 +24,17 @@ io.on('connection', function(socket){
         });
       } else {
         // socket.emit("gameInProgress");
-        repo.getUser(roomId, socket.id, function(err, username){
-          repo.getHand(roomId, username, function(err, data){
-            io.to(socket.id).emit("updateHand", jsonParser(data.sort()));
+        socket.join(data.roomId, function(error){
+          socket.username = data.username;
+          userjoined = data.username;
+          roomId = data.roomId
+          repo.createUser(data.roomId, data.username, socket.id);
+          repo.getUser(roomId, socket.id, function(err, username){
+            repo.getHand(roomId, username, function(err, data){
+              io.to(socket.id).emit("updateHand", jsonParser(data.sort()));
+            })
           })
-        })
+        });
       }
     });
   });
