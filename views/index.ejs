@@ -18,11 +18,11 @@
       <form id="join-create" method="POST" action="/join">
         <div class="form-group">
           <label>Username</label>
-          <input type = "text" id="username" name="username" class="form-control" placeholder="username">
+          <input type="text" id="username" name="username" class="form-control" placeholder="username">
         </div>
         <div class="form-group">
-          <label>Room Key</label>
-          <input type = "text" id="roomkey" name="roomkey" class="form-control" placeholder="unique identifier for your room">
+          <label>Room ID</label>
+          <input type="text" id="roomId" name="roomId" class="form-control" placeholder="unique identifier for your room">
         </div>
         <div class = "form-group">
           <input type="submit" value="Enter Room" id = "enter-room" class="btn btn-default">
@@ -39,7 +39,7 @@
       <form id="table" method="POST" action="/tables">
         <div class="form-group">
           <label>Room Key</label>
-          <input type = "text" id="roomkey-table" name="roomkey" class="form-control" placeholder="room key of existing room">
+          <input type = "text" id="roomId-table" name="roomId" class="form-control" placeholder="room key of existing room">
         </div>
         <div class = "form-group">
           <input type="submit" value="Enter Room as Table" class="btn btn-default">
@@ -52,3 +52,24 @@
   </div>
 </div>
 <script src = "/public/index_script.js"></script>
+<script>
+  var roomIdField = document.getElementById('roomId');
+  var roomIdTableField = document.getElementById('roomId-table');
+
+  formatroomId = function(){
+    this.value = this.value.toUpperCase().split(" ").join("-");
+    if (this.value.length > 10) {
+      this.value = this.value.slice(0,9);
+    }
+  }
+
+  roomIdField.onkeyup = formatroomId;
+  roomIdTableField.onkeyup = formatroomId;
+
+  var form = document.getElementById("join-create")
+  form.onsubmit = function () {
+    if (roomIdField.value.slice(-1) === "-"){
+      roomIdField.value = roomIdField.value.slice(0,-1);
+    }
+  }
+</script>

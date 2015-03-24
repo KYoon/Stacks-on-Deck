@@ -4,14 +4,14 @@ def create_room(username)
     fill_in "username", with: username
   end
   click_button "Create Room"
-  return find("#roomkey").text
+  return find("#roomId").text
 end
 
-def join_existing_room(username, roomkey)
+def join_existing_room(username, roomId)
   visit "/"
   within "form#join" do
     fill_in "username", with: username
-    fill_in "roomkey",  with: roomkey
+    fill_in "roomId",  with: roomId
   end
   click_button "Join Room"
 end
@@ -43,11 +43,11 @@ end
 
 # method uses browser :one and broswer :two to put users in same room
 def create_and_join_room(browser_one_username, browser_two_username)
-  roomkey = ""
+  roomId = ""
   in_browser(:one) do
-    roomkey = create_room(browser_one_username)
+    roomId = create_room(browser_one_username)
   end
   in_browser(:two) do
-    join_existing_room(browser_two_username, roomkey)
+    join_existing_room(browser_two_username, roomId)
   end
 end

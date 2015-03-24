@@ -6,71 +6,76 @@ var repo = require('./repository');
 // Sockets!
 io.on('connection', function(socket){
   var userjoined;
-  var roomid;
+  var roomId;
 
   // User enters room
   socket.on("joinRoom", function(data){
-    repo.checkDeckCount(data.roomkey, function(err, count) {
+    repo.checkDeckCount(data.roomId, function(err, count) {
       if (count === 0) {
-        socket.join(data.roomkey, function(error){
+        socket.join(data.roomId, function(error){
           socket.username = data.username;
           userjoined = data.username;
-          roomid = data.roomkey
-          repo.createUser(data.roomkey, data.username, socket.id);
-          repo.getUsers(data.roomkey, function(err, users){
+          roomId = data.roomId
+          repo.createUser(data.roomId, data.username, socket.id);
+          repo.getUsers(data.roomId, function(err, users){
             socket.emit("joinedGame", users);
           });
-          socket.broadcast.to(data.roomkey).emit('newPlayer', data.username);
+          socket.broadcast.to(data.roomId).emit('newPlayer', data.username);
         });
       } else {
-        socket.emit("gameInProgress");
+        // socket.emit("gameInProgress");
+        repo.getUser(roomId, socket.id, function(err, username){
+          repo.getHand(roomId, username, function(err, data){
+            io.to(socket.id).emit("updateHand", jsonParser(data.sort()));
+          })
+        })
       }
     });
   });
 
   // Deal cards to all users in a room
   socket.on("dealCards", function(data){
-    var roomKey = socket.rooms[1];
-    io.to(roomKey).emit("gameStartMessage");
+    var roomId = socket.rooms[1];
+    io.to(roomId).emit("gameStartMessage");
     setTimeout(function(){
-      repo.createDeck(roomKey);
-      repo.dealUsersCards(roomKey, parseInt(data.dealingCount), function(){
-        repo.checkDeckCount(roomKey, function(err, count) {
+      repo.createDeck(roomId);
+      repo.dealUsersCards(roomId, parseInt(data.dealingCount), function(){
+        repo.checkDeckCount(roomId, function(err, count) {
           if (count === 0) {
-            io.to(roomKey).emit("deckEmptyMessage");
+            io.to(roomId).emit("deckEmptyMessage");
           }
         })
       });
-      socket.broadcast.to(roomKey).emit("cardsDealMessage", socket.username, data.dealingCount)
-      updateAllUserHands(roomKey);
+      socket.broadcast.to(roomId).emit("cardsDealMessage", socket.username, data.dealingCount)
+      updateAllUserHands(roomId);
     },1000);
   });
 
   // Pass a card from one user to another
   socket.on("passCard", function(data){
-    var roomKey = socket.rooms[1];
+    var roomId = socket.rooms[1];
     var username = socket.username
-    repo.passCard(roomKey, username, data.toUser, data.cardId, function(card){
+    repo.passCard(roomId, username, data.toUser, data.cardId, function(card){
       var card = JSON.parse(card);
       socket.emit("removeCardFromHand", card);
-      repo.getKey(roomKey, data.toUser, function(err, key){
+      repo.getKey(roomId, data.toUser, function(err, key){
         io.to(key).emit("addCardToHand", card);
       });
-      socket.broadcast.to(roomKey).emit("cardPassMessage", username, data.toUser);
+      socket.broadcast.to(roomId).emit("cardPassMessage", username, data.toUser);
     });
   });
 
   // Draw a card from the deck
   socket.on("drawCard", function(){
-    var roomKey = socket.rooms[1];
+    var roomId = socket.rooms[1];
     var username = socket.username;
-    repo.dealUserCard(roomKey, username, function(card) {
+    repo.dealUserCard(roomId, username, function(card) {
       var card = JSON.parse(card);
-      repo.checkDeckCount(roomKey, function(err, count) {
+      repo.checkDeckCount(roomId, function(err, count) {
         if (count === 0) {
-          io.to(roomKey).emit("deckEmptyMessage");
+          io.to(roomId).emit("deckEmptyMessage");
         } else {
-          socket.broadcast.to(roomKey).emit("cardDrawMessage", socket.username);
+          socket.broadcast.to(roomId).emit("cardDrawMessage", socket.username);
           socket.emit("addCardToHand", card);
         }
       })
@@ -79,65 +84,66 @@ io.on('connection', function(socket){
 
   // Pass a card to the table from the user's hand
   socket.on("passTable", function(cardId){
-    var roomKey = socket.rooms[1];
+    var roomId = socket.rooms[1];
     var username = socket.username;
-    repo.passCard(roomKey, username, "Table", cardId, function(card){
+    repo.passCard(roomId, username, "Table", cardId, function(card){
       var card = JSON.parse(card);
       socket.emit("removeCardFromHand", card);
-      io.to(roomKey).emit("addCardToTable", card);
-      socket.broadcast.to(roomKey).emit("cardPlayToTableMessage", username
+      io.to(roomId).emit("addCardToTable", card);
+      socket.broadcast.to(roomId).emit("cardPlayToTableMessage", username
         )
     });
   });
 
   // User collects all the cards on the table
   socket.on("userCollectsTable", function(){
-    var roomKey = socket.rooms[1];
+    var roomId = socket.rooms[1];
     var username = socket.username;
     var socketId = socket.id;
-    repo.getTable(roomKey, username, function(card){
+    repo.getTable(roomId, username, function(card){
       var card = JSON.parse(card);
       socket.emit("addCardToHand", card);
-      io.to(roomKey).emit("removeCardFromTable", card);
+      io.to(roomId).emit("removeCardFromTable", card);
     });
-    socket.broadcast.to(roomKey).emit("userTakeAllMessage", username);
+    socket.broadcast.to(roomId).emit("userTakeAllMessage", username);
   });
 
   // User discards a card from his/her hand
   socket.on("userDiscardsCard", function(cardId){
-    var roomKey = socket.rooms[1];
+    var roomId = socket.rooms[1];
     var username = socket.username;
     var socketId = socket.id;
-    repo.passCard(roomKey, username, "Discard", cardId, function(card){
+    repo.passCard(roomId, username, "Discard", cardId, function(card){
       var card = JSON.parse(card);
       socket.emit("removeCardFromHand", card);
-      socket.broadcast.to(roomKey).emit("cardDiscardMessage", username)
+      socket.broadcast.to(roomId).emit("cardDiscardMessage", username)
     });
   });
 
   // User obtains a card from a table
   socket.on("getTableCard", function(cardId){
-    var roomKey = socket.rooms[1];
+    var roomId = socket.rooms[1];
     var username = socket.username;
     var socketId = socket.id;
-    repo.passCard(roomKey, "Table", username, cardId, function(card){
+    repo.passCard(roomId, "Table", username, cardId, function(card){
       var card = JSON.parse(card);
       socket.emit("addCardToHand", card);
-      socket.broadcast.to(roomKey).emit("userTakeOneMessage", username);
-      io.to(roomKey).emit("removeCardFromTable", card);
+      socket.broadcast.to(roomId).emit("userTakeOneMessage", username);
+      io.to(roomId).emit("removeCardFromTable", card);
+      io.to(roomId).emit("removeCardFromTable", card);
     });
   });
 
   // Discard a card from the table
   socket.on("discardTableCard", function(cardId){
-    var roomKey = socket.rooms[1];
+    var roomId = socket.rooms[1];
     var username = socket.username;
-    repo.passCard(roomKey, "Table", "Discard", cardId, function(card){
+    repo.passCard(roomId, "Table", "Discard", cardId, function(card){
       var card = JSON.parse(card);
-      repo.getUserKeys(roomKey, function(err, keys){
-        socket.broadcast.to(roomKey).emit("tableCardDiscardMessage", username)
+      repo.getUserKeys(roomId, function(err, keys){
+        socket.broadcast.to(roomId).emit("tableCardDiscardMessage", username)
         keys.forEach(function(key){
-          repo.getHand(roomKey, "Table", function(err, data){
+          repo.getHand(roomId, "Table", function(err, data){
             io.to(key).emit("removeCardFromTable", card);
           });
         });
@@ -147,18 +153,18 @@ io.on('connection', function(socket){
 
   // Draw a card from the deck directly to the table
   socket.on("tableDeckDraw", function(){
-    var roomKey = socket.rooms[1];
+    var roomId = socket.rooms[1];
     var socketId = socket.id;
-    repo.dealUserCard(roomKey, "Table", function(card) {
+    repo.dealUserCard(roomId, "Table", function(card) {
       var card = JSON.parse(card);
-      repo.checkDeckCount(roomKey, function(err, count) {
+      repo.checkDeckCount(roomId, function(err, count) {
         if (count === 0) {
-          io.to(roomKey).emit("deckEmptyMessage");
+          io.to(roomId).emit("deckEmptyMessage");
         } else {
-          socket.broadcast.to(roomKey).emit("cardDrawToTableMessage", socket.username);
-          repo.getUserKeys(roomKey, function(err, keys){
+          socket.broadcast.to(roomId).emit("cardDrawToTableMessage", socket.username);
+          repo.getUserKeys(roomId, function(err, keys){
             keys.forEach(function(key){
-              repo.getHand(roomKey, "Table", function(err, data){
+              repo.getHand(roomId, "Table", function(err, data){
                 io.to(key).emit("addCardToTable", card);
               });
             });
@@ -169,16 +175,21 @@ io.on('connection', function(socket){
     });
   });
 
+  // Flipping a card on the table flips that card for each person
   socket.on("cardFlip", function(cardId){
-    var roomKey = socket.rooms[1];
-    socket.broadcast.to(roomKey).emit("peerCardFlip", cardId);
+    var roomId = socket.rooms[1];
+    socket.broadcast.to(roomId).emit("peerCardFlip", cardId);
   });
 
+  // When a user disconnects, all of their cards are discarded
   socket.on("disconnect", function(socket){
-    repo.discardAllCards(roomid, userjoined);
-    repo.destroyUser(roomid, userjoined);
-    io.to(roomid).emit("playerLeaveMessage", userjoined);
-    io.to(roomid).emit("userLeft", userjoined);
+    repo.discardAllCards(roomId, userjoined);
+    repo.destroyUser(roomId, userjoined);
+    io.to(roomId).emit("playerLeaveMessage", userjoined);
+    io.to(roomId).emit("userLeft", userjoined);
+    repo.discardAllCards(roomId, userjoined);
+    io.to(roomId).emit("playerLeaveMessage", userjoined);
+    io.to(roomId).emit("userLeft", userjoined)
   })
 
 });
@@ -195,11 +206,11 @@ function jsonParser(data) {
 }
 
 // Update Hands for all users
-function updateAllUserHands(roomKey){
-  repo.getUserKeys(roomKey, function(err, keys){
+function updateAllUserHands(roomId){
+  repo.getUserKeys(roomId, function(err, keys){
     keys.forEach(function(key){
-      repo.getUser(roomKey, key, function(err, username){
-        repo.getHand(roomKey, username, function(err, data){
+      repo.getUser(roomId, key, function(err, username){
+        repo.getHand(roomId, username, function(err, data){
           io.to(key).emit("updateHand", jsonParser(data.sort()));
         })
       })

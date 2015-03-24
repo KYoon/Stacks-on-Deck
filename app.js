@@ -36,30 +36,30 @@ app.get('/', function(req, res){
 });
 
 app.post('/join', function(req, res) {
-  var roomkey = req.body.roomkey.toUpperCase();
-  if (roomkey === ""){
-    roomkey = keyGenerator();
+  var roomId = req.body.roomId.toUpperCase();
+  if (roomId === ""){
+    roomId = keyGenerator();
   }
   var username = req.body.username;
   req.session["username"] = username;
-  req.session["roomkey"] = roomkey;
-  res.redirect('/games/'+ roomkey);
+  req.session["roomId"] = roomId;
+  res.redirect('/games/'+ roomId);
   return;
 });
 
 app.get('/games/:key', function(req, res) {
-  res.render('game.ejs', {username: req.session["username"], roomkey: req.session["roomkey"]})
+  res.render('game.ejs', {username: req.session["username"], roomId: req.session["roomId"]})
   return;
 });
 
 app.post('/tables', function(req, res){
-  var roomkey = req.body.roomkey.toUpperCase();
-  res.redirect('/tables/'+roomkey);
+  var roomId = req.body.roomId.toUpperCase();
+  res.redirect('/tables/'+roomId);
 });
 
 app.get('/tables/:key', function(req, res){
   // validate key is legit
-  res.render('table.ejs', {roomkey: req.params.key})
+  res.render('table.ejs', {roomId: req.params.key})
   return;
 })
 

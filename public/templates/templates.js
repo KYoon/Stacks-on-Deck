@@ -272,7 +272,7 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<!-- Waiting room -->\n    <div class="container-fluid">\n      <div class="room-key-div">\n        <div><p class="navbar-brand">Room: ' +
-((__t = ( userData.roomkey )) == null ? '' : __t) +
+((__t = ( userData.roomId )) == null ? '' : __t) +
 '</p></div>\n        <div class="navbar-inner">\n          <div class="navbar-center inline">\n            <p>Stacks on Deck</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n\n <div class="container" id="game-page-container">\n\n\n<div class="row waiting-room">\n   <div class="col-xs-12 welcome">\n    <h2>Welcome <span id="username">' +
 ((__t = ( userData.username )) == null ? '' : __t) +
 '</span></h2>\n  </div>\n</div>\n\n\n  <div class="player-card-count row">\n    <div class="col-xs-12">\n      <div class="player-list col-xs-12">\n        <h3>Players:</h3>\n      </div>\n    </div>\n      </div>\n\n    <div row>\n    <div class="col-xs-12">\n      <div class="inner-big" id="hand-count">\n        <div class="second-hand-count">\n          <i id="up-arrow" class="fa fa-sort-asc fa-5x"></i>\n          <h1 id="count">5</h1>\n          <i id="down-arrow" class="fa fa-sort-desc fa-5x"></i>\n        </div>\n    </div>\n        <h3 class="hand-size-label waiting-room">Starting Hand Size</h3>\n        <div class="start-game waiting-room">\n          <button class="btn btn-default" id="start-game-btn">Start Game</button>\n        </div>\n    </div>\n  </div>\n\n\n\n\n\n</div>';
