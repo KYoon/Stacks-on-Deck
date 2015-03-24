@@ -86,13 +86,6 @@ h2 {
   margin-bottom: 5%;
 }
 
-.logo {
-  display: inline-block;
-  width: 78%;
-  text-align: center;
-  background-color: orange;
-}
-
 .draw-card-buttons {
   border-radius: .4em;
   margin: 10px 0 10px 0;
@@ -389,6 +382,23 @@ li {
   font-size: 120%;
 }
 
+.logo {
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-image: url("/public/images/stacksondeck-table-view.svg");
+  background-position: center;
+  height: 30%;
+  margin-top: 3%;
+}
+
+.table-signin {
+  display: none;
+}
+
+.instructions {
+  margin-bottom: 5%;
+  font-weight: bold;
+}
 
 
 /*For Mobile Views*/
@@ -499,5 +509,18 @@ li {
     font-size: 100%;
   }
 
+.instructions {
+  margin-bottom: 5%;
+}
+
+.logo {
+  background-size: 120%;
+  background-repeat: no-repeat;
+  background-image: url("/public/images/stacksondeck-table-view.svg");
+  background-position: center;
+  height: 20%;
+  margin-top: 3%;
+  margin-bottom:-8%;
+}
 
 }
