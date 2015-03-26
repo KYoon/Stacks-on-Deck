@@ -227,6 +227,6 @@ function updateAllUserHands(roomId){
 // Render/Update table for the people who join in late
 function playerJoiningLate(roomId, userId){
   repo.getHand(roomId, "Table", function(err, data){
-    io.to(userId).emit("playerJoiningLate", jsonParser(data.sort()));
+    io.to(userId).emit("playerJoiningLate", jsonParser(data));
   })
 }
