@@ -29,11 +29,11 @@ io.on('connection', function(socket){
           userjoined = data.username;
           roomId = data.roomId;
           repo.createUser(data.roomId, data.username, socket.id);
-          repo.getUser(roomId, socket.id, function(err, username){
-            repo.getHand(roomId, username, function(err, data){
-              io.to(socket.id).emit("updateHand", jsonParser(data.sort()));
-            })
-          })
+          playerJoiningLate(roomId, socket.id)
+          repo.getUsers(data.roomId, function(err, users){
+            socket.emit("joinedGame", users);
+          });
+          socket.broadcast.to(data.roomId).emit('newPlayer', data.username);
         });
       }
     });
@@ -225,8 +225,8 @@ function updateAllUserHands(roomId){
 }
 
 // Render/Update table for the people who join in late
-// function getTable(roomId, userId){
-//   repo.getHand(roomId, "Table", function(err, data){
-//     io.to(userId).emit("updateHand", jsonParser(data.sort()));
-//   })
-// }
+function playerJoiningLate(roomId, userId){
+  repo.getHand(roomId, "Table", function(err, data){
+    io.to(userId).emit("playerJoiningLate", jsonParser(data.sort()));
+  })
+}

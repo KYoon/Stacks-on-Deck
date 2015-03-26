@@ -6,6 +6,9 @@ $(document).ready(function(){
   // listen for card event
   socket.on("updateHand", updateHand);
 
+  // listen for player joining late
+  socket.on("playerJoiningLate", playerJoiningLate);
+
   // if game in progress, notify and redirect after 3 seconds
   socket.on("gameInProgress", function(){
     console.log("ERROR: received gameInProgess response")
@@ -141,6 +144,23 @@ function dealCards(data){
   socket.emit("dealCards", data);
 }
 
+function playerJoiningLate(data){
+  gameRoomView.render();
+
+  hand = new Hand();
+  handView = new HandView({collection: hand});
+  $(".player-hand").append(handView.$el);
+
+  table = new Table();
+  tableView = new TableView({collection: table});
+  $(".tableclass").append(tableView.$el);
+
+  // add hand buttons to table
+  handButtonView = new HandButtonView({collection: hand});
+
+  // hand.updateCards(data)
+  table.updateCards(data)
+}
 function removeCurrentUser(clients, currentUser) {
   peers = []
   for (var i=0; i < clients.length; i++){

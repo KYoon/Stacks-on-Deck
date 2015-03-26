@@ -6,6 +6,9 @@ $(document).ready(function(){
   // listen for card event
   socket.on("updateHand", updateHand);
 
+  // listen for player joining late
+  socket.on("playerJoiningLate", playerJoiningLate);
+
   // if game in progress, notify and redirect after 3 seconds
   socket.on("gameInProgress", function(){
     console.log("ERROR: received gameInProgess response")
