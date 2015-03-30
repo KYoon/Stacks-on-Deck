@@ -28,6 +28,7 @@ var CurrentPlayersView = Backbone.View.extend({
   },
 
   removeOne: function(player){
+    console.log("Inside current players view")
     var view = _.find(this.playerViews, function(view) {
       return view.model === player;
     })
