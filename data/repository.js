@@ -28,6 +28,7 @@ module.exports.checkDeckCount = checkDeckCount;
 module.exports.getKey = getKey;
 module.exports.discardAllCards = discardAllCards;
 
+
 client.on("error", function (err) {
   console.log("REDIS Error " + err);
 });
@@ -105,7 +106,7 @@ function dealUsersCards(gameId, handSize, callback) {
   })
 }
 
-var destroyUser = function(gameId, username, callback) {
+function destroyUser(gameId, username, callback) {
   client.hdel(gameId+":users", gameId+":"+username)
   client.hdel(gameId+":users:keys", gameId+":"+username+":key" )
 }

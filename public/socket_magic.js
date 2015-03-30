@@ -141,14 +141,6 @@ function dealCards(data){
   socket.emit("dealCards", data);
 }
 
-function joinedGame(data) {
-  playerList.addPlayers(data);
-  playerListForPassing.addPlayers(data);
-}
-function newPlayer(data) {
-  playerList.addPlayer(data);
-  playerListForPassing.addPlayer(data)
-}
 function removeCurrentUser(clients, currentUser) {
   peers = []
   for (var i=0; i < clients.length; i++){

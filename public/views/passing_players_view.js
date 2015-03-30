@@ -2,7 +2,8 @@ var PassingPlayersView = Backbone.View.extend({
   tagName: "ul",
 
   initialize: function() {
-    this.listenTo(this.collection, 'add', this.addAll);
+    this.playerViews = [];
+    this.listenTo(this.collection, 'add', this.addOne);
     this.listenTo(this.collection, 'remove', this.removeOne);
   },
 
@@ -18,6 +19,7 @@ var PassingPlayersView = Backbone.View.extend({
   addOne: function(player){
     var view = new PassingPlayerView({model: player});
     view.render();
+    this.playerViews.push(view)
     this.$el.append(view.$el);
   },
 
@@ -33,7 +35,8 @@ var PassingPlayersView = Backbone.View.extend({
     var view = _.find(this.playerViews, function(view) {
       return view.model === player;
     })
-    this.playerViews = _.filter(this.playerViews, function(view) { return view.model !== player;
+    this.playerViews = _.filter(this.playerViews, function(view) {
+      return view.model !== player;
     });
     view.remove();
   }

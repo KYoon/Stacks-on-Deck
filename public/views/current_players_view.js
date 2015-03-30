@@ -3,7 +3,7 @@ var CurrentPlayersView = Backbone.View.extend({
 
   initialize: function() {
     this.playerViews = [];
-    this.listenTo(this.collection, 'add', this.addAll);
+    this.listenTo(this.collection, 'add', this.addOne);
     this.listenTo(this.collection, 'remove', this.removeOne);
   },
 
