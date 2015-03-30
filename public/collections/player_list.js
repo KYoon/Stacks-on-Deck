@@ -13,10 +13,7 @@ var PlayerList = Backbone.Collection.extend({
 
   removePlayer: function(username) {
     var playerModel = this.find(function(model) { return model.get('username') === username});
-    console.log(playerModel)
-    console.log(this)
     this.remove(playerModel);
-    console.log(this)
   },
 
   addPlayers: function(usernames){
