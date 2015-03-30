@@ -32,7 +32,6 @@ var PassingPlayersView = Backbone.View.extend({
   },
 
   removeOne: function(player){
-    console.log( "in passing_player_view_remove_one")
     console.log(this.playerViews)
     var view = _.find(this.playerViews, function(view) {
       return view.model === player;
