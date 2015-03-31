@@ -99,8 +99,8 @@ io.on('connection', function(socket){
       var card = JSON.parse(card);
       socket.emit("addCardToHand", card);
       io.to(roomKey).emit("removeCardFromTable", card);
-      socket.broadcast.to(roomKey).emit("userTakeAllMessage", username);
     });
+    socket.broadcast.to(roomKey).emit("userTakeAllMessage", username);
   });
 
   // User discards a card from his/her hand
