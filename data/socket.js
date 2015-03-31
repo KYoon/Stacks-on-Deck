@@ -99,6 +99,7 @@ io.on('connection', function(socket){
       var card = JSON.parse(card);
       socket.emit("addCardToHand", card);
       io.to(roomKey).emit("removeCardFromTable", card);
+      socket.broadcast.to(roomKey).emit("userTakeAllMessage", username);
     });
   });
 
@@ -122,6 +123,7 @@ io.on('connection', function(socket){
     repo.passCard(roomKey, "Table", username, cardId, function(card){
       var card = JSON.parse(card);
       socket.emit("addCardToHand", card);
+      socket.broadcast.to(roomKey).emit("userTakeOneMessage", username);
       io.to(roomKey).emit("removeCardFromTable", card);
     });
   });
@@ -129,9 +131,11 @@ io.on('connection', function(socket){
   // Discard a card from the table
   socket.on("discardTableCard", function(cardId){
     var roomKey = socket.rooms[1];
+    var username = socket.username;
     repo.passCard(roomKey, "Table", "Discard", cardId, function(card){
       var card = JSON.parse(card);
       repo.getUserKeys(roomKey, function(err, keys){
+        socket.broadcast.to(roomKey).emit("tableCardDiscardMessage", username)
         keys.forEach(function(key){
           repo.getHand(roomKey, "Table", function(err, data){
             io.to(key).emit("removeCardFromTable", card);

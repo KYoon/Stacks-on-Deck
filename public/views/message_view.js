@@ -16,6 +16,9 @@ var MessageView = Backbone.View.extend({
     this.listenTo(socket, 'playerLeaveMessage', this.playerLeave);
     this.listenTo(socket, 'deckEmptyMessage', this.deckEmpty);
     this.listenTo(socket, 'cardDiscardMessage', this.cardDiscard);
+    this.listenTo(socket, 'tableCardDiscardMessage', this.tableCardDiscard);
+    this.listenTo(socket, 'userTakeAllMessage', this.userTakeAll);
+    this.listenTo(socket, 'userTakeOneMessage', this.userTakeOne);
   },
 
   rotate: function(){
@@ -136,5 +139,30 @@ var MessageView = Backbone.View.extend({
       title: "Discard:",
       message: username + " has discarded a card."
     });
-  }
+  },
+
+  tableCardDiscard: function(username) {
+    $.notify({
+      icon: "glyphicon glyphicon-warning-sign",
+      title: "Discard:",
+      message: username + " has discarded a card from the table."
+    });
+  },
+
+  userTakeAll: function(username) {
+    $.notify({
+      icon: "glyphicon glyphicon-minus",
+      title: "Collect:",
+      message: username + " has collected all cards from the table."
+    });
+  },
+
+  userTakeOne: function(username) {
+    $.notify({
+      icon: "glyphicon glyphicon-minus",
+      title: "Collect:",
+      message: username + " has collected a card from the table."
+    });
+  },
+
 })
