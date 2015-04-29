@@ -83,9 +83,9 @@ Make a pull request and then wait for a response! Please make commits often and 
 - [John Mandalakas - `jnmandal`](https://github.com/jnmandal)
 
 ## Special Thanks
-- [Nate Delage - 'ndelage'](https://github.com/ndelage)
-- [Lucas Willett - 'ltw'](https://github.com/ltw)
-- [Leon Gersing - 'leongersing'](https://github.com/leongersing)
+- [Nate Delage - `ndelage`](https://github.com/ndelage)
+- [Lucas Willett - `ltw`](https://github.com/ltw)
+- [Leon Gersing - `leongersing`](https://github.com/leongersing)
 
 ## Contributors
 * This could be you!
