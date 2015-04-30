@@ -14,7 +14,7 @@ Install all the dependencies:
 
     npm install (may need to prefix with sudo if on Mac)
 
-If grunt in not install on the local machine:
+If grunt is not installed on the local machine:
 
     npm install grunt-cli -g
 
