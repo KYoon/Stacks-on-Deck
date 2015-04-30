@@ -48,10 +48,10 @@ function createDeck(roomId) {
   var suit = ["hearts", "clubs", "spades", "diams"];
   var value = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"];
 
-var count = 1
+  var count = 1
   for (i = 0; i < suit.length; i++) {
     for (x = 0; x < value.length; x++) {
-      client.hmset(roomId+"deck", count, '{"suit":"'+ suit[i]+'", "value":"'+ value[x]+'", "id":"' + count + '"}')
+      client.hmset(roomId+"deck", count, '{"suit":"'+ suit[i] +'", "value":"'+ value[x] +'", "id":"'+ count +'", "face":"'+ false +'"}')
       client.sadd(roomId + ":deck", count)
       count++
     };
@@ -83,11 +83,11 @@ function getKey(roomId, username, callback) {
 
 function dealUserCard(roomId, user, callback) {
   oneRandCard(roomId, function(err, id) {
-      client.hget(roomId+"deck", id, function(err, card){
-        client.sadd(userHand(roomId, user), card, function(err) {
-          if(callback) {
-            callback(card);
-          }
+    client.hget(roomId+"deck", id, function(err, card){
+      client.sadd(userHand(roomId, user), card, function(err) {
+        if(callback) {
+          callback(card);
+        }
       })
     });
   });

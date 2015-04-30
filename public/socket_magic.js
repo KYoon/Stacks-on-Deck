@@ -158,7 +158,6 @@ function playerJoiningLate(data){
   // add hand buttons to table
   handButtonView = new HandButtonView({collection: hand});
 
-  // hand.updateCards(data)
   table.updateCards(data)
 }
 function removeCurrentUser(clients, currentUser) {
