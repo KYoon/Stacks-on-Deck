@@ -51,7 +51,7 @@ function createDeck(roomId) {
   var count = 1
   for (i = 0; i < suit.length; i++) {
     for (x = 0; x < value.length; x++) {
-      client.hmset(roomId+"deck", count, '{"suit":"'+ suit[i] +'", "value":"'+ value[x] +'", "id":"'+ count +'", "face":"'+ false +'"}')
+      client.hmset(roomId+"deck", count, '{"suit":"'+ suit[i] +'", "value":"'+ value[x] +'", "id":"'+ count +'"}')
       client.sadd(roomId + ":deck", count)
       count++
     };
