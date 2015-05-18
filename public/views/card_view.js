@@ -51,7 +51,6 @@ var CardView = Backbone.View.extend({
   },
 
   flipCard: function() {
-    console.log(this.model.attributes);
     if (this.model.get('faceUp') === false) {
       this.model.set({faceUp: true});
     } else {

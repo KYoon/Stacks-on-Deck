@@ -184,7 +184,6 @@ function setCardFlip(roomId, cardAttributes, player, callback){
     getHand(roomId, player, function(err, cards){
       cards.forEach(function(card){
         if (JSON.parse(card).id === cardAttributes.id){
-          console.log("getting here")
           client.srem(userHand(roomId, player), card, function(err){
             if(callback){
               callback(card);
