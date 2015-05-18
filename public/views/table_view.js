@@ -1,7 +1,7 @@
 var TableView = Backbone.View.extend({
   initialize: function() {
     this.cardViews = [];
-    // this.listenTo(this.collection, "change", this.render);
+    
     this.listenTo(this.collection, "add", this.addOne);
     this.listenTo(this.collection, "remove", this.removeOne);
     this.listenTo(socket, "peerCardFlip", this.flipSpecificCard.bind(this));
