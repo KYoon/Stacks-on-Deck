@@ -52,7 +52,8 @@ function createDeck(roomId) {
   var count = 1
   for (i = 0; i < suit.length; i++) {
     for (x = 0; x < value.length; x++) {
-      client.hmset(roomId+"deck", count, '{"suit":"'+ suit[i] +'", "value":"'+ value[x] +'", "id":"'+ count +'", "faceUp":"'+ false +'"}')
+      client.hmset(roomId+"deck", count, '{"suit":"'+ suit[i] +'", "value":"'+ value[x] +'", "id":"'+ count +'", "faceUp":'+ false +'}')
+      // client.hmset(roomId+"deck", count, '{"suit":"'+ suit[i] +'", "value":"'+ value[x] +'", "id":"'+ count +'"}')
       client.sadd(roomId + ":deck", count)
       count++
     };
@@ -169,10 +170,34 @@ function discardAllCards(roomId, from, callback) {
   });
 }
 
-function setCardFlip(roomId, cardId, player, callback){
-  getHand(roomId, player, function(err, cards){
-    cards.forEach(function(card){
-      console.log(card);
+function setCardFlip(roomId, cardAttributes, player, callback){
+  var promise = new Promise(function(resolve, reject){
+    client.hget(roomId+"deck", cardAttributes.id, function(err, card){
+      if (JSON.parse(card).faceUp === false){
+        client.hmset(roomId+"deck", cardAttributes.id, '{"suit":"'+ cardAttributes.suit +'", "value":"'+ cardAttributes.value +'", "id":"'+ cardAttributes.id +'", "faceUp":'+ true +'}');
+      } else if (JSON.parse(card).faceUp === true) {
+        client.hmset(roomId+"deck", cardAttributes.id, '{"suit":"'+ cardAttributes.suit +'", "value":"'+ cardAttributes.value +'", "id":"'+ cardAttributes.id +'", "faceUp":'+ false +'}');
+      }
+    });
+  });
+  promise.then(
+    getHand(roomId, player, function(err, cards){
+      cards.forEach(function(card){
+        if (JSON.parse(card).id === cardAttributes.id){
+          client.srem(userHand(roomId, player), card, function(err){
+            if(callback){
+              callback(card);
+            }
+          });
+          client.hget(roomId+"deck", cardAttributes.id, function(err, card){
+            client.sadd(userHand(roomId, player), card, function(err){
+              if(callback){
+                callback(card);
+              }
+            });
+          })
+        }
+      })
     })
-  })
+  );
 }

@@ -43,14 +43,16 @@ var CardView = Backbone.View.extend({
 
   playerFlipCard: function(){
     if (this.model.collection === table){
-      socket.emit("cardFlip", this.model.get("id"));
+      // socket.emit("cardFlip", this.model.get("id"));
+      socket.emit("cardFlip", this.model.attributes);
     }
     this.flipCard();
   },
 
   flipCard: function() {
+    console.log(this.model.attributes);
     if (this.model.get('faceUp') === false) {
-      this.model.set({faceUp: true})
+      this.model.set({faceUp: true});
     } else {
       this.model.set({faceUp: false})
     }

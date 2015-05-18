@@ -36,7 +36,6 @@ var TableView = Backbone.View.extend({
   },
 
   flipSpecificCard: function(cardId) {
-    console.log("flipSpecificCard");
     var cardView = _.find(this.cardViews, function(view){
       return view.model.get("id") === cardId
     })
