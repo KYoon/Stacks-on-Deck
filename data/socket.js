@@ -159,10 +159,15 @@ io.on('connection', function(socket){
   });
 
   // Flipping a card on the table flips that card for each person
-  socket.on("cardFlip", function(cardAttributes){
+  socket.on("peerCardFlip", function(cardAttributes){
     socket.broadcast.to(roomId).emit("peerCardFlip", cardAttributes.id);
-    repo.setCardFlip(roomId, cardAttributes, "Table"); //Can't be hardcode "Table"
+    repo.setCardFlip(roomId, cardAttributes, "Table");
   });
+
+  // Flipping a card in hand which updates it in Redis
+  socket.on("selfCardFlip", function(cardAttributes){
+    repo.setCardFlip(roomId, cardAttributes, userJoined);
+  })
 
   // When a user disconnects, all of their cards are discarded
   socket.on("disconnect", function(socket){

@@ -171,12 +171,19 @@ function discardAllCards(roomId, from, callback) {
 }
 
 function setCardFlip(roomId, cardAttributes, player, callback){
+  console.log("here");
+  console.log(cardAttributes);
   var promise = new Promise(function(resolve, reject){
     client.hget(roomId+"deck", cardAttributes.id, function(err, card){
+      console.log(JSON.parse(card).faceUp);
       if (JSON.parse(card).faceUp === false){
         client.hmset(roomId+"deck", cardAttributes.id, '{"suit":"'+ cardAttributes.suit +'", "value":"'+ cardAttributes.value +'", "id":"'+ cardAttributes.id +'", "faceUp":'+ true +'}');
+        console.log(card);
+        console.log("WHAT");
       } else if (JSON.parse(card).faceUp === true) {
         client.hmset(roomId+"deck", cardAttributes.id, '{"suit":"'+ cardAttributes.suit +'", "value":"'+ cardAttributes.value +'", "id":"'+ cardAttributes.id +'", "faceUp":'+ false +'}');
+        console.log(card);
+        console.log('YOUSAY')
       }
     });
   });
@@ -184,6 +191,7 @@ function setCardFlip(roomId, cardAttributes, player, callback){
     getHand(roomId, player, function(err, cards){
       cards.forEach(function(card){
         if (JSON.parse(card).id === cardAttributes.id){
+          console.log("getting here")
           client.srem(userHand(roomId, player), card, function(err){
             if(callback){
               callback(card);

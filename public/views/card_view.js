@@ -42,9 +42,11 @@ var CardView = Backbone.View.extend({
   },
 
   playerFlipCard: function(){
+    console.log("playerFlipCard")
     if (this.model.collection === table){
-      // socket.emit("cardFlip", this.model.get("id"));
-      socket.emit("cardFlip", this.model.attributes);
+      socket.emit("peerCardFlip", this.model.attributes);
+    } else {
+      socket.emit("selfCardFlip", this.model.attributes);
     }
     this.flipCard();
   },
