@@ -27,6 +27,7 @@ module.exports.getUser = getUser;
 module.exports.checkDeckCount = checkDeckCount;
 module.exports.getKey = getKey;
 module.exports.discardAllCards = discardAllCards;
+module.exports.setCardFlip = setCardFlip;
 
 
 client.on("error", function (err) {
@@ -51,7 +52,7 @@ function createDeck(roomId) {
   var count = 1
   for (i = 0; i < suit.length; i++) {
     for (x = 0; x < value.length; x++) {
-      client.hmset(roomId+"deck", count, '{"suit":"'+ suit[i] +'", "value":"'+ value[x] +'", "id":"'+ count +'"}')
+      client.hmset(roomId+"deck", count, '{"suit":"'+ suit[i] +'", "value":"'+ value[x] +'", "id":"'+ count +'", "faceUp":"'+ false +'"}')
       client.sadd(roomId + ":deck", count)
       count++
     };
@@ -166,4 +167,12 @@ function discardAllCards(roomId, from, callback) {
       })
     });
   });
+}
+
+function setCardFlip(roomId, cardId, player, callback){
+  getHand(roomId, player, function(err, cards){
+    cards.forEach(function(card){
+      console.log(card);
+    })
+  })
 }
