@@ -68,9 +68,9 @@ stacks.cards@gmail.com
 * Implement customization of table and deck
 * Make preset games
 * Allow players to make rules
-* Allow players to join game already in progress
-    * Partially done. Player able to join game in progress. Able to see do regular hand functions, able to do table functions, able to get cards that are on the table already. HOWEVER, all cards are flipped over. Need to figure out which cards are all flipped over either through Redis or other means.
-    * Branch - `player-join-game-in-progress`
+* ~~Allow players to join game already in progress~~
+    * ~~Partially done. Player able to join game in progress. Able to see do regular hand functions, able to do table functions, able to get cards that are on the table already. HOWEVER, all cards are flipped over. Need to figure out which cards are all flipped over either through Redis or other means.~~
+    * ~~Branch - `player-join-game-in-progress`~~
 
 ## How to contribute
 Make a pull request and then wait for a response! Please make commits often and be as descriptive as you can if you are to make a pull request. Also, to reference the original team, include @KYoon @aamharris @Bsheridan12 @fgv02009 @jnmandal within the pull request.
